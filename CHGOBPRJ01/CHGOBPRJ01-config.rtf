@@ -1,0 +1,963 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;\f1\fnil\fcharset0 HelveticaNeue;\f2\fswiss\fcharset0 ArialMT;
+}
+{\colortbl;\red255\green255\blue255;\red255\green255\blue255;\red0\green0\blue0;\red19\green140\blue208;
+\red242\green245\blue249;\red43\green43\blue45;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;\cssrgb\c1569\c62353\c85098;
+\cssrgb\c96078\c96863\c98039;\cssrgb\c22353\c22353\c23137;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 hostname c1\
+clock timezone UTC 0\
+banner login % "\\n********************************************************************************* \\n*                                                                               * \\n*                                -- WARNING --                                  * \\n*                                                                               * \\n*  You are accessing a corporate sensitive system that is subject to U.S.       * \\n*  Government regulation. This is a private computer system. It is for          * \\n*  authorized use only. Users (authorized or unauthorized) have no explicit     * \\n*  or implicit expectation of privacy.                                          * \\n*                                                                               * \\n*  Any or all uses of this system and all files on this system may be           * \\n*  intercepted, monitored, recorded, copied, audited, inspected, and            * \\n*  disclosed to authorized site, law enforcement personnel, as well as          * \\n*  authorized officials of other agencies.  By using this system, the user      * \\n*  consents to such interception, monitoring, recording, copying, auditing,     * \\n*  inspection and disclosure at the discretion of authorized site personnel.    * \\n*                                                                               * \\n*  Unauthorized or improper use of this system may result in administrative     * \\n*  disciplinary action and civil and criminal penalties. By continuing to       * \\n*  use this system you indicate your awareness of and consent to these terms    * \\n*  and conditions of use.                                                       * \\n*                                                                               * \\n*  LOG OFF IMMEDIATELY if you do not agree to the conditions stated above!      * \\n*                                                                               * \\n*********************************************************************************\\n\\n" %\
+logging 68.1.18.39 vrf default\
+logging 68.1.18.40 vrf default\
+logging 68.1.19.40 vrf default\
+logging 68.1.19.86 vrf default\
+logging 98.182.1.182 vrf default\
+logging 172.17.1.100 vrf default\
+logging 172.17.1.103 vrf default\
+logging 172.23.0.11 vrf default\
+logging 174.78.111.10 vrf default\
+logging 184.176.220.121 vrf default\
+domain name cox.net\
+domain name-server 10.10.10.1\
+domain name-server 10.10.20.1\
+domain name-server 68.1.18.25\
+domain name-server 68.1.18.30\
+netconf agent tty\
+exit\
+netconf-yang agent\
+ ssh\
+exit\
+ntp\
+ server 10.20.10.110\
+ server 10.30.10.120\
+ server 172.26.0.53\
+ server 172.27.0.33\
+exit\
+aaa group server tacacs+ tacacs-auth\
+ server-private 68.110.132.230 port 49\
+  key XXXX\
+ exit\
+ server-private 184.185.14.11 port 49\
+  key XXXX\
+ exit\
+exit\
+object-group network ipv4 ALLOW-AAA-DST\
+exit\
+object-group network ipv4 ALLOW-ANSIBLE-DST\
+exit\
+object-group network ipv4 ALLOW-ATAC-DST\
+exit\
+object-group network ipv4 ALLOW-BGP-DST\
+exit\
+object-group network ipv4 ALLOW-DNS-DST\
+exit\
+object-group network ipv4 ALLOW-NMS-ICMP-DST\
+exit\
+object-group network ipv4 ALLOW-NMS-SNMP-DST\
+exit\
+object-group network ipv4 ALLOW-NTP-DST\
+exit\
+object-group network ipv4 ALLOW-SNMP-DST\
+exit\
+object-group network ipv4 ALLOW-SP-COMM-DST\
+exit\
+object-group network ipv4 ALLOW-SSH-MGT-DST\
+exit\
+object-group network ipv4 BEST-EFFORT-DST\
+exit\
+object-group network ipv4 CARBON-BLACK-DST\
+exit\
+object-group network ipv4 CORP-ACCESS-DST\
+exit\
+object-group network ipv4 RTP-DST\
+exit\
+object-group network ipv4 SIP-DST\
+exit\
+object-group network ipv4 V4-PERMIT-EGRESS-TRAFFIC-DST\
+exit\
+object-group network ipv4 V4-PERMIT-INGRESS-TRAFFIC-DST\
+exit\
+object-group network ipv4 bogon-permit-DST\
+exit\
+object-group network ipv4 everything-else-DST\
+exit\
+object-group network ipv4 link-accept-DST\
+exit\
+object-group network ipv4 permit-icmp-unreach-DST\
+exit\
+object-group network ipv4 permitted-icmp-types-DST\
+exit\
+object-group network ipv4 sources-accept-DST\
+exit\
+object-group network ipv6 Allow-Multihop-Peers-DST\
+ 2001:578:1::/64\
+exit\
+object-group network ipv6 Everything-else-DST\
+exit\
+object-group network ipv6 Explicit-Police-ICMP-DST\
+exit\
+object-group network ipv6 Link-Local-DST\
+exit\
+object-group network ipv6 PERMIT-BFD-DST\
+exit\
+object-group network ipv6 PERMIT-BGP-DST\
+exit\
+object-group network ipv6 PERMIT-HOP-BY-HOP-OPTION-DST\
+exit\
+object-group network ipv6 PERMIT-ICMPV6-DST\
+exit\
+object-group network ipv6 PERMIT-INFRASTRUCTURE-TO-PROTECTED-DST\
+exit\
+object-group network ipv6 PERMIT-L3VPN-BGP-DST\
+exit\
+object-group network ipv6 PERMIT-PIM-DST\
+exit\
+object-group network ipv6 PERMIT-SAMPLING-DST\
+exit\
+object-group network ipv6 PERMIT-TRACEROUTES-DST\
+exit\
+object-group network ipv6 PERMIT-VRRPV6-DST\
+exit\
+object-group network ipv6 SAMPLE-AND-ACCEPT-DST\
+exit\
+object-group network ipv6 everything-else-DST\
+exit\
+object-group network ipv6 traceroutes-DST\
+exit\
+snmp-server contact " IR8040;172.16.0.51;1;312-567-1931;;ATLANTA;NOC;BBOPS;888-326-9266;;"\
+snmp-server location "5;;CAGE 500 CABINET 201;350 EAST CERMAK RD;CHICAGO;IL;;CHICAGO;CHCXIL;"\
+ssh server netconf\
+ssh server v2\
+interface Loopback 0\
+ description "CHGOBPRJ01.R2.CH Loopback Interface"\
+ no shutdown\
+exit\
+interface Bundle-Ether 1\
+ description "COX;;RDC CHGOBBRJ02;AE2;500G;MR;;"\
+ ipv4 address 68.1.2.140 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 3\
+ description ";;PEER HIGHWINDS (AS 33438);;100G;MR;;"\
+ ipv4 address 151.139.44.75 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 6\
+ description ";;PEER CACHEFLY (AS 30081);;10G;MR;;"\
+ ipv4 address 68.105.30.237 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 7\
+ description ";;PEER MICROSOFT (AS 8075);;100G;MR;;"\
+ ipv4 address 104.44.196.218 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 8\
+ description "Peer Blizzard (AS 57976);;20G;MR;"\
+ ipv4 address 68.105.30.217 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 9\
+ description ";;PEER AMAZON (AS 16509);;200G;MR;;"\
+ ipv4 address 99.83.118.251 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 10\
+ description ";;PEER GOOGLE (AS 15169);;100G;MR;;"\
+ ipv4 address 209.85.168.155 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 11\
+ description ";;PEER UBISOFT (AS 49544);;100G;MR;;"\
+ ipv4 address 138.128.140.13 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 12\
+ description ";;PEER AKAMAI (AS 20940);;200G;MR;;"\
+ ipv4 address 68.105.30.221 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 13\
+ description ";;PEER EDGECAST (AS 15133);;100G;MR;;"\
+ ipv4 address 68.105.30.252 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 16\
+ description ";;PEER TWITTER (AS 13414);;10G;MR;;"\
+ ipv4 address 199.59.151.45 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 17\
+ description ";;PEER HURRICANE ELECTRIC (AS 6939);;100G;MR;;"\
+ ipv4 address 68.105.30.225 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 18\
+ description ";;PEER YAHOO (AS 10310);;20G;MR;;"\
+ ipv4 address 68.105.30.197 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 21\
+ description ";;PEER CLOUDFLARE (AS 13335);;30G;MR;;"\
+ ipv4 address 141.101.73.250 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 22\
+ description ";;PEER APPLE (AS 714);;100G;MR;;"\
+ ipv4 address 17.1.148.81 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 23\
+ description ";;PEER GOOGLE (AS 15169);;100G;MR;;"\
+ ipv4 address 70.167.150.65 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 24\
+ description ";;PEER FASTLY (AS 54113);;200G;MR;;"\
+ ipv4 address 103.244.50.239 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 25\
+ description ";;PEER UBISOFT (AS 49544);;20G;MR;;"\
+ ipv4 address 138.128.140.7 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 26\
+ description ";;PEER ZAYO (AS 6461);;100G;MR;;"\
+ ipv4 address 68.105.30.205 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 36\
+ description ";;PEER COMCAST (AS 7922);;10G;MR;;"\
+ ipv4 address 96.87.9.54 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 37\
+ description "INTELIQUENT;00488094-1;LDCO INTELIQUENT (AS 40160);;10G;MR;;"\
+ ipv4 address 206.147.180.17 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 400\
+ description ";;TRANSIT TELIA (AS 1299);;;;300G;MR;;"\
+ ipv4 address 62.115.167.157 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 65535\
+ description "COX;;RDC CHGOBBRJ01;AE0;500G;MR;;"\
+ ipv4 address 68.1.4.42 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 100.1\
+ description "COX;;RDC CHGOBPRJ02;AE100;100G;MR;;"\
+ ipv4 address 68.1.6.0 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 100.150\
+ description ";;RDC CHGOBPRJ02;ae100;MR;100G Area 150 Aggregate To CHGOBPRJ02"\
+ ipv4 address 68.1.6.2 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.1022\
+ description "COX;CHGOBPRJ01-ASHBBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.110\
+ description ";;MGT CHGOCNIMR01;1/1/c1;100G;MR;GE LINK TO Chicago ALU MGMT;;"\
+ ipv4 address 68.1.6.44 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.1136\
+ description "COX;CHGOPRJ01-DUKETCRJ01;CBVPN CHGOSRA01;LAG-1;;MR;CHGOSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.1168\
+ description "COX;CHGOBPRJ01-DALSBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.2013\
+ description "COX;CHGOBPRJ01-NRFKDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3018\
+ description "COX;CHGOBPRJ01-FED1DSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3048\
+ description "COX;CHGOBPRJ01-RSMTDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3077\
+ description "COX;CHGOBPRJ01-CHNDDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3105\
+ description "COX;CHGOBPRJ01-NWSTDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3132\
+ description "COX;CHGOBPRJ01-MTC3DSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3158\
+ description "COX;CHGOBPRJ01-TULSDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3183\
+ description "COX;CHGOBPRJ01-MTC1DSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3207\
+ description "COX;CHGOBPRJ01-KSCYBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3230\
+ description "COX;CHGOBPRJ01-ELMWDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3252\
+ description "COX;CHGOBPRJ01-BTNRDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3273\
+ description "COX;CHGOBPRJ01-PROVDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3293\
+ description "COX;CHGOBPRJ01-MACNDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3312\
+ description "COX;CHGOBPRJ01-VBCHDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3330\
+ description "COX;CHGOBPRJ01-MRFDDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3347\
+ description "COX;CHGOBPRJ01-DUKETCRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3363\
+ description "COX;CHGOBPRJ01-ASHBBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3378\
+ description "COX;CHGOBPRJ01-DALSBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3392\
+ description "COX;CHGOBPRJ01-MARIBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3406\
+ description "COX;CHGOBPRJ01-NYRKBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3407\
+ description "COX;CHGOBPRJ01-LANGBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3408\
+ description "COX;CHGOBPRJ01-SANJBPRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3409\
+ description "COX;CHGODSRJ01-PNSCDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3410\
+ description "COX;CHGOBPRJ01-GAINDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.3411\
+ description "COX;CHGOBPRJ01-CLEDDSRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.4020\
+ description "COX;CHGOBPRJ01-WICHDSRJ01;CBVPN CHGOBSRA01;LAG-1;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.4046\
+ description "COX;CHGOBPRJ01-JHSNHDRJ01;CBVPN CHGOBSRA01;LAG-1;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 14.4071\
+ description "COX;CHGOBPRJ01-RNKEHDRJ01;CBVPN CHGOBSRA01;LAG-1;;MR;CHGOBSRA01;;"\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.115\
+ description "RDC CHGOBBLAGC02;PO19;20G;MR;CHGOVERB02 Test Port#1"\
+ ipv4 address 184.178.176.145 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.116\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;CHGOVERB01 Test Port#1"\
+ ipv4 address 184.178.176.142 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.120\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;VLAN 120-DCC-TRANSPORT-L3VPN"\
+ ipv4 address 10.221.248.213 /30\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.199\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;Juniper EX4200 VLAN 199 MANAGEMENT LAN#2"\
+ ipv4 address 100.118.196.194 /26\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.300\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;CHGORTRJ01 VLAN-300MGMT-OOB HOSTS"\
+ ipv4 address 100.120.254.148 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.499\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;GIGE TO ARBOR THREAT MANAGEMENT SYSTEMS"\
+ ipv4 address 70.167.150.81 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.67\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;VLAN 67-IDRAC L3VPN MGMT LAN"\
+ ipv4 address 100.122.30.194 /27\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.95\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;HARMONY MANAGEMENT LAN"\
+ ipv4 address 100.122.21.138 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 19.99\
+ description "RDC CHGOBBLAGC01;PO19;20G;MR;Juniper EX4200 VLAN 99 MANAGEMENT LAN"\
+ ipv4 address 172.16.7.114 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 29.497\
+ description "ARBOR TMS - OFFRAMP"\
+ ipv4 address 70.167.150.88 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 29.498\
+ description "ARBOR TMS - ONRAMP"\
+ ipv4 address 70.167.150.90 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 30.497\
+ description "ARBOR TMS - OFFRAMP"\
+ ipv4 address 68.111.111.8 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 30.498\
+ description "ARBOR TMS - ONRAMP"\
+ ipv4 address 68.111.111.10 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 300.125\
+ description ";;CB CHGOBPRJ01;ae100;MR;100G Area 150 Aggregate To CHGOCNCOIN01"\
+ ipv4 address 100.122.208.18 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.202\
+ description ";;AWS: FICO Public VIF;"\
+ ipv4 address 184.183.110.112 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.203\
+ description ";;AWS: PCIPAL PROD PUBLIC VIF;"\
+ ipv4 address 184.183.110.114 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.204\
+ description ";;AWS: PCIPAL DEVELOPMENT PUBLIC VIF;"\
+ ipv4 address 184.183.110.116 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.211\
+ description ";;AWS: US-EAST-2 Non-Production Transit VIF;"\
+ ipv4 address 184.190.47.40 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.219\
+ description ";;AWS: NEUSTAR-CB-STIRSHAKEN-PROD Public VIF;"\
+ ipv4 address 184.183.110.118 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.220\
+ description ";;AWS: NEUSTAR-CB-STIRSHAKEN-DEV Public VIF;"\
+ ipv4 address 184.183.110.120 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.223\
+ description ";;AWS: Production Transit VIF;"\
+ ipv4 address 184.190.47.38 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.226\
+ description ";;AWS COMCAST HOMELIFE PRODUCTION VPC;"\
+ ipv4 address 70.167.150.124 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.227\
+ description ";;AWS COMCAST HOMELIFE DEVELOPMENT VPC;"\
+ ipv4 address 70.167.150.126 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.230\
+ description ";;AWS: Mulesoft Private VIF (PRODUCTION);"\
+ ipv4 address 98.185.115.140 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.231\
+ description ";;AWS: Mulesoft Private VIF (NON-PROD);"\
+ ipv4 address 98.185.115.142 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 39.4000\
+ description ";;PUB-CLOUD Test Subnet;"\
+ ipv4 address 7.175.251.240 /31\
+ no shutdown\
+exit\
+interface TenGigE 0/0/0\
+ ipv4 address 10.10.1.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/1\
+ ipv4 address 10.10.2.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/2\
+ ipv4 address 10.10.8.6 /24\
+ no shutdown\
+exit\
+interface TenGigE 3/0/14\
+ ipv4 address 148.66.252.134 /30\
+ no shutdown\
+exit\
+interface TenGigE 3/0/15\
+ ipv4 address 159.63.102.142 /30\
+ no shutdown\
+exit\
+interface TenGigE 3/0/21\
+ description ";;CHGOITSC01; Eth1/1;MR;MIS Outsourcer L3VPN connection;"\
+ ipv4 address 10.76.255.8 /31\
+ no shutdown\
+exit\
+interface TenGigE 3/0/8\
+ ipv4 address 68.106.120.245 /30\
+ no shutdown\
+exit\
+interface TenGigE 3/0/9\
+ ipv4 address 68.105.30.245 /30\
+ no shutdown\
+exit\
+interface TenGigE 3/1/4\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 3/1/5\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 3/1/8\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 3/1/9\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/0\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/1\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/10\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/11\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/12\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/13\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/14\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/15\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/16\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/17\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/18\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/19\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/2\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/20\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/23\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/3\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/4\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/5\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/6\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/7\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/8\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface TenGigE 4/0/9\
+ lldp\
+  receive disable\
+  transmit disable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/0\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/1\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/2\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/3\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/6\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/7\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/8\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/0/9\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/0\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/1\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/2\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/3\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/6\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/7\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/8\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 0/1/9\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/0\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/1\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/2\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/3\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/6\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/7\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/8\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/0/9\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/0\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/1\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/2\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/3\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/6\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/7\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/8\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 1/1/9\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+interface GigabitEthernet 7/0/1\
+ description "Neustar;00503188;Peer Neustar (AS 19907);;1G;MR;;"\
+ ipv4 address 156.154.200.233 /30\
+ no shutdown\
+exit\
+interface GigabitEthernet 7/3/8\
+ description ";;MGT RAPIDSCALE;13.TMTY.000002..COXC.;GE;MR;GE LINK TO RAPIDSCALE RARITAN OOB"\
+ ipv4 address 184.178.61.56 /31\
+ no shutdown\
+exit\
+interface GigabitEthernet 7/3/9\
+ description ";;Cox Business WOI Thousand Eyes (AS 394101);;1G;;MR;;"\
+ ipv4 address 70.191.61.45 /30\
+ no shutdown\
+exit\
+interface GigabitEthernet 9/0/3\
+ lldp\
+  enable\
+ exit\
+ no shutdown\
+exit\
+router isis 0\
+ interface Loopback\
+   passive\
+ exit\
+ metric-style wide\
+exit\
+\pard\pardeftab720\qc\partightenfactor0
+
+\f1\fs24 \cf4 \cb5 \strokec4 \uc0\u8963 \cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \cf6 \strokec6 \
+}

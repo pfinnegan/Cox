@@ -1,0 +1,1147 @@
+set groups re0 system backup-router destination 10.4.6.0/23
+set groups re0 interfaces fxp0 unit 0 family inet address 10.4.6.200/23
+set groups re0 interfaces fxp0 unit 0 family inet address 10.4.6.199/23 master-only
+set groups re1 system backup-router 10.4.6.1
+set groups re1 interfaces fxp0 unit 0 family inet address 10.4.6.201/23
+set groups re1 interfaces fxp0 unit 0 family inet address 10.4.6.199/23 master-only
+set groups MPLS-OPTIONS-P2MP protocols mpls statistics file mpls.stats
+set groups MPLS-OPTIONS-P2MP protocols mpls label-switched-path <*.-V2B> priority 3 3
+set groups MPLS-OPTIONS-P2MP protocols mpls label-switched-path <*.-MCST> priority 6 6
+set groups MPLS-OPTIONS-P2MP protocols mpls label-switched-path <*> priority 6 6
+set groups MPLS-OPTIONS protocols mpls statistics file mpls.stats
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-BE> priority 7 7
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-EF> priority 2 2
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-AF> priority 4 4
+set groups MPLS-OPTIONS protocols mpls label-switched-path <MVPN*> priority 3 3
+set groups RSVP-OPTIONS protocols rsvp no-node-hello
+set groups RSVP-OPTIONS protocols rsvp interface <*> subscription 92
+set groups MTU interfaces <ae*> mtu 9100
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 classifiers exp MPLS-CLASSIFY-EXP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 classifiers inet-precedence V4-CLASSIFY-IPP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 rewrite-rules dscp-ipv6 V6-WRITE_WATERMARK-DSCP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 rewrite-rules exp MPLS-WRITE-EXP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 rewrite-rules inet-precedence V4-WRITE-IPP
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[0-9]>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[0-9]>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-9]?>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-9]?>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-4]??>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-4]??>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[0-9]>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[0-9]>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-9]?>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-9]?>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-4]??>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-4]??>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set system services outbound-ssh client 000c29e41e95 10.4.7.8 port 7804
+set system syslog user * any emergency
+set system syslog host 10.26.4.13 any notice
+set system syslog host 10.26.4.13 authorization info
+set system syslog host 10.26.4.13 daemon info
+set system syslog host 10.26.4.13 kernel error
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file messages daemon info
+set system syslog file interactive-commands interactive-commands any
+set system syslog file lsp-path-changes any any
+set system syslog file default-log-messages any info
+set system syslog file lsp-changes any notice
+set services analytics traceoptions file Telemetry
+set services flow-tap family inet
+set services flow-tap family inet6
+set security certificates local wildcard.mgt.cox.net "-----BEGIN PRIVATE KEY-----\XXXX\n-----END CERTIFICATE-----\n"
+protect interfaces xe-0/0/5 description
+deactivate interfaces xe-0/0/5 unit 0 family inet address 10.14.3.1/24
+deactivate interfaces xe-0/0/6 unit 0 family inet address 10.14.4.1/24
+set interfaces xe-0/0/8 gigether-options 802.3ad ae101
+set interfaces xe-0/0/9 gigether-options 802.3ad ae101
+set interfaces xe-0/0/16 gigether-options 802.3ad ae21
+set interfaces xe-0/1/0 gigether-options 802.3ad ae15
+set interfaces xe-0/1/1 gigether-options 802.3ad ae15
+set interfaces xe-0/1/2 gigether-options 802.3ad ae18
+set interfaces xe-0/1/3 gigether-options 802.3ad ae18
+set interfaces xe-0/1/5 unit 99 family inet filter input MARK-ODI-V4
+set interfaces xe-0/1/7 gigether-options 802.3ad ae96
+set interfaces xe-0/1/8 gigether-options 802.3ad ae97
+set interfaces xe-0/1/9 gigether-options 802.3ad ae98
+set interfaces et-4/0/0 gigether-options 802.3ad ae10
+set interfaces et-4/0/1 gigether-options 802.3ad ae10
+set interfaces et-4/0/2 gigether-options 802.3ad ae10
+set interfaces et-4/0/3 gigether-options 802.3ad ae10
+set interfaces et-4/1/0 gigether-options 802.3ad ae1
+set interfaces et-4/1/1 gigether-options 802.3ad ae1
+set interfaces et-4/1/2 gigether-options 802.3ad ae1
+set interfaces et-4/1/3 gigether-options 802.3ad ae1
+set interfaces et-4/1/6 gigether-options 802.3ad ae2000
+set interfaces et-4/1/7 gigether-options 802.3ad ae2001
+set interfaces et-4/1/8 gigether-options 802.3ad ae2
+set interfaces et-4/1/9 gigether-options 802.3ad ae2
+set interfaces et-5/0/9 unit 21 family inet filter output MIS-EGRESS-OUT
+set interfaces et-5/1/2 gigether-options 802.3ad ae80
+set interfaces et-5/1/3 gigether-options 802.3ad ae81
+set interfaces et-6/0/0 gigether-options 802.3ad ae398
+set interfaces et-6/0/1 gigether-options 802.3ad ae398
+set interfaces et-6/0/2 gigether-options 802.3ad ae82
+set interfaces et-6/0/3 gigether-options 802.3ad ae83
+set interfaces et-6/0/6 gigether-options 802.3ad ae99
+set interfaces et-6/0/7 gigether-options 802.3ad ae99
+set interfaces et-6/1/1 gigether-options 802.3ad ae398
+set interfaces et-6/1/2 gigether-options 802.3ad ae398
+set interfaces et-6/1/7 gigether-options 802.3ad ae199
+set interfaces ae1 unit 1 family inet filter output TEST_CAPTURE_DESTINATION
+deactivate interfaces ae7
+deactivate interfaces ae11
+deactivate interfaces ae15 unit 291
+deactivate interfaces ae15 unit 293
+deactivate interfaces ae18 unit 551 family ccc filter
+deactivate interfaces ae222
+deactivate interfaces ae52
+set interfaces lo0 unit 0 family inet6 filter input V6-PROTECT_RE-IN-BB
+set interfaces lo0 unit 1 family inet filter input V4-PROTECT_RE-IN-BB
+set interfaces lo0 unit 2 family inet filter input V4-PROTECT_RE-IN-BB
+set interfaces lo0 unit 3 family inet filter input V4-PROTECT_RE-IN-BB
+deactivate interfaces lo0 unit 3
+set snmp v3 target-parameters TARGET-PARAMATER-01 notify-filter COX-NOTIFY-1-FILTER
+set snmp trap-options source-address 10.4.6.199
+set forwarding-options sampling instance IPFIX-INS1 family inet output flow-server 10.6.7.248 version-ipfix template V4-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet output flow-server 68.0.14.40 version-ipfix template V4-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet output flow-server 68.1.14.3 version-ipfix template V4-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet6 output flow-server 68.0.14.40 version-ipfix template V6-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet6 output flow-server 68.1.14.3 version-ipfix template V6-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family mpls output flow-server 10.8.161.12 version-ipfix template MPLS-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family mpls output flow-server 68.0.14.40 version-ipfix template MPLS-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family mpls output flow-server 68.1.14.3 version-ipfix template MPLS-FM-TEMPLATE
+set event-options policy disable_sbe_report within 20 trigger 1
+set routing-options rib inet6.0 aggregate defaults metric 0
+deactivate routing-options static route 10.5.129.0/24
+set routing-options aggregate defaults metric 0
+set routing-options aggregate defaults as-path aggregator 64019 174.68.232.11
+set routing-options autonomous-system 64019
+deactivate protocols mpls traffic-engineering database
+set protocols mpls admin-groups AT-V2B-EXCLUDE 1
+set protocols mpls admin-groups SD-V2B-EXCLUDE 2
+set protocols mpls admin-groups DTCR-EXCLUDE 3
+set protocols mpls admin-groups AT-P2MP-EXCLUDE 16
+set protocols mpls admin-groups SD-P2MP-EXCLUDE 17
+set protocols mpls label-switched-path MVPN-LSP-TEMPLATE bandwidth 5m
+set protocols mpls label-switched-path V2B-MVPN-LSP-TEMPLATE bandwidth 22m
+set protocols mpls label-switched-path MVPN-LSP-TEMPLATE-MCST bandwidth 5m
+deactivate protocols mpls label-switched-path NEP6DSRJ11-NEP6DSRJ21-30-BE
+deactivate protocols mpls label-switched-path test-2-dsrj12
+set protocols mpls path alt-to-DSRJ21 174.68.232.75
+set protocols mpls path alt-to-DSRJ21 174.68.232.72
+set protocols mpls path alt-to-DSRJ21 174.68.232.90
+set protocols mpls path alt-to-DSRJ21 174.68.232.93
+set protocols mpls path alt-to-DSRJ21 174.68.232.77
+set protocols mpls path alt-to-DSRJ21-2 174.68.232.70
+set protocols mpls path alt-to-DSRJ21-2 174.68.232.99
+set protocols mpls path to-dsrj12-test 174.68.232.12 loose
+deactivate protocols bgp group V4-RR-CLIENTS-FULL-ROUTES neighbor 174.68.233.1
+deactivate protocols bgp group V4-RR-CLIENTS-FULL-ROUTES neighbor 174.68.233.2
+deactivate protocols bgp group V4-RR-CLIENTS-FULL-ROUTES neighbor 174.68.233.11
+deactivate protocols bgp group V4-RR-CLIENTS-FULL-ROUTES neighbor 174.68.233.12
+deactivate protocols bgp group V6-RR-CLIENTS-FULL-ROUTES neighbor 2001:578:30:1100:174:68:233:1
+deactivate protocols bgp group V6-RR-CLIENTS-FULL-ROUTES neighbor 2001:578:30:1100:174:68:233:2
+set protocols bgp group V4-CB-CLIENTS family inet any prefix-limit teardown 80
+set protocols bgp group V6-CB-CLIENTS family inet6 any prefix-limit teardown 80
+deactivate protocols bgp group CB-LABELED-UNICAST
+deactivate protocols bgp group V4-DSRJ-TO-RCR-IBGP neighbor 174.68.233.13
+deactivate protocols bgp group BGP-scale-test
+deactivate protocols bgp group CORE-PE-RR-SERVER
+set protocols isis suppress-attached-bit
+set protocols oam ethernet link-fault-management quick-transmit-threshold-interval 300ms
+
+set policy-options policy-statement CONDITIONAL-ACCESS-L3VPN-EXPORT term ACCEPT-CONDITIONAL-ACCESS-V4 then local-preference 170
+set policy-options policy-statement CONDITIONAL-ACCESS-L3VPN-EXPORT term ACCEPT-CONDITIONAL-ACCESS-V6 then local-preference 170
+set policy-options policy-statement DMZ-L3VPN-EXPORT term ACCEPT-DMZ-V4 then local-preference 170
+set policy-options policy-statement DMZ-L3VPN-EXPORT term ACCEPT-DMZ-V6 then local-preference 170
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement IDRAC-L3VPN-EXPORT term ACCEPT-IDRAC-V4 then local-preference 170
+set policy-options policy-statement IDRAC-L3VPN-EXPORT term ACCEPT-IDRAC-V6 then local-preference 170
+set policy-options policy-statement IDRAC-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement IDRAC-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement IDRAC-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement IDRAC-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement IDRAC-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement IDRAC-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement LP_200 then local-preference 200
+set policy-options policy-statement LP_200_to_RR term 1 then local-preference 200
+set policy-options policy-statement LP_200_to_RR term 2 then local-preference 200
+set policy-options policy-statement MIS-BGP-IN term SET-LOCAL-PREF-90 then local-preference 90
+set policy-options policy-statement MIS-BGP-IN term SET-LOCAL-PREF-120 then local-preference 120
+set policy-options policy-statement MIS-BGP-IN term med-0 then metric 0
+set policy-options policy-statement MIS-L3VPN-EXPORT term ACCEPT-MIS-V4 then local-preference 170
+set policy-options policy-statement MIS-L3VPN-EXPORT term ACCEPT-MIS-V6 then local-preference 170
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement MIS-LOCAL-IN term SET-LOCAL-PREF-170 then local-preference 170
+set policy-options policy-statement MIS-LOCAL-IN term SET-LOCAL-PREF-160 then local-preference 160
+set policy-options policy-statement MIS-LOCAL-IN term med-0 then metric 0
+set policy-options policy-statement MVPN-BGP-IN term ACCEPT then metric 0
+deactivate policy-options policy-statement MVPN-BGP-IN term ACCEPT then metric
+set policy-options policy-statement MVPN-BGP-IN term ACCEPT then local-preference 130
+set policy-options policy-statement OOB-L3VPN-EXPORT term ACCEPT-OOB-V4 then local-preference 170
+set policy-options policy-statement OOB-L3VPN-EXPORT term ACCEPT-OOB-V6 then local-preference 170
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement OUTSOURCER-BGP-IN term SET-LOCAL-PREF-90 then metric 0
+set policy-options policy-statement OUTSOURCER-BGP-IN term SET-LOCAL-PREF-90 then local-preference 90
+set policy-options policy-statement OUTSOURCER-BGP-IN term SET-LOCAL-PREF-110 then metric 0
+set policy-options policy-statement OUTSOURCER-BGP-IN term SET-LOCAL-PREF-110 then local-preference 110
+set policy-options policy-statement OUTSOURCER-BGP-IN term SET-LOCAL-PREF-120 then metric 0
+set policy-options policy-statement OUTSOURCER-BGP-IN term SET-LOCAL-PREF-120 then local-preference 120
+set policy-options policy-statement OUTSOURCER-BGP-IN term OUTSOURCER-ROUTES then metric 0
+set policy-options policy-statement OUTSOURCER-BGP-IN term OUTSOURCER-ROUTES then local-preference 130
+set policy-options policy-statement OUTSOURCER-IT-ROUTES-BGP-IN then metric 0
+set policy-options policy-statement PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-OUT term SECONDARY-FEEDS-B then metric 22000
+set policy-options policy-statement PRIMARY-B-SECONDARY-A-V2B-MVPN-RECEIVER-BGP-OUT term PRIMARY-FFEDS-B then metric 22000
+set policy-options policy-statement TEST-IXIA-V6 term BGP then local-preference 130
+deactivate policy-options policy-statement TMS_ONRAMP_RIB_IMPORT term REJECT_TMS_BH
+set policy-options policy-statement V4-CB-FULL-ROUTES-IMPORT term CB-PREFIXES then local-preference 130
+set policy-options policy-statement V4-CB-MGMT-IN term CB-MGMT-PREFIXES then local-preference 130
+set policy-options policy-statement V4-CB-MGMT-IN term CB-GNE-MGMT-PREFIXES then local-preference 130
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP170 then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-DMZ-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP170 then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-IDRAC-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP170 then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-MIS-OUT term ACCEPT-SPECIFIC-CA-LOCAL then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP170 then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-OOB-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP170 then local-preference 170
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+deactivate policy-options policy-statement V4-DMZ-DEFAULT-ONLY-ROUTE-EXPORT term MAINTENANCE then reject
+deactivate policy-options policy-statement V4-DMZ-DEFAULT-ONLY-ROUTE-EXPORT term DEFAULT-ORIGINATE from condition
+set policy-options policy-statement V4-DMZ-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-DMZ-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-DMZ-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-DMZ-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-DMZ-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-DMZ-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-DMZ-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-DMZ-OUT term ACCEPT-DMZ then local-preference 170
+set policy-options policy-statement V4-DSR-TO-BRR-DEFAULT-IMPORT term MAPT-ROUTES then metric 0
+set policy-options policy-statement V4-DSR-TO-BRR-DEFAULT-IMPORT term MAPT-ROUTES then local-preference 130
+deactivate policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-DMZ term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-DMZ term 2 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-IDRAC term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-IDRAC term 2 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-MGMT term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-MGMT term 2 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-SHARED-SERVICE term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-CONDITIONAL-ACCESS-TO-SHARED-SERVICE term 2 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-DMZ term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-DMZ term 2 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-IDRAC term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-IDRAC term 1 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-MGMT term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-MGMT term 1 then local-preference 170
+deactivate policy-options policy-statement V4-EXPORT-SHARED-SERVICE term MAINTENANCE
+set policy-options policy-statement V4-EXPORT-SHARED-SERVICE term 2 then local-preference 170
+deactivate policy-options policy-statement V4-GLOBAL-DATA-FIREWALLS-OUT term DEFAULT-ORIGINATE from condition
+set policy-options policy-statement V4-GLOBAL-TO-DMZ-LP-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-GLOBAL-TO-DMZ-LP-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-GLOBAL-TO-DMZ-LP-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-GLOBAL-TO-DMZ-LP-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-GLOBAL-TO-DMZ-LP-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-GLOBAL-TO-DMZ-LP-IN term LP100 then local-preference 100
+set policy-options policy-statement V4-IDRAC-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-IDRAC-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-IDRAC-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-IDRAC-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-IDRAC-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-IDRAC-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-IDRAC-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-IDRAC-OUT term ACCEPT-IDRAC then local-preference 170
+set policy-options policy-statement V4-IMPORT-DMZ term 1 then local-preference 150
+set policy-options policy-statement V4-IMPORT-DMZ term 2 then local-preference 140
+set policy-options policy-statement V4-IMPORT-DMZ term 3 then local-preference 130
+set policy-options policy-statement V4-IMPORT-DMZ term 4 then local-preference 120
+set policy-options policy-statement V4-IMPORT-DMZ term 5 then local-preference 110
+set policy-options policy-statement V4-IMPORT-DMZ term 6 then local-preference 100
+set policy-options policy-statement V4-IMPORT-IDRAC term 1 then local-preference 150
+set policy-options policy-statement V4-IMPORT-IDRAC term 2 then local-preference 140
+set policy-options policy-statement V4-IMPORT-IDRAC term 3 then local-preference 130
+set policy-options policy-statement V4-IMPORT-IDRAC term 4 then local-preference 120
+set policy-options policy-statement V4-IMPORT-IDRAC term 5 then local-preference 110
+set policy-options policy-statement V4-IMPORT-IDRAC term 6 then local-preference 100
+set policy-options policy-statement V4-IMPORT-MGMT term 1 then local-preference 150
+set policy-options policy-statement V4-IMPORT-MGMT term 2 then local-preference 140
+set policy-options policy-statement V4-IMPORT-MGMT term 3 then local-preference 130
+set policy-options policy-statement V4-IMPORT-MGMT term 4 then local-preference 120
+set policy-options policy-statement V4-IMPORT-MGMT term 5 then local-preference 110
+set policy-options policy-statement V4-IMPORT-MGMT term 6 then local-preference 100
+set policy-options policy-statement V4-IMPORT-SHARED-SERVICE term 1 then local-preference 150
+set policy-options policy-statement V4-IMPORT-SHARED-SERVICE term 2 then local-preference 140
+set policy-options policy-statement V4-IMPORT-SHARED-SERVICE term 3 then local-preference 130
+set policy-options policy-statement V4-IMPORT-SHARED-SERVICE term 4 then local-preference 120
+set policy-options policy-statement V4-IMPORT-SHARED-SERVICE term 5 then local-preference 110
+set policy-options policy-statement V4-IMPORT-SHARED-SERVICE term 6 then local-preference 100
+set policy-options policy-statement V4-MIS-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-MIS-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-MIS-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-MIS-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-MIS-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-MIS-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-MIS-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-MIS-OUT term ACCEPT-MIS then local-preference 170
+set policy-options policy-statement V4-OOB-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-OOB-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-OOB-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-OOB-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-OOB-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-OOB-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-OOB-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-OOB-OUT term ACCEPT-OOB then local-preference 170
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term AGGREGATE-Primary then local-preference 130
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term AGGREGATE-Backup then local-preference 125
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term AGGREGATE-Internal then local-preference 100
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term STATIC_and_DIRECT-Internal then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term Local-to-BGPv6 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-BUSINESS then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-BUSINESS then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-RDC-INTERNAL-ROUTES then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-RDC-INTERNAL-ROUTES then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term DATA-FIREWALL then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term DATA-FIREWALL then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term RCC-TEST-ROUTES then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term RCC-TEST-ROUTES then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then local-preference 90
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then local-preference 110
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then local-preference 120
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then local-preference 125
+deactivate policy-options policy-statement V4-RR-CLIENTS-DEFAULT-ONLY-ROUTE-EXPORT term DEFAULT-ORIGINATE from condition
+deactivate policy-options policy-statement V4-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES-EXPORT term DEFAULT-ORIGINATE from condition
+deactivate policy-options policy-statement V4-RR-CLIENTS-DEFAULT-ROUTE-EXPORT-TOR term DEFAULT-ORIGINATE from condition
+deactivate policy-options policy-statement V4-RR-CLIENTS-DEFAULT-ROUTE-EXPORT-TOR term L3VPN
+deactivate policy-options policy-statement V4-RR-CLIENTS-DEFAULT-ROUTE-EXPORT-TOR term TOR-PREFIX
+deactivate policy-options policy-statement V4-RR-CLIENTS-DEFAULT-ROUTE-EXPORT-TOR term EVPN
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term MRKT-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term MRKT-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement V4-SHARED-SERVICE-IN term LP150 then local-preference 150
+set policy-options policy-statement V4-SHARED-SERVICE-IN term LP140 then local-preference 140
+set policy-options policy-statement V4-SHARED-SERVICE-IN term LP130 then local-preference 130
+set policy-options policy-statement V4-SHARED-SERVICE-IN term LP120 then local-preference 120
+set policy-options policy-statement V4-SHARED-SERVICE-IN term LP110 then local-preference 110
+set policy-options policy-statement V4-SHARED-SERVICE-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V4-SHARED-SERVICE-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-SHARED-SERVICE-OUT term ACCEPT-SHARED-SERVICE then local-preference 170
+deactivate policy-options policy-statement V4-SPN-CLIENTS-DEFAULT-PLUS-VPN-EXPORT term DEFAULT-ORIGINATE from condition
+deactivate policy-options policy-statement V4-TOR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES-EXPORT term DEFAULT-ORIGINATE from condition
+set policy-options policy-statement V6-CB-FULL-ROUTES-IMPORT term CB-PREFIXES then local-preference 130
+set policy-options policy-statement V6-CB-MGMT-IN term CB-MGMT-PREFIXES then local-preference 130
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP170 then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-DMZ-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP170 then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-IDRAC-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP170 then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-MIS-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP170 then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-OOB-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP170 then local-preference 170
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-OUT term ACCEPT-CONDITIONAL-ACCESS then local-preference 170
+set policy-options policy-statement V6-DMZ-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-DMZ-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-DMZ-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-DMZ-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-DMZ-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-DMZ-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-DMZ-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-DMZ-OUT term ACCEPT-DMZ then local-preference 170
+set policy-options policy-statement V6-DSR-TO-BRR-DEFAULT-IMPORT term MAPT-ROUTES then metric 0
+set policy-options policy-statement V6-DSR-TO-BRR-DEFAULT-IMPORT term MAPT-ROUTES then local-preference 130
+set policy-options policy-statement V6-EXPORT-CONDITIONAL-ACCESS-TO-DMZ term 2 then local-preference 170
+set policy-options policy-statement V6-EXPORT-CONDITIONAL-ACCESS-TO-IDRAC term 2 then local-preference 170
+set policy-options policy-statement V6-EXPORT-CONDITIONAL-ACCESS-TO-MGMT term 2 then local-preference 170
+set policy-options policy-statement V6-EXPORT-CONDITIONAL-ACCESS-TO-SHARED-SERVICE term 2 then local-preference 170
+set policy-options policy-statement V6-EXPORT-DMZ term 1 then local-preference 170
+set policy-options policy-statement V6-EXPORT-IDRAC term 1 then local-preference 170
+set policy-options policy-statement V6-EXPORT-MGMT term 1 then local-preference 170
+set policy-options policy-statement V6-EXPORT-SHARED-SERVICE term 1 then local-preference 170
+deactivate policy-options policy-statement V6-GLOBAL-DATA-FIREWALLS-OUT term DEFAULT-ORIGINATE from condition
+set policy-options policy-statement V6-IDRAC-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-IDRAC-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-IDRAC-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-IDRAC-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-IDRAC-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-IDRAC-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-IDRAC-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-IDRAC-OUT term ACCEPT-IDRAC then local-preference 170
+set policy-options policy-statement V6-IMPORT-DMZ term 1 then local-preference 150
+set policy-options policy-statement V6-IMPORT-DMZ term 2 then local-preference 140
+set policy-options policy-statement V6-IMPORT-DMZ term 3 then local-preference 130
+set policy-options policy-statement V6-IMPORT-DMZ term 4 then local-preference 120
+set policy-options policy-statement V6-IMPORT-DMZ term 5 then local-preference 110
+set policy-options policy-statement V6-IMPORT-DMZ term 6 then local-preference 100
+set policy-options policy-statement V6-IMPORT-IDRAC term 1 then local-preference 150
+set policy-options policy-statement V6-IMPORT-IDRAC term 2 then local-preference 140
+set policy-options policy-statement V6-IMPORT-IDRAC term 3 then local-preference 130
+set policy-options policy-statement V6-IMPORT-IDRAC term 4 then local-preference 120
+set policy-options policy-statement V6-IMPORT-IDRAC term 5 then local-preference 110
+set policy-options policy-statement V6-IMPORT-IDRAC term 6 then local-preference 100
+set policy-options policy-statement V6-IMPORT-MGMT term 1 then local-preference 150
+set policy-options policy-statement V6-IMPORT-MGMT term 2 then local-preference 140
+set policy-options policy-statement V6-IMPORT-MGMT term 3 then local-preference 130
+set policy-options policy-statement V6-IMPORT-MGMT term 4 then local-preference 120
+set policy-options policy-statement V6-IMPORT-MGMT term 5 then local-preference 110
+set policy-options policy-statement V6-IMPORT-MGMT term 6 then local-preference 100
+set policy-options policy-statement V6-IMPORT-SHARED-SERVICE term 1 then local-preference 150
+set policy-options policy-statement V6-IMPORT-SHARED-SERVICE term 2 then local-preference 140
+set policy-options policy-statement V6-IMPORT-SHARED-SERVICE term 3 then local-preference 130
+set policy-options policy-statement V6-IMPORT-SHARED-SERVICE term 4 then local-preference 120
+set policy-options policy-statement V6-IMPORT-SHARED-SERVICE term 5 then local-preference 110
+set policy-options policy-statement V6-IMPORT-SHARED-SERVICE term 6 then local-preference 100
+set policy-options policy-statement V6-MIS-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-MIS-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-MIS-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-MIS-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-MIS-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-MIS-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-MIS-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-MIS-OUT term ACCEPT-MIS then local-preference 170
+set policy-options policy-statement V6-OOB-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-OOB-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-OOB-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-OOB-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-OOB-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-OOB-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-OOB-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-OOB-OUT term ACCEPT-OOB then local-preference 170
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-AGGREGATE then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-AGGREGATE then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-ANNOUNCED then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-ANNOUNCED then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-INFRASTRUCTURE then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-INFRASTRUCTURE then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term DATA-FIREWALL then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term DATA-FIREWALL then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term RCC-TEST-ROUTES then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term RCC-TEST-ROUTES then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then local-preference 90
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then local-preference 110
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then local-preference 120
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then local-preference 125
+deactivate policy-options policy-statement V6-RR-CLIENTS-DEFAULT-ONLY-ROUTE-EXPORT term DEFAULT-ORIGINATE from condition
+deactivate policy-options policy-statement V6-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES-EXPORT term DEFAULT-ORIGINATE from condition
+set policy-options policy-statement V6-SHARED-SERVICE-IN term LP150 then local-preference 150
+set policy-options policy-statement V6-SHARED-SERVICE-IN term LP140 then local-preference 140
+set policy-options policy-statement V6-SHARED-SERVICE-IN term LP130 then local-preference 130
+set policy-options policy-statement V6-SHARED-SERVICE-IN term LP120 then local-preference 120
+set policy-options policy-statement V6-SHARED-SERVICE-IN term LP110 then local-preference 110
+set policy-options policy-statement V6-SHARED-SERVICE-IN term LP100 then local-preference 100
+deactivate policy-options policy-statement V6-SHARED-SERVICE-OUT term MAINTENANCE then reject
+set policy-options policy-statement V6-SHARED-SERVICE-OUT term ACCEPT-SHARED-SERVICE then local-preference 170
+deactivate policy-options policy-statement V6-SPN-CLIENTS-DEFAULT-ONLY-EXPORT term DEFAULT-ORIGINATE from condition
+set policy-options policy-statement VRF-EXPORT-SHARED-SERVICE term 1 then local-preference 170
+set policy-options policy-statement VRF-EXPORT-SHARED-SERVICE term 2 then local-preference 170
+set policy-options policy-statement VRF-IMPORT-SHARED-SERVICE-LP term 1 then local-preference 150
+set policy-options policy-statement VRF-IMPORT-SHARED-SERVICE-LP term 2 then local-preference 140
+set policy-options policy-statement VRF-IMPORT-SHARED-SERVICE-LP term 3 then local-preference 130
+set policy-options policy-statement VRF-IMPORT-SHARED-SERVICE-LP term 4 then local-preference 120
+set policy-options policy-statement VRF-IMPORT-SHARED-SERVICE-LP term 5 then local-preference 110
+set policy-options policy-statement VRF-IMPORT-SHARED-SERVICE-LP term 6 then local-preference 100
+set policy-options policy-statement redistribute_RR_lo0 term 1 then metric 65535
+set policy-options condition DSR-BBR-LINK-UP if-route-exists 174.68.232.70/31
+deactivate policy-options condition DSR-BBR-LINK-UP
+set class-of-service code-point-aliases dscp-ipv6 BEST-EFFORT-BE 000000
+set class-of-service code-point-aliases dscp-ipv6 NON-REAL-TIME-AF11 001000
+set class-of-service code-point-aliases dscp-ipv6 INTERACTIVE-AF21 010000
+set class-of-service code-point-aliases dscp-ipv6 REAL-TIME-AF31 011000
+set class-of-service code-point-aliases dscp-ipv6 VIDEO-AF41 100000
+set class-of-service code-point-aliases dscp-ipv6 VOICE-EF 101000
+set class-of-service code-point-aliases dscp-ipv6 NETWORK-CONTROL-NC 110000
+set class-of-service code-point-aliases dscp-ipv6 INTERACTIVE-WMK-AF32 011100
+set class-of-service code-point-aliases exp BEST-EFFORT-BE 000
+set class-of-service code-point-aliases exp NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases exp INTERACTIVE-AF21 010
+set class-of-service code-point-aliases exp REAL-TIME-AF31 011
+set class-of-service code-point-aliases exp VIDEO-AF41 100
+set class-of-service code-point-aliases exp VOICE-EF 101
+set class-of-service code-point-aliases exp NETWORK-CONTROL-NC1 110
+set class-of-service code-point-aliases ieee-802.1 BEST-EFFORT-BE 000
+set class-of-service code-point-aliases ieee-802.1 NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases ieee-802.1 INTERACTIVE-AF21 010
+set class-of-service code-point-aliases ieee-802.1 REAL-TIME-AF31 011
+set class-of-service code-point-aliases ieee-802.1 VIDEO-AF41 100
+set class-of-service code-point-aliases ieee-802.1 VOICE-EF 101
+set class-of-service code-point-aliases ieee-802.1 NETWORK-CONTROL-NC 110
+set class-of-service code-point-aliases inet-precedence BEST-EFFORT-BE 000
+set class-of-service code-point-aliases inet-precedence NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases inet-precedence INTERACTIVE-AF21 010
+set class-of-service code-point-aliases inet-precedence REAL-TIME-AF31 011
+set class-of-service code-point-aliases inet-precedence VIDEO-AF41 100
+set class-of-service code-point-aliases inet-precedence VOICE-EF 101
+set class-of-service code-point-aliases inet-precedence NETWORK-CONTROL-NC1 110
+set class-of-service forwarding-classes queue 0 BEST-EFFORT
+set class-of-service forwarding-classes queue 1 NON-REAL-TIME
+set class-of-service forwarding-classes queue 2 INTERACTIVE
+set class-of-service forwarding-classes queue 3 REAL-TIME
+set class-of-service forwarding-classes queue 4 VIDEO
+set class-of-service forwarding-classes queue 5 VOICE
+set class-of-service forwarding-classes queue 6 NETWORK-CONTROL
+set class-of-service interfaces et-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces et-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces et-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces et-*/*/* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces et-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces et-*/*/* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces ge-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ge-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces ge-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces ge-*/*/* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces ge-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ge-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces ge-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces ge-*/*/* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces xe-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces xe-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces xe-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces xe-*/*/* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces xe-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces xe-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces xe-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces xe-*/*/* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces ae* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ae* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces ae* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces ae* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces ae* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ae* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces ae* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces ae* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces ae1 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae11 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae51 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae52 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae96 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae97 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae98 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae99 scheduler-map MRKT-QOS-POLICY
+set class-of-service routing-instances all classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER drop-profile-map loss-priority any protocol any drop-profile RED-BEST-EFFORT
+deactivate firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BFD
+set firewall filter MIS-EGRESS-OUT term REDIRECT-TO-WAN then routing-instance MIS-WAN
+deactivate firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OSPF
+deactivate firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TUFIN
+set routing-instances ARBOR_TMS_VR instance-type virtual-router
+set routing-instances ARBOR_TMS_VR interface ae18.16
+set routing-instances CONDITIONAL-ACCESS-L3VPN instance-type vrf
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.129
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.186
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.187
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.188
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.189
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.295
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.297
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.301
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.305
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae15.306
+set routing-instances CONDITIONAL-ACCESS-L3VPN route-distinguisher 10:34
+set routing-instances CONDITIONAL-ACCESS-L3VPN vrf-import CONDITIONAL-ACCESS-L3VPN-IMPORT
+set routing-instances CONDITIONAL-ACCESS-L3VPN vrf-export CONDITIONAL-ACCESS-L3VPN-EXPORT
+set routing-instances CONDITIONAL-ACCESS-L3VPN vrf-table-label
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ description "NEP6REGFW01 - CA/DMZ VRTR - Pretend DUKE"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ local-address 10.14.32.66
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ import V4-CONDITIONAL-ACCESS-TO-DMZ-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ export V4-EXPORT-CONDITIONAL-ACCESS-TO-DMZ
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ export V4-CONDITIONAL-ACCESS-TO-DMZ-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DMZ neighbor 10.14.32.68 peer-as 65192
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB description "NEP6REGFW01 - CA/MGMT VRTR - Pretend DUKE"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB local-address 10.14.32.50
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB import V4-CONDITIONAL-ACCESS-TO-OOB-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB export V4-CONDITIONAL-ACCESS-TO-OOB-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-OOB neighbor 10.14.32.52 peer-as 65190
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ description "NEP6REGFW01 - CA/DMZ VRTR - Pretend DUKE"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ local-address 2001:578:30:c2c8:10:14:32:66
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ import V6-CONDITIONAL-ACCESS-TO-DMZ-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ export V6-CONDITIONAL-ACCESS-TO-DMZ-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-DMZ neighbor 2001:578:30:c2c8:10:14:32:68 peer-as 65192
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB description "NEP6REGFW01 - CA/MGMT VRTR - Pretend DUKE"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB local-address 2001:578:30:c2c6:10:14:32:50
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB import V6-CONDITIONAL-ACCESS-TO-OOB-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB export V6-CONDITIONAL-ACCESS-TO-OOB-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-OOB neighbor 2001:578:30:c2c6:10:14:32:52 peer-as 65190
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC local-address 10.14.32.58
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC import V4-CONDITIONAL-ACCESS-TO-IDRAC-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC export V4-CONDITIONAL-ACCESS-TO-IDRAC-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-IDRAC neighbor 10.14.32.60 peer-as 65191
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE local-address 10.14.32.74
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE import V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE export V4-EXPORT-CONDITIONAL-ACCESS-TO-SHARED-SERVICE
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE export V4-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-SHARED-SERVICE neighbor 10.14.32.76 peer-as 65193
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC local-address 2001:578:30:c2c7:10:14:32:58
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC import V6-CONDITIONAL-ACCESS-TO-IDRAC-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC export V6-CONDITIONAL-ACCESS-TO-IDRAC-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-IDRAC neighbor 2001:578:30:c2c7:10:14:32:60 peer-as 65191
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE local-address 2001:578:30:c2c9:10:14:32:74
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE import V6-CONDITIONAL-ACCESS-TO-SHARED-SERVICE-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-SHARED-SERVICE neighbor 2001:578:30:c2c9:10:14:32:76 peer-as 65193
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS local-address 10.14.32.130
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS import V4-CONDITIONAL-ACCESS-TO-MIS-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS export V4-CONDITIONAL-ACCESS-TO-MIS-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-MIS neighbor 10.14.32.132 peer-as 65194
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS local-address 2001:578:30:c2cf:10:14:32:130
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS import V6-CONDITIONAL-ACCESS-TO-MIS-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS export V6-CONDITIONAL-ACCESS-TO-MIS-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V6-MIS neighbor 2001:578:30:c2cf:10:14:32:132 peer-as 65194
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls description PSP6FWVJ02
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls local-address 10.14.48.123
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls export V4-Data-Firewalls-BGP-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls peer-as 65055
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group Data-Firewalls neighbor 10.14.48.124
+set routing-instances DMZ-L3VPN instance-type vrf
+set routing-instances DMZ-L3VPN interface xe-0/0/4.292
+set routing-instances DMZ-L3VPN interface xe-0/0/5.0
+set routing-instances DMZ-L3VPN interface ae15.182
+set routing-instances DMZ-L3VPN interface ae15.292
+set routing-instances DMZ-L3VPN route-distinguisher 10:32
+set routing-instances DMZ-L3VPN vrf-import DMZ-L3VPN-IMPORT
+set routing-instances DMZ-L3VPN vrf-export DMZ-L3VPN-EXPORT
+set routing-instances DMZ-L3VPN vrf-table-label
+set routing-instances DMZ-L3VPN routing-options aggregate route 100.122.4.0/24 policy ROUTE-CONTRIBUTORS
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ type external
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ description "NEP6REGFW01 - DMZ VRTR - Pretend DUKE"
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ local-address 10.14.32.18
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ import V4-DMZ-IN
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ authentication-key "XXXX"
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ export V4-DMZ-OUT
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ bfd-liveness-detection minimum-interval 1000
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ bfd-liveness-detection multiplier 6
+set routing-instances DMZ-L3VPN protocols bgp group V4-DMZ neighbor 10.14.32.20 peer-as 65192
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ type external
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ description "NEP6REGFW01 - DMZ VRTR - Pretend DUKE"
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ local-address 2001:578:30:c2c2:10:14:32:18
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ import V6-DMZ-IN
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ authentication-key "XXXX"
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ export V6-DMZ-OUT
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ bfd-liveness-detection minimum-interval 1000
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ bfd-liveness-detection multiplier 6
+set routing-instances DMZ-L3VPN protocols bgp group V6-DMZ neighbor 2001:578:30:c2c2:10:14:32:20 peer-as 65192
+set routing-instances IDRAC-L3VPN instance-type vrf
+set routing-instances IDRAC-L3VPN interface xe-0/0/4.291
+set routing-instances IDRAC-L3VPN interface ae15.181
+set routing-instances IDRAC-L3VPN interface ae15.291
+set routing-instances IDRAC-L3VPN route-distinguisher 10:30
+set routing-instances IDRAC-L3VPN vrf-import IDRAC-L3VPN-IMPORT
+set routing-instances IDRAC-L3VPN vrf-export IDRAC-L3VPN-EXPORT
+set routing-instances IDRAC-L3VPN vrf-table-label
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC type external
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC description "NEP6REGFW01 - IDRAC VRTR - Pretend DUKE"
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC local-address 10.14.32.10
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC import V4-IDRAC-IN
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC authentication-key "XXXX"
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC export V4-IDRAC-OUT
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC bfd-liveness-detection minimum-interval 1000
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC bfd-liveness-detection multiplier 6
+set routing-instances IDRAC-L3VPN protocols bgp group V4-IDRAC neighbor 10.14.32.12 peer-as 65191
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC type external
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC description "NEP6REGFW01 - IDRAC VRTR - Pretend DUKE"
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC local-address 2001:578:30:c2c1:10:14:32:10
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC import V6-IDRAC-IN
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC authentication-key "XXXX"
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC export V6-IDRAC-OUT
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC bfd-liveness-detection minimum-interval 1000
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC bfd-liveness-detection multiplier 6
+set routing-instances IDRAC-L3VPN protocols bgp group V6-IDRAC neighbor 2001:578:30:c2c1:10:14:32:12 peer-as 65191
+set routing-instances MIS-L3VPN instance-type vrf
+set routing-instances MIS-L3VPN interface xe-0/1/5.99
+set routing-instances MIS-L3VPN interface et-5/0/9.21
+set routing-instances MIS-L3VPN interface et-5/0/9.22
+set routing-instances MIS-L3VPN interface ae15.300
+set routing-instances MIS-L3VPN route-distinguisher 100:23
+set routing-instances MIS-L3VPN vrf-import MIS-L3VPN-IMPORT
+set routing-instances MIS-L3VPN vrf-export MIS-L3VPN-EXPORT
+set routing-instances MIS-L3VPN vrf-table-label
+set routing-instances MIS-L3VPN routing-options interface-routes rib-group inet MIS-WAN-RIB-GROUP
+set routing-instances MIS-L3VPN routing-options rib MIS-L3VPN.inet6.0 multipath
+set routing-instances MIS-L3VPN routing-options static route 200.1.0.0/24 next-hop 30.21.21.10
+set routing-instances MIS-L3VPN routing-options multipath
+set routing-instances MIS-L3VPN routing-options autonomous-system 64019
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE description "DUKE IT WAN ROUTER"
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE local-address 10.14.32.253
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE hold-time 20
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE import MIS-LOCAL-IN
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE family inet unicast prefix-limit maximum 1000
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE export MIS-LOCAL-OUT
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE peer-as 65001
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE as-override
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE neighbor 10.14.32.254
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE local-address 2001:578:30:c2b2:10:14:32:253
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE hold-time 20
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE import MIS-LOCAL-IN
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE export MIS-LOCAL-OUT
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE peer-as 65001
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE as-override
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE neighbor 2001:578:30:c2b2:10:14:32:254
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS type external
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS description "NEP6REGFW01 - MGMT VRTR - Pretend DUKE"
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS local-address 10.14.32.122
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS import V4-MIS-IN
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS export V4-MIS-OUT
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS bfd-liveness-detection minimum-interval 1000
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS bfd-liveness-detection multiplier 6
+set routing-instances MIS-L3VPN protocols bgp group V4-MIS neighbor 10.14.32.124 peer-as 65194
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS type external
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS description "NEP6REGFW01 - MGMT VRTR - Pretend DUKE"
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS local-address 2001:578:30:c2ce:10:14:32:122
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS import V6-MIS-IN
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS export V6-MIS-OUT
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS bfd-liveness-detection minimum-interval 1000
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS bfd-liveness-detection multiplier 6
+set routing-instances MIS-L3VPN protocols bgp group V6-MIS neighbor 2001:578:30:c2ce:10:14:32:124 peer-as 65194
+set routing-instances MIS-L3VPN protocols bgp group IXIA-EGRESS type internal
+set routing-instances MIS-L3VPN protocols bgp group IXIA-EGRESS local-address 30.21.21.1
+set routing-instances MIS-L3VPN protocols bgp group IXIA-EGRESS import MIS-LOCAL-IN
+set routing-instances MIS-L3VPN protocols bgp group IXIA-EGRESS neighbor 30.21.21.254
+set routing-instances MIS-WAN instance-type forwarding
+set routing-instances MVPN instance-type vrf
+set routing-instances MVPN interface et-5/0/3.0
+set routing-instances MVPN interface ae97.0
+set routing-instances MVPN interface ae99.10
+set routing-instances MVPN interface lo0.1
+set routing-instances MVPN route-distinguisher 10:2
+set routing-instances MVPN provider-tunnel selective group 224.0.0.0/4 source 0.0.0.0/0 ingress-replication create-new-ucast-tunnel
+set routing-instances MVPN provider-tunnel selective group 224.0.0.0/4 source 0.0.0.0/0 ingress-replication label-switched-path label-switched-path-template MVPN-LSP
+deactivate routing-instances MVPN provider-tunnel
+set routing-instances MVPN vrf-import MVPN-IMPORT
+set routing-instances MVPN vrf-export MVPN-EXPORT
+set routing-instances MVPN vrf-table-label
+set routing-instances MVPN routing-options interface-routes rib-group inet MVPN-SOURCE
+set routing-instances MVPN routing-options static rib-group MVPN-SOURCE
+set routing-instances MVPN routing-options router-id 70.175.244.124
+set routing-instances MVPN routing-options multicast ssm-groups 224.0.0.0/4
+set routing-instances MVPN protocols bgp group MVPN type internal
+set routing-instances MVPN protocols bgp group MVPN local-address 70.175.244.124
+set routing-instances MVPN protocols bgp group MVPN import MVPN-BGP-IN
+set routing-instances MVPN protocols bgp group MVPN family inet multicast
+set routing-instances MVPN protocols bgp group MVPN authentication-key "XXXX"
+set routing-instances MVPN protocols bgp group MVPN export MVPN-BGP-OUT-EXPORT-OPTIONS
+set routing-instances MVPN protocols bgp group MVPN export MVPN-BGP-OUT
+set routing-instances MVPN protocols bgp group MVPN neighbor 70.175.244.0 description "IBGP session to NEP6SLRC15.AT.AT"
+set routing-instances MVPN protocols bgp group MVPN neighbor 70.175.244.2 description "IBGP session to NEP6SLRC16.AT.AT"
+set routing-instances MVPN protocols bgp group MVPN neighbor 70.175.244.64 description "IBGP session to NEP6VSRC01.AT.AT"
+set routing-instances MVPN protocols bgp group MVPN neighbor 70.175.244.65 description "IBGP session to NEP6VSRC02.AT.AT NEW"
+set routing-instances MVPN protocols ospf area 0.0.0.10 nssa no-summaries
+set routing-instances MVPN protocols ospf area 0.0.0.10 interface lo0.1 passive
+set routing-instances MVPN protocols isis suppress-attached-bit
+set routing-instances MVPN protocols isis level 1 wide-metrics-only
+set routing-instances MVPN protocols isis level 2 disable
+set routing-instances MVPN protocols isis interface ae97.0 point-to-point
+set routing-instances MVPN protocols isis interface ae97.0 level 1 metric 16
+set routing-instances MVPN protocols isis interface ae97.0 level 1 hello-authentication-key "XXXX"
+set routing-instances MVPN protocols isis interface ae97.0 level 1 hello-authentication-type md5
+set routing-instances MVPN protocols isis interface ae99.10 point-to-point
+set routing-instances MVPN protocols isis interface ae99.10 level 1 metric 16
+set routing-instances MVPN protocols isis interface ae99.10 level 1 hello-authentication-key "XXXX"
+set routing-instances MVPN protocols isis interface ae99.10 level 1 hello-authentication-type md5
+set routing-instances MVPN protocols isis interface lo0.1 passive
+set routing-instances MVPN protocols isis interface lo0.1 level 2 disable
+set routing-instances MVPN protocols pim rib-group inet MVPN-PIM
+set routing-instances MVPN protocols pim import MVPN-PIM-IMPORT
+set routing-instances MVPN protocols pim interface et-5/0/3.0 mode sparse
+set routing-instances MVPN protocols pim interface et-5/0/3.0 hello-interval 1
+set routing-instances MVPN protocols pim interface ae99.10 mode sparse
+set routing-instances MVPN protocols pim interface ae99.10 hello-interval 1
+set routing-instances MVPN protocols pim interface ae97.0 mode sparse
+set routing-instances MVPN protocols pim interface ae97.0 hello-interval 1
+set routing-instances MVPN protocols mvpn receiver-site
+set routing-instances OOB-L3VPN instance-type vrf
+set routing-instances OOB-L3VPN interface xe-0/0/4.290
+set routing-instances OOB-L3VPN interface ae15.180
+set routing-instances OOB-L3VPN interface ae15.290
+set routing-instances OOB-L3VPN interface ae15.296
+set routing-instances OOB-L3VPN interface ae15.298
+set routing-instances OOB-L3VPN route-distinguisher 10:31
+set routing-instances OOB-L3VPN vrf-import OOB-L3VPN-IMPORT
+set routing-instances OOB-L3VPN vrf-export OOB-L3VPN-EXPORT
+set routing-instances OOB-L3VPN vrf-table-label
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB type external
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB description "NEP6REGFW01 - MGMT VRTR - Pretend DUKE"
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB local-address 10.14.32.2
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB import V4-OOB-IN
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB authentication-key "XXXX"
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB export V4-OOB-OUT
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB bfd-liveness-detection minimum-interval 1000
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB bfd-liveness-detection multiplier 6
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB neighbor 10.14.32.4 peer-as 65190
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB type external
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB description "NEP6REGFW01 - MGMT VRTR - Pretend DUKE"
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB local-address 2001:578:30:c2c0:10:14:32:2
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB import V6-OOB-IN
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB authentication-key "XXXX"
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB export V6-OOB-OUT
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB bfd-liveness-detection minimum-interval 1000
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB bfd-liveness-detection multiplier 6
+set routing-instances OOB-L3VPN protocols bgp group V6-OOB neighbor 2001:578:30:c2c0:10:14:32:4 peer-as 65190
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN instance-type vrf
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN interface ae98.0
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN interface ae99.29
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN interface lo0.2
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN route-distinguisher 10:5
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN vrf-import PRIMARY-A-SECONDARY-B-V2B-MVPN-VRF-IMPORT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN vrf-export PRIMARY-A-SECONDARY-B-V2B-MVPN-VRF-EXPORT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN vrf-table-label
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN routing-options router-id 70.175.245.119
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN routing-options multicast ssm-groups 224.0.0.0/4
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER type internal
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER local-address 70.175.245.119
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER import PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-IN
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER family inet multicast
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER authentication-key "XXXX"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER export PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-OUT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 70.175.244.1 description "V2B MVPN IBGP session to NEP6SLRC15.AT.AT"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 70.175.244.3 description "V2B MVPN IBGP session to NEP6SLRC16.AT.AT"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 70.175.244.66 description "V2B MVPN IBGP session to NEP6VSRC01.AT.AT"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 70.175.244.67 description "V2B MVPN IBGP session to NEP6VSRC02.AT.AT"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis suppress-attached-bit
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis level 1 wide-metrics-only
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis level 2 disable
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae98.0 point-to-point
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae98.0 level 1 metric 16
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae98.0 level 1 hello-authentication-key "XXXX"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae98.0 level 1 hello-authentication-type md5
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 point-to-point
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 level 1 metric 16
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 level 1 hello-authentication-key "XXXX"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 level 1 hello-authentication-type md5
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface lo0.2 passive
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface lo0.2 level 2 disable
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim rib-group inet PRIMARY-A-SECONDARY-B-V2B-MVPN-PIM
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim import V2B-MVPN-PIM-IMPORT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae99.29 mode sparse
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae99.29 hello-interval 1
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae98.0 mode sparse
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae98.0 hello-interval 1
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols mvpn receiver-site
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN instance-type vrf
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN interface ae99.30
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN interface lo0.3
+deactivate routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN interface lo0.3
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN route-distinguisher 10:6
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN vrf-import PRIMARY-B-SECONDARY-A-V2B-MVPN-VRF-IMPORT
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN vrf-export PRIMARY-B-SECONDARY-A-V2B-MVPN-VRF-EXPORT
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN vrf-table-label
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN routing-options router-id 70.175.245.123
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN routing-options multicast ssm-groups 224.0.0.0/4
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER type internal
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER local-address 70.175.245.123
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER import PRIMARY-B-SECONDARY-A-V2B-MVPN-RECEIVER-BGP-IN
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER family inet multicast
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER authentication-key "XXXX"
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER export PRIMARY-B-SECONDARY-A-V2B-MVPN-RECEIVER-BGP-OUT
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 70.175.244.68 description "V2B MVPN IBGP session to NEP6VSRC01.AT.AT"
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 70.175.244.69 description "V2B MVPN IBGP session to NEP6VSRC02.AT.AT"
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis suppress-attached-bit
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis level 1 wide-metrics-only
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis level 2 disable
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis interface ae99.30 point-to-point
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis interface ae99.30 level 1 metric 16
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis interface ae99.30 level 1 hello-authentication-key "XXXX"
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis interface ae99.30 level 1 hello-authentication-type md5
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis interface lo0.3 passive
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols isis interface lo0.3 level 2 disable
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols pim rib-group inet PRIMARY-B-SECONDARY-A-V2B-MVPN-PIM
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols pim interface ae99.30 mode sparse
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols pim interface ae99.30 hello-interval 1
+set routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN protocols mvpn receiver-site
+deactivate routing-instances PRIMARY-B-SECONDARY-A-V2B-MVPN
+set routing-instances SHARED-SERVICE-L3VPN instance-type vrf
+set routing-instances SHARED-SERVICE-L3VPN interface xe-0/0/4.293
+set routing-instances SHARED-SERVICE-L3VPN interface et-5/0/9.20
+set routing-instances SHARED-SERVICE-L3VPN interface ae15.183
+set routing-instances SHARED-SERVICE-L3VPN interface ae15.293
+set routing-instances SHARED-SERVICE-L3VPN route-distinguisher 10:33
+set routing-instances SHARED-SERVICE-L3VPN vrf-import VRF-IMPORT-SHARED-SERVICE
+set routing-instances SHARED-SERVICE-L3VPN vrf-export VRF-EXPORT-SHARED-SERVICE
+set routing-instances SHARED-SERVICE-L3VPN vrf-table-label
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE type external
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE description "NEP6REGFW01 - SS VRTR - Pretend DUKE"
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE local-address 10.14.32.26
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE import V4-SHARED-SERVICE-IN
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE authentication-key "XXXX"
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE export V4-SHARED-SERVICE-OUT
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE bfd-liveness-detection minimum-interval 1000
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE bfd-liveness-detection multiplier 6
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-SHARED-SERVICE neighbor 10.14.32.28 peer-as 65193
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE type external
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE description "NEP6REGFW01 - SS VRTR - Pretend DUKE"
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE local-address 2001:578:30:c2c3:10:14:32:26
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE import V6-SHARED-SERVICE-IN
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE authentication-key "XXXX"
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE export V6-SHARED-SERVICE-OUT
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE bfd-liveness-detection minimum-interval 1000
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE bfd-liveness-detection multiplier 6
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V6-SHARED-SERVICE neighbor 2001:578:30:c2c3:10:14:32:28 peer-as 65193
+set routing-instances TEST-IMS-VoIP-MGMT instance-type vrf
+set routing-instances TEST-IMS-VoIP-MGMT route-distinguisher 10:17
+set routing-instances TEST-IMS-VoIP-MGMT vrf-import IMS-VoIP-MGMT-L3VPN-IMPORT
+set routing-instances TEST-IMS-VoIP-MGMT vrf-export IMS-VoIP-MGMT-L3VPN-EXPORT
+set routing-instances TEST-IMS-VoIP-MGMT vrf-table-label
+set routing-instances TEST-IT-L3VPN instance-type vrf
+set routing-instances TEST-IT-L3VPN interface xe-0/1/5.99
+set routing-instances TEST-IT-L3VPN route-distinguisher 100:23
+set routing-instances TEST-IT-L3VPN vrf-target target:64019:23
+set routing-instances TEST-IT-L3VPN vrf-table-label
+set routing-instances TEST-IT-L3VPN routing-options multipath
+set routing-instances TEST-IT-L3VPN routing-options autonomous-system 64019
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE local-address 10.14.32.253
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE hold-time 20
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE import MIS-BGP-IN
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE family inet unicast prefix-limit maximum 1000
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE export MIS-BGP-OUT
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE peer-as 65001
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE as-override
+set routing-instances TEST-IT-L3VPN protocols bgp group V4-IT-REMOTE-SITE neighbor 10.14.32.254
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE local-address 2001:578:30:c2b2:10:14:32:253
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE hold-time 20
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE import MIS-BGP-IN
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE export MIS-BGP-OUT
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE peer-as 65001
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE as-override
+set routing-instances TEST-IT-L3VPN protocols bgp group V6-IT-REMOTE-SITE neighbor 2001:578:30:c2b2:10:14:32:254
+deactivate routing-instances TEST-IT-L3VPN
+set routing-instances TEST-L3VPN-1 instance-type vrf
+set routing-instances TEST-L3VPN-1 interface et-5/1/0.410
+set routing-instances TEST-L3VPN-1 route-distinguisher 100:10
+set routing-instances TEST-L3VPN-1 vrf-target target:64019:210
+set routing-instances TEST-L3VPN-1 vrf-table-label
+set routing-instances TEST-L3VPN-1 routing-options multipath
+set routing-instances TEST-L3VPN-1 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1 local-address 30.14.29.20
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1 family inet unicast
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1 peer-as 1
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1 neighbor 30.14.29.21
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1_v6 local-address 2001:578:30:1158::14
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1_v6 family inet6 unicast
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1_v6 peer-as 1
+set routing-instances TEST-L3VPN-1 protocols bgp group TEST-L3VPN-site1_v6 neighbor 2001:578:30:1158::15
+set routing-instances TEST-L3VPN-2 instance-type vrf
+set routing-instances TEST-L3VPN-2 interface et-5/1/0.405
+set routing-instances TEST-L3VPN-2 route-distinguisher 100:11
+set routing-instances TEST-L3VPN-2 vrf-target target:64019:211
+set routing-instances TEST-L3VPN-2 vrf-table-label
+set routing-instances TEST-L3VPN-2 routing-options multipath
+set routing-instances TEST-L3VPN-2 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-2 protocols bgp group TEST-L3VPN-site2 local-address 30.14.29.10
+set routing-instances TEST-L3VPN-2 protocols bgp group TEST-L3VPN-site2 family inet unicast
+set routing-instances TEST-L3VPN-2 protocols bgp group TEST-L3VPN-site2 peer-as 2
+set routing-instances TEST-L3VPN-2 protocols bgp group TEST-L3VPN-site2 neighbor 30.14.29.11
+deactivate routing-instances TEST-L3VPN-2
+set routing-instances TEST-L3VPN-3 instance-type vrf
+set routing-instances TEST-L3VPN-3 interface et-5/1/0.406
+set routing-instances TEST-L3VPN-3 route-distinguisher 100:12
+set routing-instances TEST-L3VPN-3 vrf-target target:64019:212
+set routing-instances TEST-L3VPN-3 vrf-table-label
+set routing-instances TEST-L3VPN-3 routing-options multipath
+set routing-instances TEST-L3VPN-3 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-3 protocols bgp group TEST-L3VPN-site2 local-address 30.14.29.12
+set routing-instances TEST-L3VPN-3 protocols bgp group TEST-L3VPN-site2 family inet unicast
+set routing-instances TEST-L3VPN-3 protocols bgp group TEST-L3VPN-site2 peer-as 3
+set routing-instances TEST-L3VPN-3 protocols bgp group TEST-L3VPN-site2 neighbor 30.14.29.13
+deactivate routing-instances TEST-L3VPN-3
+set routing-instances TEST-L3VPN-4 instance-type vrf
+set routing-instances TEST-L3VPN-4 interface et-5/1/0.407
+set routing-instances TEST-L3VPN-4 route-distinguisher 100:13
+set routing-instances TEST-L3VPN-4 vrf-target target:64019:213
+set routing-instances TEST-L3VPN-4 vrf-table-label
+set routing-instances TEST-L3VPN-4 routing-options multipath
+set routing-instances TEST-L3VPN-4 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-4 protocols bgp group TEST-L3VPN-site2 local-address 30.14.29.14
+set routing-instances TEST-L3VPN-4 protocols bgp group TEST-L3VPN-site2 family inet unicast
+set routing-instances TEST-L3VPN-4 protocols bgp group TEST-L3VPN-site2 peer-as 4
+set routing-instances TEST-L3VPN-4 protocols bgp group TEST-L3VPN-site2 neighbor 30.14.29.15
+deactivate routing-instances TEST-L3VPN-4
+set routing-instances TEST-L3VPN-5 instance-type vrf
+set routing-instances TEST-L3VPN-5 interface et-5/1/0.408
+set routing-instances TEST-L3VPN-5 route-distinguisher 100:14
+set routing-instances TEST-L3VPN-5 vrf-target target:64019:214
+set routing-instances TEST-L3VPN-5 vrf-table-label
+set routing-instances TEST-L3VPN-5 routing-options multipath
+set routing-instances TEST-L3VPN-5 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-5 protocols bgp group TEST-L3VPN-site5 local-address 30.14.29.16
+set routing-instances TEST-L3VPN-5 protocols bgp group TEST-L3VPN-site5 family inet unicast
+set routing-instances TEST-L3VPN-5 protocols bgp group TEST-L3VPN-site5 peer-as 5
+set routing-instances TEST-L3VPN-5 protocols bgp group TEST-L3VPN-site5 neighbor 30.14.29.17
+deactivate routing-instances TEST-L3VPN-5
+set routing-instances TEST-L3VPN-6 instance-type vrf
+set routing-instances TEST-L3VPN-6 interface et-5/1/0.409
+set routing-instances TEST-L3VPN-6 route-distinguisher 100:15
+set routing-instances TEST-L3VPN-6 vrf-target target:64019:215
+set routing-instances TEST-L3VPN-6 vrf-table-label
+set routing-instances TEST-L3VPN-6 routing-options multipath
+set routing-instances TEST-L3VPN-6 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-6 protocols bgp group TEST-L3VPN-site6 local-address 30.14.29.18
+set routing-instances TEST-L3VPN-6 protocols bgp group TEST-L3VPN-site6 family inet unicast
+set routing-instances TEST-L3VPN-6 protocols bgp group TEST-L3VPN-site6 peer-as 6
+set routing-instances TEST-L3VPN-6 protocols bgp group TEST-L3VPN-site6 neighbor 30.14.29.19
+deactivate routing-instances TEST-L3VPN-6
+set routing-instances TEST-L3VPN-7 instance-type vrf
+set routing-instances TEST-L3VPN-7 interface et-5/1/0.410
+set routing-instances TEST-L3VPN-7 route-distinguisher 100:16
+set routing-instances TEST-L3VPN-7 vrf-target target:64019:216
+set routing-instances TEST-L3VPN-7 vrf-table-label
+set routing-instances TEST-L3VPN-7 routing-options multipath
+set routing-instances TEST-L3VPN-7 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-7 protocols bgp group TEST-L3VPN-site7 local-address 30.14.29.20
+set routing-instances TEST-L3VPN-7 protocols bgp group TEST-L3VPN-site7 family inet unicast
+set routing-instances TEST-L3VPN-7 protocols bgp group TEST-L3VPN-site7 peer-as 7
+set routing-instances TEST-L3VPN-7 protocols bgp group TEST-L3VPN-site7 neighbor 30.14.29.21
+deactivate routing-instances TEST-L3VPN-7
+set routing-instances TEST-L3VPN-8 instance-type vrf
+set routing-instances TEST-L3VPN-8 interface et-5/1/0.411
+set routing-instances TEST-L3VPN-8 route-distinguisher 100:17
+set routing-instances TEST-L3VPN-8 vrf-target target:64019:217
+set routing-instances TEST-L3VPN-8 vrf-table-label
+set routing-instances TEST-L3VPN-8 routing-options multipath
+set routing-instances TEST-L3VPN-8 routing-options autonomous-system 64019
+set routing-instances TEST-L3VPN-8 protocols bgp group TEST-L3VPN-site8 local-address 30.14.29.22
+set routing-instances TEST-L3VPN-8 protocols bgp group TEST-L3VPN-site8 family inet unicast
+set routing-instances TEST-L3VPN-8 protocols bgp group TEST-L3VPN-site8 peer-as 8
+set routing-instances TEST-L3VPN-8 protocols bgp group TEST-L3VPN-site8 neighbor 30.14.29.23
+deactivate routing-instances TEST-L3VPN-8
+set openconfig-interfaces:interfaces interface xe-0/0/18 config type ethernetCsmacd
+set openconfig-interfaces:interfaces interface xe-0/0/18 config mtu 9192
+set openconfig-interfaces:interfaces interface xe-0/0/18 config description "new openconfig description"
+set openconfig-interfaces:interfaces interface xe-0/0/18 config enabled true
+{master}
+nep6dsrj11 [10.4.6.199] – 10-24-2022 17h02m31s

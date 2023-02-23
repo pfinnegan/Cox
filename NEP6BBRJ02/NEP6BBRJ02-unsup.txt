@@ -1,0 +1,174 @@
+﻿set groups RSVP-OPTIONS protocols rsvp interface <*> subscription 92
+set groups GLOBAL system syslog file messages pfe any
+set groups MPLS-OPTIONS protocols mpls statistics file mpls.stats
+set groups re0 system backup-router 10.4.6.1
+set groups re0 interfaces em0 unit 0 family inet address 10.4.6.17/23
+set groups re0 interfaces em0 unit 0 family inet address 10.4.6.16/23 master-only
+set groups re1 system backup-router 10.4.6.1
+set groups re1 interfaces em0 unit 0 family inet address 10.4.6.18/23
+set groups re1 interfaces em0 unit 0 family inet address 10.4.6.16/23 master-only
+set system services management-grpc-api-service traceoptions file mgd-api.log
+set system services management-grpc-api-service traceoptions file size 1g
+set system services management-grpc-api-service traceoptions file files 3
+set system services management-grpc-api-service traceoptions flag all
+set system services extension-service traceoptions file jsd-trace.log
+set system services netconf traceoptions file netconf.log
+deactivate system services netconf traceoptions
+set system syslog user * any emergency
+set system syslog host 10.26.4.13 any notice
+set system syslog host 10.26.4.13 authorization info
+set system syslog host 10.26.4.13 daemon info
+set system syslog host 10.26.4.13 kernel error
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file interactive-commands interactive-commands any
+set system syslog file default-log-messages any info
+set services analytics traceoptions file Telemetry
+set interfaces et-0/0/1 unit 0 description "Test interface"
+set interfaces et-0/0/2 gigether-options 802.3ad ae24
+set interfaces et-0/0/4 gigether-options 802.3ad ae24
+set interfaces et-0/0/6 gigether-options 802.3ad ae24
+set interfaces et-0/0/10 gigether-options 802.3ad ae12
+set interfaces et-0/0/12 gigether-options 802.3ad ae12
+set interfaces et-0/0/14 gigether-options 802.3ad ae12
+set interfaces et-0/0/16 gigether-options 802.3ad ae12
+set interfaces et-0/0/18 gigether-options 802.3ad ae60
+set interfaces et-0/0/19 gigether-options 802.3ad ae70
+set interfaces et-0/0/23:0 gigether-options 802.3ad ae40
+set interfaces et-0/0/23:1 gigether-options 802.3ad ae40
+set interfaces et-0/0/23:2 gigether-options 802.3ad ae40
+set interfaces et-0/0/23:3 gigether-options 802.3ad ae40
+set interfaces et-0/0/25:0 gigether-options 802.3ad ae240
+set interfaces et-0/0/25:1 gigether-options 802.3ad ae240
+set interfaces et-0/0/25:2 gigether-options 802.3ad ae240
+set interfaces et-0/0/25:3 gigether-options 802.3ad ae240
+set interfaces et-0/0/28 gigether-options 802.3ad ae240
+set interfaces et-1/0/0 gigether-options 802.3ad ae23
+set interfaces et-1/0/3 gigether-options 802.3ad ae23
+set interfaces et-1/0/5 gigether-options 802.3ad ae23
+set interfaces et-1/0/6 gigether-options 802.3ad ae2
+set interfaces et-1/0/7 gigether-options 802.3ad ae23
+set interfaces et-1/0/8 ether-options 802.3ad ae2
+set interfaces et-1/0/11 gigether-options 802.3ad ae10
+set interfaces et-1/0/13 gigether-options 802.3ad ae10
+set interfaces et-1/0/15 gigether-options 802.3ad ae10
+set interfaces et-1/0/17 gigether-options 802.3ad ae10
+set interfaces et-1/0/24 gigether-options 802.3ad ae60
+set interfaces et-1/0/26 gigether-options 802.3ad ae25
+set interfaces et-1/0/27:0 gigether-options 802.3ad ae40
+set interfaces et-1/0/27:1 gigether-options 802.3ad ae40
+set interfaces et-1/0/28 gigether-options 802.3ad ae25
+set interfaces et-1/0/29:1 gigether-options 802.3ad ae40
+deactivate interfaces ae12 unit 0 family inet6 address 2001:578:30:1000:174:68:232:89/127
+set interfaces ae23 unit 0 family inet filter input jtac-telemetry
+set interfaces ae23 unit 0 family inet filter output jtac-telemetry-out
+deactivate interfaces ae23 unit 0 family inet filter output
+deactivate interfaces ae23 unit 0 family inet6 address 2001:578:30:1000:174:68:232:94/127
+deactivate interfaces ae24 unit 0 family inet6 address 2001:578:30:1000:174:68:232:96/127
+deactivate interfaces ae40 unit 0 family inet6 address 2001:578:30:1000:174:68:232:113/127
+deactivate interfaces ae70
+set interfaces lo0 unit 0 family inet filter input V4-PROTECT_RE-IN-BB
+deactivate interfaces lo0 unit 0 family inet6 address 2001:578:30:1000:174:68:232:52/128
+set snmp trap-options source-address 174.68.232.52
+deactivate routing-options static route 172.20.21.0/26
+set routing-options aggregate defaults metric 0
+set routing-options autonomous-system 64019
+deactivate protocols mpls apply-groups
+set protocols mpls admin-groups DTCR-EXCLUDE 3
+set protocols mpls admin-groups AT-P2MP-EXCLUDE 16
+set protocols mpls admin-groups SD-P2MP-EXCLUDE 17
+set policy-options prefix-list V4-SSH-LIST-BB 10.0.0.0/8
+set policy-options prefix-list V4-SSH-LIST-BB 10.20.7.0/24
+set policy-options prefix-list V4-SSH-LIST-BB 10.20.8.0/29
+set policy-options prefix-list V4-SSH-LIST-BB 10.20.8.8/29
+set policy-options prefix-list V4-SSH-LIST-BB 24.248.0.0/13
+set policy-options prefix-list V4-SSH-LIST-BB 24.248.74.254/32
+set policy-options prefix-list V4-SSH-LIST-BB 66.210.0.0/16
+set policy-options prefix-list V4-SSH-LIST-BB 68.0.0.0/12
+set policy-options prefix-list V4-SSH-LIST-BB 68.96.0.0/12
+set policy-options prefix-list V4-SSH-LIST-BB 68.224.0.0/13
+set policy-options prefix-list V4-SSH-LIST-BB 70.160.0.0/11
+set policy-options prefix-list V4-SSH-LIST-BB 70.175.247.0/27
+set policy-options prefix-list V4-SSH-LIST-BB 72.192.0.0/11
+set policy-options prefix-list V4-SSH-LIST-BB 98.160.0.0/11
+set policy-options prefix-list V4-SSH-LIST-BB 100.127.193.192/26
+set policy-options prefix-list V4-SSH-LIST-BB 172.16.0.0/12
+set policy-options prefix-list V4-SSH-LIST-BB 174.64.0.0/12
+set policy-options prefix-list V4-SSH-LIST-BB 174.78.111.0/24
+set policy-options prefix-list V4-SSH-LIST-BB 184.176.220.0/24
+set policy-options prefix-list V4-SSH-LIST-BB 192.168.0.0/16
+set policy-options prefix-list V4-SNMP-LIST-BB 10.3.19.0/24
+set policy-options prefix-list V4-SNMP-LIST-BB 10.3.19.128/27
+set policy-options prefix-list V4-SNMP-LIST-BB 10.4.0.0/16
+set policy-options prefix-list V4-SNMP-LIST-BB 10.4.7.7/32
+set policy-options prefix-list V4-SNMP-LIST-BB 10.20.7.0/24
+set policy-options prefix-list V4-SNMP-LIST-BB 10.26.4.0/24
+set policy-options prefix-list V4-SNMP-LIST-BB 10.64.116.43/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.0.4.2/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.14.3/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.0/24
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.21.11/32
+set policy-options prefix-list V4-SNMP-LIST-BB 174.68.224.0/19
+set policy-options prefix-list V4-SNMP-LIST-BB 174.78.111.23/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.0/24
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.18.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.18.30/32
+set policy-options prefix-list V4-NTP-LIST-BB 10.4.6.16/32
+set policy-options prefix-list V4-NTP-LIST-BB 10.4.7.7/32
+set policy-options prefix-list V4-NTP-LIST-BB 10.26.4.13/32
+set policy-options prefix-list V4-NTP-LIST-BB 172.24.0.53/32
+set policy-options prefix-list V4-TACACS-LIST-BB 10.4.7.7/32
+set policy-options prefix-list V4-TACACS-LIST-BB 24.248.74.254/32
+set policy-options prefix-list V4-FTP-LIST-BB 10.4.6.0/23
+set policy-options prefix-list V4-FTP-LIST-BB 10.4.7.7/32
+set policy-options prefix-list V4-FTP-LIST-BB 10.4.7.54/32
+set policy-options prefix-list V4-FTP-LIST-BB 10.26.4.0/22
+set policy-options prefix-list V4-FTP-LIST-BB 10.26.4.5/32
+set policy-options prefix-list V4-RSVP-LIST-BB 174.68.232.0/22
+set policy-options prefix-list V4-PCEP-LIST-BB 174.68.235.160/29
+set policy-options prefix-list V4-OPENSHIFT-LIST-BB 24.248.74.254/32
+set policy-options prefix-list V4-STREAMING-TELEMETRY-LIST-BB 100.120.230.0/24
+set class-of-service code-point-aliases dscp-ipv6 BEST-EFFORT-BE 000000
+set class-of-service code-point-aliases dscp-ipv6 NON-REAL-TIME-AF11 001000
+set class-of-service code-point-aliases dscp-ipv6 INTERACTIVE-AF21 010000
+set class-of-service code-point-aliases dscp-ipv6 REAL-TIME-AF31 011000
+set class-of-service code-point-aliases dscp-ipv6 VIDEO-AF41 100000
+set class-of-service code-point-aliases dscp-ipv6 VOICE-EF 101000
+set class-of-service code-point-aliases dscp-ipv6 NETWORK-CONTROL-NC 110000
+set class-of-service code-point-aliases exp BEST-EFFORT-BE 000
+set class-of-service code-point-aliases exp NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases exp INTERACTIVE-AF21 010
+set class-of-service code-point-aliases exp REAL-TIME-AF31 011
+set class-of-service code-point-aliases exp VIDEO-AF41 100
+set class-of-service code-point-aliases exp VOICE-EF 101
+set class-of-service code-point-aliases exp NETWORK-CONTROL-NC 110
+set class-of-service code-point-aliases inet-precedence BEST-EFFORT-BE 000
+set class-of-service code-point-aliases inet-precedence NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases inet-precedence INTERACTIVE-AF21 010
+set class-of-service code-point-aliases inet-precedence REAL-TIME-AF31 011
+set class-of-service code-point-aliases inet-precedence VIDEO-AF41 100
+set class-of-service code-point-aliases inet-precedence VOICE-EF 101
+set class-of-service code-point-aliases inet-precedence NETWORK-CONTROL-NC 110
+set class-of-service forwarding-classes queue 0 BEST-EFFORT
+set class-of-service forwarding-classes queue 1 NON-REAL-TIME
+set class-of-service forwarding-classes queue 2 INTERACTIVE
+set class-of-service forwarding-classes queue 3 REAL-TIME
+set class-of-service forwarding-classes queue 4 VIDEO
+set class-of-service forwarding-classes queue 5 VOICE
+set class-of-service forwarding-classes queue 6 NETWORK-CONTROL
+set class-of-service interfaces et-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces et-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces et-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules exp MPLS-REWRITE-EXP
+set class-of-service interfaces et-*/*/*:* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces et-*/*/*:* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces et-*/*/*:* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces et-*/*/*:* unit * rewrite-rules exp MPLS-REWRITE-EXP
+set class-of-service interfaces ae* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ae* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces ae* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ae* unit * rewrite-rules exp MPLS-REWRITE-EXP
+set class-of-service routing-instances all classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER drop-profile-map loss-priority any protocol any drop-profile RED-BEST-EFFORT
+{master}
+NEP6BBRJ02 [174.68.232.52] – 10-24-2022 17h02m28s

@@ -1,0 +1,1155 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 set firewall family inet filter HARMONY-VOIP-OUT interface-specific\
+set firewall family inet filter HARMONY-VOIP-OUT term bad-protocols from protocol 255\
+set firewall family inet filter HARMONY-VOIP-OUT term bad-protocols then count bad-protocols-out\
+set firewall family inet filter HARMONY-VOIP-OUT term bad-protocols then discard\
+set firewall family inet filter HARMONY-VOIP-OUT term ntp-monlist-deny from packet-length 234-482\
+set firewall family inet filter HARMONY-VOIP-OUT term ntp-monlist-deny from protocol udp\
+set firewall family inet filter HARMONY-VOIP-OUT term ntp-monlist-deny from port ntp\
+set firewall family inet filter HARMONY-VOIP-OUT term ntp-monlist-deny then count ntp-monlist-deny-OUT\
+set firewall family inet filter HARMONY-VOIP-OUT term ntp-monlist-deny then discard\
+set firewall family inet filter HARMONY-VOIP-OUT term chargen-deny from protocol udp\
+set firewall family inet filter HARMONY-VOIP-OUT term chargen-deny from port 19\
+set firewall family inet filter HARMONY-VOIP-OUT term chargen-deny then count chargen-deny-OUT\
+set firewall family inet filter HARMONY-VOIP-OUT term chargen-deny then discard\
+set firewall family inet filter HARMONY-VOIP-OUT term SSDP-UPnP-deny from protocol udp\
+set firewall family inet filter HARMONY-VOIP-OUT term SSDP-UPnP-deny from port 1900\
+set firewall family inet filter HARMONY-VOIP-OUT term SSDP-UPnP-deny then count SSDP-UPnP-deny-OUT\
+set firewall family inet filter HARMONY-VOIP-OUT term SSDP-UPnP-deny then discard\
+set firewall family inet filter HARMONY-VOIP-OUT term icmp-out from protocol icmp\
+set firewall family inet filter HARMONY-VOIP-OUT term icmp-out from icmp-type mask-request\
+set firewall family inet filter HARMONY-VOIP-OUT term icmp-out from icmp-type redirect\
+set firewall family inet filter HARMONY-VOIP-OUT term icmp-out then count bad-icmp-out\
+set firewall family inet filter HARMONY-VOIP-OUT term icmp-out then discard\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent from destination-address 190.93.248.140/32\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent from destination-address 190.93.249.140/32\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent from protocol tcp\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent from protocol udp\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent from source-port 53\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent then count SpamHaus-DDoS-outbound\
+set firewall family inet filter HARMONY-VOIP-OUT term SpamHaus-prevent then discard\
+set firewall family inet filter HARMONY-VOIP-OUT term link-accept from address 96.87.9.52/30\
+set firewall family inet filter HARMONY-VOIP-OUT term link-accept then accept\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept from source-address 98.173.245.136/32\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept from source-address 70.171.145.0/24\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept from source-address 70.171.151.0/25\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept from source-address 184.180.75.64/26\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept from source-address 184.180.75.128/26\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept then count harmony-sources\
+set firewall family inet filter HARMONY-VOIP-OUT term sources-accept then accept\
+set firewall family inet filter HARMONY-VOIP-OUT term everything-else then discard\
+set firewall family inet filter HARMONY-VOIP-IN interface-specific\
+set firewall family inet filter HARMONY-VOIP-IN term bogon-permit from address 21.0.0.0/8\
+set firewall family inet filter HARMONY-VOIP-IN term bogon-permit then accept\
+set firewall family inet filter HARMONY-VOIP-IN term bogon-deny from prefix-list bogons\
+set firewall family inet filter HARMONY-VOIP-IN term bogon-deny then count bogons-transit-IN\
+set firewall family inet filter HARMONY-VOIP-IN term bogon-deny then discard\
+set firewall family inet filter HARMONY-VOIP-IN term bad-protocols from protocol 255\
+set firewall family inet filter HARMONY-VOIP-IN term bad-protocols from protocol pim\
+set firewall family inet filter HARMONY-VOIP-IN term bad-protocols then count bad-protocols-transit-IN\
+set firewall family inet filter HARMONY-VOIP-IN term bad-protocols then discard\
+set firewall family inet filter HARMONY-VOIP-IN term ntp-monlist-deny from packet-length 234-482\
+set firewall family inet filter HARMONY-VOIP-IN term ntp-monlist-deny from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term ntp-monlist-deny from port ntp\
+set firewall family inet filter HARMONY-VOIP-IN term ntp-monlist-deny then count ntp-monlist-deny-IN\
+set firewall family inet filter HARMONY-VOIP-IN term ntp-monlist-deny then discard\
+set firewall family inet filter HARMONY-VOIP-IN term chargen-deny from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term chargen-deny from port 19\
+set firewall family inet filter HARMONY-VOIP-IN term chargen-deny then count chargen-deny-IN\
+set firewall family inet filter HARMONY-VOIP-IN term chargen-deny then discard\
+set firewall family inet filter HARMONY-VOIP-IN term SSDP-UPnP-deny from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term SSDP-UPnP-deny from port 1900\
+set firewall family inet filter HARMONY-VOIP-IN term SSDP-UPnP-deny then count SSDP-UPnP-deny-IN\
+set firewall family inet filter HARMONY-VOIP-IN term SSDP-UPnP-deny then discard\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types from protocol icmp\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types from icmp-type echo-reply\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types from icmp-type echo-request\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types from icmp-type time-exceeded\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types then count icmp-edge-IN\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types then sample\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types then forwarding-class BEST-EFFORT\
+set firewall family inet filter HARMONY-VOIP-IN term permitted-icmp-types then accept\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach from protocol icmp\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach from icmp-type unreachable\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach from icmp-code fragmentation-needed\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach from icmp-code port-unreachable\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach then count icmp-edge-IN\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach then sample\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach then forwarding-class BEST-EFFORT\
+set firewall family inet filter HARMONY-VOIP-IN term permit-icmp-unreach then accept\
+set firewall family inet filter HARMONY-VOIP-IN term icmp-other from protocol icmp\
+set firewall family inet filter HARMONY-VOIP-IN term icmp-other then count bad-icmp-edge-IN\
+set firewall family inet filter HARMONY-VOIP-IN term icmp-other then discard\
+set firewall family inet filter HARMONY-VOIP-IN term LSP-ECHO from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term LSP-ECHO from destination-port 3503\
+set firewall family inet filter HARMONY-VOIP-IN term LSP-ECHO then discard\
+set firewall family inet filter HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall family inet filter HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall family inet filter HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall family inet filter HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall family inet filter HARMONY-VOIP-IN term deny-SMTP-cox.net then count cox.net-smtp-drops\
+set firewall family inet filter HARMONY-VOIP-IN term deny-SMTP-cox.net then discard\
+set firewall family inet filter HARMONY-VOIP-IN term SIP from protocol tcp\
+set firewall family inet filter HARMONY-VOIP-IN term SIP from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term SIP from port 5060\
+set firewall family inet filter HARMONY-VOIP-IN term SIP from port 5061\
+set firewall family inet filter HARMONY-VOIP-IN term SIP then count SIP\
+set firewall family inet filter HARMONY-VOIP-IN term SIP then sample\
+set firewall family inet filter HARMONY-VOIP-IN term SIP then forwarding-class VOICE\
+set firewall family inet filter HARMONY-VOIP-IN term SIP then accept\
+set firewall family inet filter HARMONY-VOIP-IN term SIP then dscp cs5\
+set firewall family inet filter HARMONY-VOIP-IN term RTP from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term RTP then count RTP\
+set firewall family inet filter HARMONY-VOIP-IN term RTP then sample\
+set firewall family inet filter HARMONY-VOIP-IN term RTP then forwarding-class VOICE\
+set firewall family inet filter HARMONY-VOIP-IN term RTP then accept\
+set firewall family inet filter HARMONY-VOIP-IN term RTP then dscp ef\
+set firewall family inet filter HARMONY-VOIP-IN term DNS_DENY from protocol udp\
+set firewall family inet filter HARMONY-VOIP-IN term DNS_DENY from protocol tcp\
+set firewall family inet filter HARMONY-VOIP-IN term DNS_DENY from destination-port 53\
+set firewall family inet filter HARMONY-VOIP-IN term DNS_DENY then count V4-DNS-EDGE-IN\
+set firewall family inet filter HARMONY-VOIP-IN term DNS_DENY then discard\
+set firewall family inet filter HARMONY-VOIP-IN term BEST-EFFORT then count BEST-EFFORT\
+set firewall family inet filter HARMONY-VOIP-IN term BEST-EFFORT then sample\
+set firewall family inet filter HARMONY-VOIP-IN term BEST-EFFORT then forwarding-class BEST-EFFORT\
+set firewall family inet filter HARMONY-VOIP-IN term BEST-EFFORT then accept\
+set firewall family inet filter HARMONY-VOIP-IN term BEST-EFFORT then dscp be\
+set firewall family inet filter HARMONY-VOIP-IN term everything-else then sample\
+set firewall family inet filter HARMONY-VOIP-IN term everything-else then forwarding-class BEST-EFFORT\
+set firewall family inet filter HARMONY-VOIP-IN term everything-else then accept\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN interface-specific\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bogon-deny from prefix-list bogons\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bogon-deny then count bogons-transit-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bogon-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bad-protocols from protocol 255\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bad-protocols from protocol pim\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bad-protocols then count bad-protocols-transit-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term bad-protocols then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term ntp-monlist-deny from packet-length 234-482\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term ntp-monlist-deny from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term ntp-monlist-deny from port ntp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term ntp-monlist-deny then count ntp-monlist-deny-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term ntp-monlist-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term chargen-deny from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term chargen-deny from port 19\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term chargen-deny then count chargen-deny-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term chargen-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SSDP-UPnP-deny from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SSDP-UPnP-deny from port 1900\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SSDP-UPnP-deny then count SSDP-UPnP-deny-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SSDP-UPnP-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types from protocol icmp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types from icmp-type echo-reply\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types from icmp-type echo-request\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types from icmp-type time-exceeded\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types then count icmp-edge-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types then sample\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types then forwarding-class BEST-EFFORT\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permitted-icmp-types then accept\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach from protocol icmp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach from icmp-type unreachable\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach from icmp-code fragmentation-needed\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach from icmp-code port-unreachable\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach then count icmp-edge-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach then sample\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach then forwarding-class BEST-EFFORT\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term permit-icmp-unreach then accept\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term icmp-other from protocol icmp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term icmp-other then count bad-icmp-edge-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term icmp-other then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term LSP-ECHO from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term LSP-ECHO from destination-port 3503\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term LSP-ECHO then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term deny-SMTP-cox.net then count cox.net-smtp-drops\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term deny-SMTP-cox.net then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term DNS_DENY from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term DNS_DENY from protocol tcp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term DNS_DENY from destination-port 53\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term DNS_DENY then count V4-DNS-EDGE-IN\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term DNS_DENY then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP from protocol tcp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP from port 5060\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP from port 5061\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP then count SIP\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP then sample\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP then forwarding-class VOICE\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP then accept\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term SIP then dscp cs5\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term RTP from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term RTP then count RTP\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term RTP then sample\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term RTP then forwarding-class VOICE\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term RTP then accept\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term RTP then dscp ef\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term BEST-EFFORT then count BEST-EFFORT\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term BEST-EFFORT then sample\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term BEST-EFFORT then forwarding-class BEST-EFFORT\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term BEST-EFFORT then accept\
+set firewall family inet filter IQNT-HARMONY-VOIP-IN term BEST-EFFORT then dscp be\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT interface-specific\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term bad-protocols from protocol 255\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term bad-protocols then count bad-protocols-out\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term bad-protocols then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term ntp-monlist-deny from packet-length 234-482\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term ntp-monlist-deny from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term ntp-monlist-deny from port ntp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term ntp-monlist-deny then count ntp-monlist-deny-OUT\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term ntp-monlist-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term chargen-deny from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term chargen-deny from port 19\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term chargen-deny then count chargen-deny-OUT\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term chargen-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SSDP-UPnP-deny from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SSDP-UPnP-deny from port 1900\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SSDP-UPnP-deny then count SSDP-UPnP-deny-OUT\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SSDP-UPnP-deny then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term icmp-out from protocol icmp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term icmp-out from icmp-type mask-request\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term icmp-out from icmp-type redirect\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term icmp-out then count bad-icmp-out\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term icmp-out then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent from destination-address 190.93.248.140/32\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent from destination-address 190.93.249.140/32\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent from protocol tcp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent from protocol udp\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent from source-port 53\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent then count SpamHaus-DDoS-outbound\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term SpamHaus-prevent then discard\
+set firewall family inet filter IQNT-HARMONY-VOIP-OUT term everything-else then accept\
+set firewall family inet filter CB-HARMONY-VOIP-IN interface-specific\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bogon-deny from prefix-list bogons\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bogon-deny then count bogons-transit-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bogon-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bad-protocols from protocol 255\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bad-protocols from protocol pim\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bad-protocols then count bad-protocols-transit-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term bad-protocols then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term ntp-monlist-deny from packet-length 234-482\
+set firewall family inet filter CB-HARMONY-VOIP-IN term ntp-monlist-deny from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term ntp-monlist-deny from port ntp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term ntp-monlist-deny then count ntp-monlist-deny-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term ntp-monlist-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term chargen-deny from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term chargen-deny from port 19\
+set firewall family inet filter CB-HARMONY-VOIP-IN term chargen-deny then count chargen-deny-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term chargen-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SSDP-UPnP-deny from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SSDP-UPnP-deny from port 1900\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SSDP-UPnP-deny then count SSDP-UPnP-deny-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SSDP-UPnP-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types from protocol icmp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types from icmp-type echo-reply\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types from icmp-type echo-request\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types from icmp-type time-exceeded\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types then count icmp-edge-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types then sample\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types then forwarding-class BEST-EFFORT\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permitted-icmp-types then accept\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach from protocol icmp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach from icmp-type unreachable\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach from icmp-code fragmentation-needed\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach from icmp-code port-unreachable\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach then count icmp-edge-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach then sample\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach then forwarding-class BEST-EFFORT\
+set firewall family inet filter CB-HARMONY-VOIP-IN term permit-icmp-unreach then accept\
+set firewall family inet filter CB-HARMONY-VOIP-IN term icmp-other from protocol icmp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term icmp-other then count bad-icmp-edge-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term icmp-other then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term LSP-ECHO from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term LSP-ECHO from destination-port 3503\
+set firewall family inet filter CB-HARMONY-VOIP-IN term LSP-ECHO then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall family inet filter CB-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall family inet filter CB-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall family inet filter CB-HARMONY-VOIP-IN term deny-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall family inet filter CB-HARMONY-VOIP-IN term deny-SMTP-cox.net then count cox.net-smtp-drops\
+set firewall family inet filter CB-HARMONY-VOIP-IN term deny-SMTP-cox.net then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term DNS_DENY from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term DNS_DENY from protocol tcp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term DNS_DENY from destination-port 53\
+set firewall family inet filter CB-HARMONY-VOIP-IN term DNS_DENY then count V4-DNS-EDGE-IN\
+set firewall family inet filter CB-HARMONY-VOIP-IN term DNS_DENY then discard\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP from protocol tcp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP from port 5060\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP from port 5061\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP then count SIP\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP then sample\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP then forwarding-class VOICE\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP then accept\
+set firewall family inet filter CB-HARMONY-VOIP-IN term SIP then dscp cs5\
+set firewall family inet filter CB-HARMONY-VOIP-IN term RTP from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-IN term RTP then count RTP\
+set firewall family inet filter CB-HARMONY-VOIP-IN term RTP then sample\
+set firewall family inet filter CB-HARMONY-VOIP-IN term RTP then forwarding-class VOICE\
+set firewall family inet filter CB-HARMONY-VOIP-IN term RTP then accept\
+set firewall family inet filter CB-HARMONY-VOIP-IN term RTP then dscp ef\
+set firewall family inet filter CB-HARMONY-VOIP-IN term BEST-EFFORT then count BEST-EFFORT\
+set firewall family inet filter CB-HARMONY-VOIP-IN term BEST-EFFORT then sample\
+set firewall family inet filter CB-HARMONY-VOIP-IN term BEST-EFFORT then forwarding-class BEST-EFFORT\
+set firewall family inet filter CB-HARMONY-VOIP-IN term BEST-EFFORT then accept\
+set firewall family inet filter CB-HARMONY-VOIP-IN term BEST-EFFORT then dscp be\
+set firewall family inet filter CB-HARMONY-VOIP-OUT interface-specific\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term bad-protocols from protocol 255\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term bad-protocols then count bad-protocols-out\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term bad-protocols then discard\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term ntp-monlist-deny from packet-length 234-482\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term ntp-monlist-deny from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term ntp-monlist-deny from port ntp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term ntp-monlist-deny then count ntp-monlist-deny-OUT\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term ntp-monlist-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term chargen-deny from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term chargen-deny from port 19\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term chargen-deny then count chargen-deny-OUT\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term chargen-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SSDP-UPnP-deny from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SSDP-UPnP-deny from port 1900\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SSDP-UPnP-deny then count SSDP-UPnP-deny-OUT\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SSDP-UPnP-deny then discard\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term icmp-out from protocol icmp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term icmp-out from icmp-type mask-request\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term icmp-out from icmp-type redirect\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term icmp-out then count bad-icmp-out\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term icmp-out then discard\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent from destination-address 190.93.248.140/32\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent from destination-address 190.93.249.140/32\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent from protocol tcp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent from protocol udp\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent from source-port 53\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent then count SpamHaus-DDoS-outbound\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term SpamHaus-prevent then discard\
+set firewall family inet filter CB-HARMONY-VOIP-OUT term everything-else then accept\
+set firewall family inet filter HOMELIFE-COMCAST-IN term ALLOW-BGP from protocol tcp\
+set firewall family inet filter HOMELIFE-COMCAST-IN term ALLOW-BGP from port 179\
+set firewall family inet filter HOMELIFE-COMCAST-IN term ALLOW-BGP then accept\
+set firewall family inet filter HOMELIFE-COMCAST-IN term V4-PERMIT-INGRESS-TRAFFIC from source-prefix-list V4-COMCAST-HOMELIFE-PREFIXES\
+set firewall family inet filter HOMELIFE-COMCAST-IN term V4-PERMIT-INGRESS-TRAFFIC from destination-prefix-list V4-COX-HOMELIFE-PREFIXES\
+set firewall family inet filter HOMELIFE-COMCAST-IN term V4-PERMIT-INGRESS-TRAFFIC then accept\
+set firewall family inet filter HOMELIFE-COMCAST-IN term REJECT-ALL then reject\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term ALLOW-BGP from protocol tcp\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term ALLOW-BGP from port 179\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term ALLOW-BGP then accept\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term V4-PERMIT-EGRESS-TRAFFIC from source-prefix-list V4-COX-HOMELIFE-PREFIXES\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term V4-PERMIT-EGRESS-TRAFFIC from destination-prefix-list V4-COMCAST-HOMELIFE-PREFIXES\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term V4-PERMIT-EGRESS-TRAFFIC then accept\
+set firewall family inet filter HOMELIFE-COMCAST-OUT term REJECT-ALL then reject\
+set firewall family inet filter PROTECT-CDN-EDGE term ALLOW_DNS from source-prefix-list V4-DNS-LIST-BB\
+set firewall family inet filter PROTECT-CDN-EDGE term ALLOW_DNS then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet filter PROTECT-CDN-EDGE term ALLOW_SSH then policer V4V6-SSH-POLICER-RE\
+set firewall family inet filter PROTECT-CDN-EDGE term ALLOW_NTP then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet filter PROTECT-CDN-EDGE term traceroutes then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet filter PROTECT-CDN-EDGE term ALLOW_ICMP then policer V4V6-ICMP-POLICER-EDGE\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SSH-MGT from source-prefix-list V4-SSH-LIST-BB\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SSH-MGT from protocol tcp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SSH-MGT from destination-port ssh\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SSH-MGT then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-BGP from source-address 172.16.0.0/12\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-BGP from protocol tcp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-BGP from port 179\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-BGP then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SNMP from source-prefix-list V4-SNMP-LIST-BB\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SNMP from protocol udp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SNMP from port snmp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SNMP then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-address 68.1.18.30/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-address 68.1.18.25/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-address 172.16.15.70/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-address 172.16.15.85/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-address 8.8.8.8/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-address 8.8.4.4/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from protocol udp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS from source-port 53\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-DNS then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from source-address 172.23.0.33/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from source-address 172.24.0.53/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from source-address 68.0.14.76/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from source-address 172.26.0.53/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from source-address 172.27.0.53/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from protocol udp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP from source-port 123\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NTP then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-AAA from source-address 68.110.132.230/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-AAA from source-address 184.185.14.11/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-AAA from protocol tcp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-AAA from source-port 49\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-AAA then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-SNMP from source-address 68.0.14.40/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-SNMP from source-address 68.111.111.252/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-SNMP from protocol udp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-SNMP from port 161\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-SNMP then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-ICMP from source-address 68.0.14.40/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-ICMP from source-address 68.111.111.252/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-ICMP from icmp-type echo-request\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-NMS-ICMP then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ANSIBLE from source-address 68.111.111.250/32\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ANSIBLE from protocol tcp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ANSIBLE from destination-port 22\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ANSIBLE then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM from source-address 68.1.19.32/27\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM from source-address 68.1.18.32/27\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM from source-address 100.120.87.128/25\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM from source-address 98.173.128.0/26\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM from source-address 68.111.111.224/27\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM from source-address 68.0.14.32/27\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-SP-COMM then accept\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ATAC from source-address 216.130.192.136/29\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ATAC from source-address 216.130.204.136/29\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ATAC from protocol tcp\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ATAC from destination-port ssh\
+set firewall family inet filter TMS-MANAGEMENT term ALLOW-ATAC then accept\
+set firewall family inet filter TMS-MANAGEMENT term CARBON-BLACK from source-address 184.191.219.0/27\
+set firewall family inet filter TMS-MANAGEMENT term CARBON-BLACK from source-address 184.191.219.224/27\
+set firewall family inet filter TMS-MANAGEMENT term CARBON-BLACK from source-port https\
+set firewall family inet filter TMS-MANAGEMENT term CARBON-BLACK then accept\
+set firewall family inet filter TMS-MANAGEMENT term CORP-ACCESS from source-address 24.248.74.254/32\
+set firewall family inet filter TMS-MANAGEMENT term CORP-ACCESS from destination-port 22\
+set firewall family inet filter TMS-MANAGEMENT term CORP-ACCESS then accept\
+set firewall family inet filter TMS-MANAGEMENT term DENY-ALL then discard\
+set firewall family inet6 filter EDGE-INv6 interface-specific\
+set firewall family inet6 filter EDGE-INv6 term Link-Local from address fe80::/10\
+set firewall family inet6 filter EDGE-INv6 term Link-Local from address ff02::/16\
+set firewall family inet6 filter EDGE-INv6 term Link-Local then sample\
+set firewall family inet6 filter EDGE-INv6 term Link-Local then accept\
+set firewall family inet6 filter EDGE-INv6 term Explicit-Police-ICMP from next-header icmpv6\
+set firewall family inet6 filter EDGE-INv6 term Explicit-Police-ICMP from icmp-type echo-reply\
+set firewall family inet6 filter EDGE-INv6 term Explicit-Police-ICMP from icmp-type time-exceeded\
+set firewall family inet6 filter EDGE-INv6 term Explicit-Police-ICMP then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet6 filter EDGE-INv6 term Explicit-Police-ICMP then sample\
+set firewall family inet6 filter EDGE-INv6 term Explicit-Police-ICMP then accept\
+set firewall family inet6 filter EDGE-INv6 term Allow-Multihop-Peers from destination-address 2001:0578:1::/64\
+set firewall family inet6 filter EDGE-INv6 term Allow-Multihop-Peers from port bgp\
+set firewall family inet6 filter EDGE-INv6 term Allow-Multihop-Peers then sample\
+set firewall family inet6 filter EDGE-INv6 term Allow-Multihop-Peers then accept\
+set firewall family inet6 filter EDGE-INv6 term Filter-Core from destination-address 2001:0578:1::/64\
+set firewall family inet6 filter EDGE-INv6 term Filter-Core then count CORE\
+set firewall family inet6 filter EDGE-INv6 term Filter-Core then log\
+set firewall family inet6 filter EDGE-INv6 term Filter-Core then discard\
+set firewall family inet6 filter EDGE-INv6 term Filter-RA from next-header icmpv6\
+set firewall family inet6 filter EDGE-INv6 term Filter-RA from icmp-type router-advertisement\
+set firewall family inet6 filter EDGE-INv6 term Filter-RA then log\
+set firewall family inet6 filter EDGE-INv6 term Filter-RA then discard\
+set firewall family inet6 filter EDGE-INv6 term Bogons6 from source-prefix-list bogons6\
+set firewall family inet6 filter EDGE-INv6 term Bogons6 then count bogons6-in\
+set firewall family inet6 filter EDGE-INv6 term Bogons6 then log\
+set firewall family inet6 filter EDGE-INv6 term Bogons6 then discard\
+set firewall family inet6 filter EDGE-INv6 term PIM from next-header pim\
+set firewall family inet6 filter EDGE-INv6 term PIM then count PIM\
+set firewall family inet6 filter EDGE-INv6 term PIM then log\
+set firewall family inet6 filter EDGE-INv6 term PIM then discard\
+set firewall family inet6 filter EDGE-INv6 term traceroutes from next-header udp\
+set firewall family inet6 filter EDGE-INv6 term traceroutes from destination-port 33434-33523\
+set firewall family inet6 filter EDGE-INv6 term traceroutes then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet6 filter EDGE-INv6 term traceroutes then accept\
+set firewall family inet6 filter EDGE-INv6 term DENY-TO-COX-PROTECTED from destination-prefix-list COX-IPV6-PROTECTED-BLOCKS\
+set firewall family inet6 filter EDGE-INv6 term DENY-TO-COX-PROTECTED then reject\
+set firewall family inet6 filter EDGE-INv6 term Everything-else then sample\
+set firewall family inet6 filter EDGE-INv6 term Everything-else then forwarding-class BEST-EFFORT\
+set firewall family inet6 filter EDGE-INv6 term Everything-else then traffic-class be\
+set firewall family inet6 filter EDGE-INv6 term Everything-else then accept\
+set firewall family inet6 filter EDGE-OUTv6 term Link-Local from address fe80::/10\
+set firewall family inet6 filter EDGE-OUTv6 term Link-Local from address ff02::/16\
+set firewall family inet6 filter EDGE-OUTv6 term Link-Local then accept\
+set firewall family inet6 filter EDGE-OUTv6 term v6bogon-destinations from destination-prefix-list bogons6\
+set firewall family inet6 filter EDGE-OUTv6 term v6bogon-destinations then count v6bogons-transit-OUT\
+set firewall family inet6 filter EDGE-OUTv6 term v6bogon-destinations then discard\
+set firewall family inet6 filter EDGE-OUTv6 term everything-else then accept\
+set firewall family inet6 filter PROTECT-CDN-EDGE-V6 term ALLOW_DNS from source-prefix-list V4-DNS-LIST-BB\
+set firewall family inet6 filter PROTECT-CDN-EDGE-V6 term ALLOW_DNS then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet6 filter PROTECT-CDN-EDGE-V6 term ALLOW_SSH then policer V4V6-SSH-POLICER-RE\
+set firewall family inet6 filter PROTECT-CDN-EDGE-V6 term traceroutes then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet6 filter PROTECT-CDN-EDGE-V6 term ALLOW_ICMP then policer V4V6-ICMP-POLICER-EDGE\
+set firewall family inet6 filter V6-DEFAULT_SAMPLE-IN-BB term PERMIT-SAMPLING then sample\
+set firewall family inet6 filter V6-DEFAULT_SAMPLE-IN-BB term PERMIT-SAMPLING then accept\
+set firewall family inet6 filter V6-DEFAULT_SAMPLE-IN-BB term SAMPLE-AND-ACCEPT then sample\
+set firewall family inet6 filter V6-DEFAULT_SAMPLE-IN-BB term SAMPLE-AND-ACCEPT then accept\
+set firewall family inet6 filter SYSTEMV6-IN interface-specific\
+set firewall family inet6 filter SYSTEMV6-IN term traceroutes from next-header udp\
+set firewall family inet6 filter SYSTEMV6-IN term traceroutes from destination-port 33434-33523\
+set firewall family inet6 filter SYSTEMV6-IN term traceroutes then policer small-bw-policer\
+set firewall family inet6 filter SYSTEMV6-IN term traceroutes then sample\
+set firewall family inet6 filter SYSTEMV6-IN term traceroutes then accept\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-V4V6-ICMP-POLICER-EDGE then policer V4V6-ICMP-POLICER-EDGE\
+set firewall family inet6 filter SYSTEMV6-IN term PERMIT-INFRASTRUCTURE-TO-PROTECTED from source-address 2001:578::/33\
+set firewall family inet6 filter SYSTEMV6-IN term PERMIT-INFRASTRUCTURE-TO-PROTECTED then sample\
+set firewall family inet6 filter SYSTEMV6-IN term PERMIT-INFRASTRUCTURE-TO-PROTECTED then accept\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP from next-header icmpv6\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP from icmp-type echo-reply\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP from icmp-type time-exceeded\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP from icmp-type packet-too-big\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP then policer police-icmp\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP then sample\
+set firewall family inet6 filter SYSTEMV6-IN term Explicit-Police-ICMP then accept\
+set firewall family inet6 filter SYSTEMV6-IN term DENY-TO-COX-PROTECTED from destination-prefix-list COX-IPV6-PROTECTED-BLOCKS\
+set firewall family inet6 filter SYSTEMV6-IN term DENY-TO-COX-PROTECTED then reject\
+set firewall family inet6 filter SYSTEMV6-IN term Everything-else then sample\
+set firewall family inet6 filter SYSTEMV6-IN term Everything-else then forwarding-class BEST-EFFORT\
+set firewall family inet6 filter SYSTEMV6-IN term Everything-else then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-NTP from next-header udp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-NTP from port ntp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-NTP then count DENY-NTP-COUNT\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-NTP then syslog\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-NTP then discard\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-HOP-BY-HOP-OPTION from next-header hop-by-hop\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-HOP-BY-HOP-OPTION then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BGP from source-prefix-list V4V6-BGP_PEERS-LIST-BB\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BGP from next-header tcp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BGP from port bgp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BGP then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP from source-prefix-list V4V6-L3VPN_PEERS-LIST-BB\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP from next-header tcp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP from port bgp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP then accept\
+deactivate firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-BGP from next-header tcp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-BGP from port bgp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-BGP then count DENY-BGP-COUNT\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-BGP then syslog\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-BGP then discard\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SSH from next-header tcp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SSH from port ssh\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SSH then count DENY-SSH-COUNT\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SSH then syslog\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SSH then discard\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SNMP from next-header udp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SNMP from port snmp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SNMP then count DENY-SNMP-COUNT\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SNMP then syslog\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-SNMP then discard\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-ICMPV6-PKT-TOO-BIG from next-header icmpv6\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-ICMPV6-PKT-TOO-BIG from icmp-type packet-too-big\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-ICMPV6-PKT-TOO-BIG then count DENY-ICMPV6-PKT-TOO-BIG-COUNT\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-ICMPV6-PKT-TOO-BIG then discard\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-ICMPV6 from next-header icmpv6\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-ICMPV6 then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-ICMPV6 then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES from next-header udp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES from destination-port 33434-33523\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-VRRPV6 from next-header vrrp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-VRRPV6 then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BFD from next-header udp\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BFD from destination-port 3784\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-BFD then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-PIM from next-header pim\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term PERMIT-PIM then accept\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-EVERYTHING-ELSE then count DENY-EVERYTHING-ELSE-COUNT\
+set firewall family inet6 filter V6-PROTECT_RE-IN-BB term DENY-EVERYTHING-ELSE then discard\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 interface-specific\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Link-Local from address fe80::/10\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Link-Local from address ff02::/16\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Link-Local then sample\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Link-Local then accept\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Explicit-Police-ICMP from next-header icmpv6\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Explicit-Police-ICMP from icmp-type echo-reply\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Explicit-Police-ICMP from icmp-type time-exceeded\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Explicit-Police-ICMP then policer V4V6-ICMP-POLICER-RE\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Explicit-Police-ICMP then sample\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Explicit-Police-ICMP then accept\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Allow-Multihop-Peers from destination-address 2001:0578:1::/64\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Allow-Multihop-Peers from port bgp\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Allow-Multihop-Peers then sample\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Allow-Multihop-Peers then accept\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-Core from destination-address 2001:0578:1::/64\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-Core then count CORE\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-Core then log\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-Core then discard\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-RA from next-header icmpv6\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-RA from icmp-type router-advertisement\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-RA then log\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Filter-RA then discard\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Bogons6 from source-prefix-list bogons6\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Bogons6 then count bogons6-in\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Bogons6 then log\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Bogons6 then discard\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term PIM from next-header pim\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term PIM then count PIM\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term PIM then log\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term PIM then discard\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term traceroutes from next-header udp\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term traceroutes from destination-port 33434-33523\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term traceroutes then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term traceroutes then accept\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term DENY-TO-COX-PROTECTED from destination-prefix-list COX-IPV6-PROTECTED-BLOCKS\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term DENY-TO-COX-PROTECTED then reject\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Everything-else then sample\
+set firewall family inet6 filter RAPIDSCALE-EDGE-INv6 term Everything-else then accept\
+set firewall family mpls filter DEFAULT-MPLS-SAMPLE term SAMP-AND-ACCEPT then sample\
+set firewall family mpls filter DEFAULT-MPLS-SAMPLE term SAMP-AND-ACCEPT then accept\
+set firewall family ccc filter MARK-EWAN-IN interface-specific\
+set firewall family ccc filter MARK-EWAN-IN term v4-v6-MAC from destination-mac-address 06:00:00:00:00:00/8\
+set firewall family ccc filter MARK-EWAN-IN term v4-v6-MAC from destination-mac-address 04:00:00:00:00:00/8\
+set firewall family ccc filter MARK-EWAN-IN term v4-v6-MAC then count v4-v6-MAC\
+set firewall family ccc filter MARK-EWAN-IN term v4-v6-MAC then next term\
+set firewall family ccc filter MARK-EWAN-IN term MARK-EWAN-IN then forwarding-class REAL-TIME\
+set firewall family ccc filter MARK-EWAN-IN term MARK-EWAN-IN then accept\
+set firewall policer ssh-policer if-exceeding bandwidth-limit 1m\
+set firewall policer ssh-policer if-exceeding burst-size-limit 15k\
+set firewall policer ssh-policer then discard\
+set firewall policer RATE-LIMIT-MNGMNT filter-specific\
+set firewall policer RATE-LIMIT-MNGMNT if-exceeding bandwidth-limit 10m\
+set firewall policer RATE-LIMIT-MNGMNT if-exceeding burst-size-limit 1m\
+set firewall policer RATE-LIMIT-MNGMNT then discard\
+set firewall policer V4V6-ICMP-POLICER-RE if-exceeding bandwidth-limit 4m\
+set firewall policer V4V6-ICMP-POLICER-RE if-exceeding burst-size-limit 400k\
+set firewall policer V4V6-ICMP-POLICER-RE then discard\
+set firewall policer V4V6-SSH-POLICER-RE if-exceeding bandwidth-limit 1m\
+set firewall policer V4V6-SSH-POLICER-RE if-exceeding burst-size-limit 15k\
+set firewall policer V4V6-SSH-POLICER-RE then discard\
+set firewall policer V4V6-SNMP-POLICER-RE if-exceeding bandwidth-limit 2m\
+set firewall policer V4V6-SNMP-POLICER-RE if-exceeding burst-size-limit 30k\
+set firewall policer V4V6-SNMP-POLICER-RE then discard\
+set firewall policer V4V6-SMALL_BW-POLICER-RE if-exceeding bandwidth-limit 1m\
+set firewall policer V4V6-SMALL_BW-POLICER-RE if-exceeding burst-size-limit 15k\
+set firewall policer V4V6-SMALL_BW-POLICER-RE then discard\
+set firewall policer V4V6-TCP-POLICER-RE if-exceeding bandwidth-limit 500k\
+set firewall policer V4V6-TCP-POLICER-RE if-exceeding burst-size-limit 15k\
+set firewall policer V4V6-TCP-POLICER-RE then discard\
+set firewall policer V4V6-ICMP-POLICER-EDGE if-exceeding bandwidth-limit 64m\
+set firewall policer V4V6-ICMP-POLICER-EDGE if-exceeding burst-size-limit 6400000\
+set firewall policer V4V6-ICMP-POLICER-EDGE then discard\
+set firewall policer small-bw-policer if-exceeding bandwidth-limit 1m\
+set firewall policer small-bw-policer if-exceeding burst-size-limit 15k\
+set firewall policer small-bw-policer then discard\
+set firewall policer police-icmp if-exceeding bandwidth-limit 64m\
+set firewall policer police-icmp if-exceeding burst-size-limit 6400000\
+set firewall policer police-icmp then discard\
+set firewall filter EDGE-IN interface-specific\
+set firewall filter EDGE-IN term bogon-sources from prefix-list bogons\
+set firewall filter EDGE-IN term bogon-sources then count bogons-transit-IN\
+set firewall filter EDGE-IN term bogon-sources then discard\
+set firewall filter EDGE-IN term bad-protocols from protocol 255\
+set firewall filter EDGE-IN term bad-protocols from protocol pim\
+set firewall filter EDGE-IN term bad-protocols from protocol igmp\
+set firewall filter EDGE-IN term bad-protocols then count bad-protocols-transit-IN\
+set firewall filter EDGE-IN term bad-protocols then discard\
+set firewall filter EDGE-IN term ntp-monlist-deny from packet-length 234-1500\
+set firewall filter EDGE-IN term ntp-monlist-deny from protocol udp\
+set firewall filter EDGE-IN term ntp-monlist-deny from port ntp\
+set firewall filter EDGE-IN term ntp-monlist-deny then count ntp-monlist-deny-IN\
+set firewall filter EDGE-IN term ntp-monlist-deny then discard\
+set firewall filter EDGE-IN term chargen-deny from protocol udp\
+set firewall filter EDGE-IN term chargen-deny from port 19\
+set firewall filter EDGE-IN term chargen-deny then count chargen-deny-IN\
+set firewall filter EDGE-IN term chargen-deny then discard\
+set firewall filter EDGE-IN term SSDP-UPnP-deny from protocol udp\
+set firewall filter EDGE-IN term SSDP-UPnP-deny from port 1900\
+set firewall filter EDGE-IN term SSDP-UPnP-deny then count SSDP-UPnP-deny-IN\
+set firewall filter EDGE-IN term SSDP-UPnP-deny then discard\
+set firewall filter EDGE-IN term MEMCACHE-deny from packet-length 1428\
+set firewall filter EDGE-IN term MEMCACHE-deny from protocol udp\
+set firewall filter EDGE-IN term MEMCACHE-deny from port 11211\
+set firewall filter EDGE-IN term MEMCACHE-deny then count MEMCACHE-deny-IN\
+set firewall filter EDGE-IN term MEMCACHE-deny then discard\
+set firewall filter EDGE-IN term permitted-icmp-types from protocol icmp\
+set firewall filter EDGE-IN term permitted-icmp-types from icmp-type echo-reply\
+set firewall filter EDGE-IN term permitted-icmp-types from icmp-type echo-request\
+set firewall filter EDGE-IN term permitted-icmp-types from icmp-type time-exceeded\
+set firewall filter EDGE-IN term permitted-icmp-types then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter EDGE-IN term permitted-icmp-types then count icmp-edge-IN\
+set firewall filter EDGE-IN term permitted-icmp-types then sample\
+set firewall filter EDGE-IN term permitted-icmp-types then forwarding-class BEST-EFFORT\
+set firewall filter EDGE-IN term permitted-icmp-types then accept\
+set firewall filter EDGE-IN term permit-icmp-unreach from protocol icmp\
+set firewall filter EDGE-IN term permit-icmp-unreach from icmp-type unreachable\
+set firewall filter EDGE-IN term permit-icmp-unreach from icmp-code fragmentation-needed\
+set firewall filter EDGE-IN term permit-icmp-unreach from icmp-code port-unreachable\
+set firewall filter EDGE-IN term permit-icmp-unreach then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter EDGE-IN term permit-icmp-unreach then count icmp-edge-IN\
+set firewall filter EDGE-IN term permit-icmp-unreach then sample\
+set firewall filter EDGE-IN term permit-icmp-unreach then forwarding-class BEST-EFFORT\
+set firewall filter EDGE-IN term permit-icmp-unreach then accept\
+set firewall filter EDGE-IN term icmp-other from protocol icmp\
+set firewall filter EDGE-IN term icmp-other then count bad-icmp-edge-IN\
+set firewall filter EDGE-IN term icmp-other then discard\
+set firewall filter EDGE-IN term LSP-ECHO from protocol udp\
+set firewall filter EDGE-IN term LSP-ECHO from destination-port 3503\
+set firewall filter EDGE-IN term LSP-ECHO then discard\
+set firewall filter EDGE-IN term permit-SSL-SMTP from destination-address 68.1.17.4/32\
+set firewall filter EDGE-IN term permit-SSL-SMTP from destination-address 68.6.19.4/32\
+set firewall filter EDGE-IN term permit-SSL-SMTP from destination-address 68.1.17.8/32\
+set firewall filter EDGE-IN term permit-SSL-SMTP from destination-address 68.6.19.8/32\
+set firewall filter EDGE-IN term permit-SSL-SMTP from destination-port 465\
+set firewall filter EDGE-IN term permit-SSL-SMTP from destination-port 587\
+set firewall filter EDGE-IN term permit-SSL-SMTP then sample\
+set firewall filter EDGE-IN term permit-SSL-SMTP then accept\
+set firewall filter EDGE-IN term permit-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall filter EDGE-IN term permit-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall filter EDGE-IN term permit-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall filter EDGE-IN term permit-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall filter EDGE-IN term permit-SMTP-cox.net from source-prefix-list smtp-allowed\
+set firewall filter EDGE-IN term permit-SMTP-cox.net then sample\
+set firewall filter EDGE-IN term permit-SMTP-cox.net then accept\
+set firewall filter EDGE-IN term deny-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall filter EDGE-IN term deny-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall filter EDGE-IN term deny-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall filter EDGE-IN term deny-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall filter EDGE-IN term deny-SMTP-cox.net then count cox.net-smtp-drops\
+set firewall filter EDGE-IN term deny-SMTP-cox.net then discard\
+set firewall filter EDGE-IN term SpamHaus-deny from source-address 190.93.248.140/32\
+set firewall filter EDGE-IN term SpamHaus-deny from source-address 190.93.249.140/32\
+set firewall filter EDGE-IN term SpamHaus-deny from protocol tcp\
+set firewall filter EDGE-IN term SpamHaus-deny from protocol udp\
+set firewall filter EDGE-IN term SpamHaus-deny from destination-port 53\
+set firewall filter EDGE-IN term SpamHaus-deny then count SpamHaus-DDoS-inbound\
+set firewall filter EDGE-IN term SpamHaus-deny then discard\
+set firewall filter EDGE-IN term NEWRELIC-API from source-address 50.31.164.0/24\
+set firewall filter EDGE-IN term NEWRELIC-API from source-address 162.247.240.0/22\
+set firewall filter EDGE-IN term NEWRELIC-API from destination-prefix-list V4-DNS-EDGE-IN\
+set firewall filter EDGE-IN term NEWRELIC-API from protocol tcp\
+set firewall filter EDGE-IN term NEWRELIC-API from source-port 443\
+set firewall filter EDGE-IN term NEWRELIC-API then sample\
+set firewall filter EDGE-IN term NEWRELIC-API then accept\
+set firewall filter EDGE-IN term DNS_ACCEPT from destination-prefix-list V4-DNS-EDGE-IN\
+set firewall filter EDGE-IN term DNS_ACCEPT from protocol udp\
+set firewall filter EDGE-IN term DNS_ACCEPT from protocol tcp\
+set firewall filter EDGE-IN term DNS_ACCEPT from destination-port 53\
+set firewall filter EDGE-IN term DNS_ACCEPT then sample\
+set firewall filter EDGE-IN term DNS_ACCEPT then accept\
+set firewall filter EDGE-IN term DNS_DENY from destination-prefix-list V4-DNS-EDGE-IN\
+set firewall filter EDGE-IN term DNS_DENY then count V4-DNS-EDGE-IN\
+set firewall filter EDGE-IN term DNS_DENY then discard\
+set firewall filter EDGE-IN term everything-else then sample\
+set firewall filter EDGE-IN term everything-else then forwarding-class BEST-EFFORT\
+set firewall filter EDGE-IN term everything-else then accept\
+set firewall filter EDGE-IN term everything-else then dscp be\
+set firewall filter EDGE-OUT interface-specific\
+set firewall filter EDGE-OUT term bad-protocols from protocol 255\
+set firewall filter EDGE-OUT term bad-protocols then count bad-protocols-out\
+set firewall filter EDGE-OUT term bad-protocols then discard\
+set firewall filter EDGE-OUT term ntp-monlist-deny from packet-length 234-1500\
+set firewall filter EDGE-OUT term ntp-monlist-deny from protocol udp\
+set firewall filter EDGE-OUT term ntp-monlist-deny from port ntp\
+set firewall filter EDGE-OUT term ntp-monlist-deny then count ntp-monlist-deny-OUT\
+set firewall filter EDGE-OUT term ntp-monlist-deny then discard\
+set firewall filter EDGE-OUT term chargen-deny from protocol udp\
+set firewall filter EDGE-OUT term chargen-deny from port 19\
+set firewall filter EDGE-OUT term chargen-deny then count chargen-deny-OUT\
+set firewall filter EDGE-OUT term chargen-deny then discard\
+set firewall filter EDGE-OUT term SSDP-UPnP-deny from protocol udp\
+set firewall filter EDGE-OUT term SSDP-UPnP-deny from port 1900\
+set firewall filter EDGE-OUT term SSDP-UPnP-deny then count SSDP-UPnP-deny-OUT\
+set firewall filter EDGE-OUT term SSDP-UPnP-deny then discard\
+set firewall filter EDGE-OUT term icmp-out from protocol icmp\
+set firewall filter EDGE-OUT term icmp-out from icmp-type mask-request\
+set firewall filter EDGE-OUT term icmp-out from icmp-type redirect\
+set firewall filter EDGE-OUT term icmp-out then count bad-icmp-out\
+set firewall filter EDGE-OUT term icmp-out then discard\
+set firewall filter EDGE-OUT term bogons from prefix-list bogons\
+set firewall filter EDGE-OUT term bogons then count bogons-transit-out\
+set firewall filter EDGE-OUT term bogons then discard\
+set firewall filter EDGE-OUT term SpamHaus-prevent from destination-address 190.93.248.140/32\
+set firewall filter EDGE-OUT term SpamHaus-prevent from destination-address 190.93.249.140/32\
+set firewall filter EDGE-OUT term SpamHaus-prevent from protocol tcp\
+set firewall filter EDGE-OUT term SpamHaus-prevent from protocol udp\
+set firewall filter EDGE-OUT term SpamHaus-prevent from source-port 53\
+set firewall filter EDGE-OUT term SpamHaus-prevent then count SpamHaus-DDoS-outbound\
+set firewall filter EDGE-OUT term SpamHaus-prevent then discard\
+set firewall filter EDGE-OUT term everything-else then accept\
+set firewall filter SERVICE-IN interface-specific\
+set firewall filter SERVICE-IN term 10 then sample\
+set firewall filter SERVICE-IN term 10 then forwarding-class BEST-EFFORT\
+set firewall filter IPtivia term MGMT from source-address 68.0.14.125/32\
+set firewall filter IPtivia term MGMT from source-address 68.12.16.9/32\
+set firewall filter IPtivia term MGMT from source-address 68.1.19.40/32\
+set firewall filter IPtivia term MGMT from source-address 68.1.19.80/32\
+set firewall filter IPtivia term MGMT from source-address 68.1.2.42/32\
+set firewall filter IPtivia term MGMT from source-address 68.1.2.41/32\
+set firewall filter IPtivia term MGMT from source-address 68.1.19.86/32\
+set firewall filter IPtivia term MGMT then accept\
+set firewall filter IPtivia term 1099 from protocol tcp\
+set firewall filter IPtivia term 1099 from port 1099\
+set firewall filter IPtivia term 1099 then accept\
+set firewall filter IPtivia term ospf from source-address 68.1.2.41/32\
+set firewall filter IPtivia term ospf from source-address 68.1.2.42/32\
+set firewall filter IPtivia term ospf from destination-address 224.0.0.5/32\
+set firewall filter IPtivia term ospf from destination-address 224.0.0.6/32\
+set firewall filter IPtivia term ospf from destination-address 68.1.2.41/32\
+set firewall filter IPtivia term ospf from destination-address 68.1.2.42/32\
+set firewall filter IPtivia term ospf from protocol ospf\
+set firewall filter IPtivia term ospf then accept\
+set firewall filter IPtivia term BGP_SYN from protocol tcp\
+set firewall filter IPtivia term BGP_SYN from port bgp\
+set firewall filter IPtivia term BGP_SYN from tcp-initial\
+set firewall filter IPtivia term BGP_SYN then accept\
+set firewall filter IPtivia term BGP from protocol tcp\
+set firewall filter IPtivia term BGP from port bgp\
+set firewall filter IPtivia term BGP then accept\
+set firewall filter IPtivia term everything-else then count ipsum-drops\
+set firewall filter IPtivia term everything-else then discard\
+set firewall filter Brix term Control_Packets from source-prefix-list brix_list\
+set firewall filter Brix term Control_Packets from protocol tcp\
+set firewall filter Brix term Control_Packets then count brix-tcp\
+set firewall filter Brix term Control_Packets then accept\
+set firewall filter Brix term Allow_Test_Packets from source-prefix-list brix_list\
+set firewall filter Brix term Allow_Test_Packets from protocol udp\
+set firewall filter Brix term Allow_Test_Packets then accept\
+set firewall filter Brix term NTP_accept from source-prefix-list V4-NTP-LIST-BB\
+set firewall filter Brix term NTP_accept from protocol udp\
+set firewall filter Brix term NTP_accept from port ntp\
+set firewall filter Brix term NTP_accept then accept\
+set firewall filter Brix term ICMP from source-prefix-list brix_list\
+set firewall filter Brix term ICMP from protocol icmp\
+set firewall filter Brix term ICMP then accept\
+set firewall filter Brix term HTTP from source-port http\
+set firewall filter Brix term HTTP then count brix-http\
+set firewall filter Brix term HTTP then accept\
+set firewall filter Brix term everything-else then count brix-drops\
+set firewall filter Brix term everything-else then discard\
+set firewall filter MARK-L3VPN-IN interface-specific\
+set firewall filter MARK-L3VPN-IN term MARK-TOS then sample\
+set firewall filter MARK-L3VPN-IN term MARK-TOS then forwarding-class REAL-TIME\
+set firewall filter MARK-L3VPN-IN term MARK-TOS then accept\
+set firewall filter V4-DEFAULT_SAMPLE-IN-BB term PERMIT-SAMPLING then sample\
+set firewall filter V4-DEFAULT_SAMPLE-IN-BB term PERMIT-SAMPLING then accept\
+set firewall filter V4-DEFAULT_SAMPLE-IN-BB term SAMP-AND-ACCEPT then sample\
+set firewall filter V4-DEFAULT_SAMPLE-IN-BB term SAMP-AND-ACCEPT then accept\
+set firewall filter PROTECT-CDN-CCS term ALLOW_SSH then policer V4V6-SSH-POLICER-RE\
+set firewall filter PROTECT-ALU-MGMT term ALLOW_TACACS then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter PROTECT-ALU-MGMT term ALLOW_NTP then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter PROTECT-ALU-MGMT term ALLOW_DNS then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter PROTECT-ALU-MGMT term ALLOW_ICMP then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter PROTECT-CTC-DELIVERY term ALLOW_DNS then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter PROTECT-CTC-DELIVERY term traceroutes then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter PROTECT-CTC-DELIVERY term ALLOW_ICMP then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter SYSTEM-IN interface-specific\
+set firewall filter SYSTEM-IN term permitted-icmp-types from protocol icmp\
+set firewall filter SYSTEM-IN term permitted-icmp-types from icmp-type echo-reply\
+set firewall filter SYSTEM-IN term permitted-icmp-types from icmp-type echo-request\
+set firewall filter SYSTEM-IN term permitted-icmp-types from icmp-type time-exceeded\
+set firewall filter SYSTEM-IN term permitted-icmp-types then policer police-icmp\
+set firewall filter SYSTEM-IN term permitted-icmp-types then count icmp-edge-IN\
+set firewall filter SYSTEM-IN term permitted-icmp-types then sample\
+set firewall filter SYSTEM-IN term permitted-icmp-types then forwarding-class BEST-EFFORT\
+set firewall filter SYSTEM-IN term permitted-icmp-types then accept\
+set firewall filter SYSTEM-IN term permit-icmp-unreach from protocol icmp\
+set firewall filter SYSTEM-IN term permit-icmp-unreach from icmp-type unreachable\
+set firewall filter SYSTEM-IN term permit-icmp-unreach from icmp-code fragmentation-needed\
+set firewall filter SYSTEM-IN term permit-icmp-unreach from icmp-code port-unreachable\
+set firewall filter SYSTEM-IN term permit-icmp-unreach then policer police-icmp\
+set firewall filter SYSTEM-IN term permit-icmp-unreach then count icmp-edge-IN\
+set firewall filter SYSTEM-IN term permit-icmp-unreach then sample\
+set firewall filter SYSTEM-IN term permit-icmp-unreach then forwarding-class BEST-EFFORT\
+set firewall filter SYSTEM-IN term permit-icmp-unreach then accept\
+set firewall filter SYSTEM-IN term bad-protocols from protocol 255\
+set firewall filter SYSTEM-IN term bad-protocols then count bad-protocols-transit-IN\
+set firewall filter SYSTEM-IN term bad-protocols then discard\
+set firewall filter SYSTEM-IN term icmp-other from protocol icmp\
+set firewall filter SYSTEM-IN term icmp-other then count bad-icmp-edge-IN\
+set firewall filter SYSTEM-IN term icmp-other then discard\
+set firewall filter SYSTEM-IN term smtp-permit from destination-address 68.1.16.0/23\
+set firewall filter SYSTEM-IN term smtp-permit from destination-address 68.6.18.0/23\
+set firewall filter SYSTEM-IN term smtp-permit from destination-address 68.99.120.0/24\
+set firewall filter SYSTEM-IN term smtp-permit from destination-address 68.99.64.0/18\
+set firewall filter SYSTEM-IN term smtp-permit from destination-address 70.168.47.160/27\
+set firewall filter SYSTEM-IN term smtp-permit from protocol tcp\
+set firewall filter SYSTEM-IN term smtp-permit from destination-port 25\
+set firewall filter SYSTEM-IN term smtp-permit then sample\
+set firewall filter SYSTEM-IN term smtp-permit then accept\
+set firewall filter SYSTEM-IN term smtp-deny from source-prefix-list V4-SNMP-LIST-BB\
+set firewall filter SYSTEM-IN term smtp-deny from protocol tcp\
+set firewall filter SYSTEM-IN term smtp-deny from destination-port smtp\
+set firewall filter SYSTEM-IN term smtp-deny then count bad-smtp\
+set firewall filter SYSTEM-IN term smtp-deny then discard\
+set firewall filter SYSTEM-IN term stop-rogue-snmp from source-prefix-list L2-Pollers except\
+set firewall filter SYSTEM-IN term stop-rogue-snmp from destination-prefix-list L2-Loopbacks\
+set firewall filter SYSTEM-IN term stop-rogue-snmp from destination-port snmp\
+set firewall filter SYSTEM-IN term stop-rogue-snmp then discard\
+set firewall filter SYSTEM-IN term everything-else then sample\
+set firewall filter SYSTEM-IN term everything-else then accept\
+set firewall filter CGN-IN term permitted-icmp-types then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter CGN-IN term permit-icmp-unreach then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT from first-fragment\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT then count DENY-INITIAL-FRAGMENT-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-FRAGMENTED-PACKETS from is-fragment\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-FRAGMENTED-PACKETS then count DENY-FRAGMENTED-PACKETS-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-FRAGMENTED-PACKETS then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP from source-prefix-list V4-NTP-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP from port ntp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP from port ntp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP then count DENY-NTP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OSPF from source-prefix-list V4-OSPF-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OSPF from protocol ospf\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OSPF then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-OSPF from protocol ospf\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-OSPF then count DENY-OSPF-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-OSPF then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-OSPF then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP-SYN from source-prefix-list V4V6-BGP_PEERS-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP-SYN from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP-SYN from port bgp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP-SYN from tcp-initial\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP-SYN then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP from source-prefix-list V4V6-BGP_PEERS-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP from port bgp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BGP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP-SYN from source-prefix-list V4V6-L3VPN_PEERS-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP-SYN from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP-SYN from port bgp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP-SYN from tcp-initial\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP-SYN then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP from source-prefix-list V4V6-L3VPN_PEERS-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP from port bgp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-L3VPN-BGP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-BGP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-BGP from port bgp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-BGP then count DENY-BGP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-BGP then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-BGP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE from source-prefix-list V4-SSH-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE from port 7804\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE then policer V4V6-SSH-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from source-prefix-list V4-SSH-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from port ssh\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from port 830\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH then policer V4V6-SSH-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH from port ssh\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH then count DENY-SSH-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP from source-prefix-list V4-SNMP-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP from port snmp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP then policer V4V6-SNMP-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP from port snmp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP then count DENY-SNMP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS from source-prefix-list V4-DNS-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS from port 53\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS from port 53\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS then count DENY-DNS-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from source-prefix-list V4-TACACS-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from source-port 4900\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from source-port 49\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS from source-port tacacs\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS then count DENY-TACACS-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-VRRP from destination-address 224.0.0.18/32\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-VRRP from protocol vrrp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-VRRP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-VRRP from protocol vrrp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-VRRP then count DENY-VRRP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-VRRP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-RSVP from source-prefix-list V4-RSVP-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-RSVP from protocol rsvp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-RSVP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-RSVP from protocol rsvp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-RSVP then count DENY-RSVP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-RSVP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LDP from source-prefix-list V4-LDP-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LDP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LDP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LDP from port ldp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LDP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-LDP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-LDP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-LDP from port ldp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-LDP then count DENY-LDP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-LDP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PIM from source-prefix-list V4-PIM-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PIM from protocol pim\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PIM then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PIM from protocol pim\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PIM then count DENY-PIM-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PIM then syslog\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PIM then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PING-RECORD-ROUTE from ip-options timestamp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PING-RECORD-ROUTE from ip-options route-record\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PING-RECORD-ROUTE then count DENY-PING-RECORD-ROUTE-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PING-RECORD-ROUTE then reject\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from protocol icmp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type echo-request\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type echo-reply\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type unreachable\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type time-exceeded\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES then policer V4V6-ICMP-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES from destination-port 33434-33523\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES then policer V4V6-SMALL_BW-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO from port 3503\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO then policer V4V6-ICMP-POLICER-RE\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BFD from source-prefix-list V4-BFD-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BFD from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BFD from destination-port 3784\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BFD then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DHCP from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DHCP from port 67\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DHCP from port 68\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DHCP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PCEP from source-prefix-list V4-PCEP-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PCEP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PCEP from port 4189\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-PCEP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PCEP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PCEP from port 4189\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PCEP then count DENY-PCEP-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-PCEP then discard\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TUFIN from prefix-list V4-TUFIN-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TUFIN from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TUFIN from port 514\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TUFIN then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT from source-prefix-list V4-OPENSHIFT-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT from source-prefix-list V4-SSH-LIST-BB\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT from port 50051\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BMP from source-prefix-list V4-BMP-LIST\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BMP from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BMP from port 63202\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-BMP then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term BGP_RPKI_ACCEPT from source-prefix-list BGP-RPKI-LIST\
+set firewall filter V4-PROTECT_RE-IN-BB term BGP_RPKI_ACCEPT from protocol tcp\
+set firewall filter V4-PROTECT_RE-IN-BB term BGP_RPKI_ACCEPT from port 3323\
+set firewall filter V4-PROTECT_RE-IN-BB term BGP_RPKI_ACCEPT then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-MPLS-SELF-PING from protocol udp\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-MPLS-SELF-PING from port 8503\
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-MPLS-SELF-PING then accept\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-EVERYTHING-ELSE then count DENY-EVERYTHING-ELSE-COUNT\
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-EVERYTHING-ELSE then discard\
+set firewall filter RAPIDSCALE-EDGE-IN interface-specific\
+set firewall filter RAPIDSCALE-EDGE-IN term bogon-sources from prefix-list bogons\
+set firewall filter RAPIDSCALE-EDGE-IN term bogon-sources then count bogons-transit-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term bogon-sources then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term bad-protocols from protocol 255\
+set firewall filter RAPIDSCALE-EDGE-IN term bad-protocols from protocol pim\
+set firewall filter RAPIDSCALE-EDGE-IN term bad-protocols from protocol igmp\
+set firewall filter RAPIDSCALE-EDGE-IN term bad-protocols then count bad-protocols-transit-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term bad-protocols then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term ntp-monlist-deny from packet-length 234-1500\
+set firewall filter RAPIDSCALE-EDGE-IN term ntp-monlist-deny from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term ntp-monlist-deny from port ntp\
+set firewall filter RAPIDSCALE-EDGE-IN term ntp-monlist-deny then count ntp-monlist-deny-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term ntp-monlist-deny then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term chargen-deny from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term chargen-deny from port 19\
+set firewall filter RAPIDSCALE-EDGE-IN term chargen-deny then count chargen-deny-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term chargen-deny then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term SSDP-UPnP-deny from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term SSDP-UPnP-deny from port 1900\
+set firewall filter RAPIDSCALE-EDGE-IN term SSDP-UPnP-deny then count SSDP-UPnP-deny-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term SSDP-UPnP-deny then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term MEMCACHE-deny from packet-length 1428\
+set firewall filter RAPIDSCALE-EDGE-IN term MEMCACHE-deny from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term MEMCACHE-deny from port 11211\
+set firewall filter RAPIDSCALE-EDGE-IN term MEMCACHE-deny then count MEMCACHE-deny-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term MEMCACHE-deny then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types from protocol icmp\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types from icmp-type echo-reply\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types from icmp-type echo-request\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types from icmp-type time-exceeded\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types then count icmp-edge-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types then forwarding-class BEST-EFFORT\
+set firewall filter RAPIDSCALE-EDGE-IN term permitted-icmp-types then accept\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach from protocol icmp\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach from icmp-type unreachable\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach from icmp-code fragmentation-needed\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach from icmp-code port-unreachable\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach then policer V4V6-ICMP-POLICER-EDGE\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach then count icmp-edge-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach then forwarding-class BEST-EFFORT\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-icmp-unreach then accept\
+set firewall filter RAPIDSCALE-EDGE-IN term icmp-other from protocol icmp\
+set firewall filter RAPIDSCALE-EDGE-IN term icmp-other then count bad-icmp-edge-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term icmp-other then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term LSP-ECHO from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term LSP-ECHO from destination-port 3503\
+set firewall filter RAPIDSCALE-EDGE-IN term LSP-ECHO then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP from destination-address 68.1.17.4/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP from destination-address 68.6.19.4/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP from destination-address 68.1.17.8/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP from destination-address 68.6.19.8/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP from destination-port 465\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP from destination-port 587\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SSL-SMTP then accept\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net from source-prefix-list smtp-allowed\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term permit-SMTP-cox.net then accept\
+set firewall filter RAPIDSCALE-EDGE-IN term deny-SMTP-cox.net from destination-address 68.1.17.4/32\
+set firewall filter RAPIDSCALE-EDGE-IN term deny-SMTP-cox.net from destination-address 68.6.19.4/32\
+set firewall filter RAPIDSCALE-EDGE-IN term deny-SMTP-cox.net from destination-address 68.1.17.8/32\
+set firewall filter RAPIDSCALE-EDGE-IN term deny-SMTP-cox.net from destination-address 68.6.19.8/32\
+set firewall filter RAPIDSCALE-EDGE-IN term deny-SMTP-cox.net then count cox.net-smtp-drops\
+set firewall filter RAPIDSCALE-EDGE-IN term deny-SMTP-cox.net then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny from source-address 190.93.248.140/32\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny from source-address 190.93.249.140/32\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny from protocol tcp\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny from destination-port 53\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny then count SpamHaus-DDoS-inbound\
+set firewall filter RAPIDSCALE-EDGE-IN term SpamHaus-deny then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API from source-address 50.31.164.0/24\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API from source-address 162.247.240.0/22\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API from destination-prefix-list V4-DNS-EDGE-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API from protocol tcp\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API from source-port 443\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term NEWRELIC-API then accept\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_ACCEPT from destination-prefix-list V4-DNS-EDGE-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_ACCEPT from protocol udp\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_ACCEPT from protocol tcp\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_ACCEPT from destination-port 53\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_ACCEPT then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_ACCEPT then accept\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_DENY from destination-prefix-list V4-DNS-EDGE-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_DENY then count V4-DNS-EDGE-IN\
+set firewall filter RAPIDSCALE-EDGE-IN term DNS_DENY then discard\
+set firewall filter RAPIDSCALE-EDGE-IN term everything-else then sample\
+set firewall filter RAPIDSCALE-EDGE-IN term everything-else then accept}

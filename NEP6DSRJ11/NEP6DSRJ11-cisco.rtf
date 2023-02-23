@@ -1,0 +1,1494 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2708
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red43\green43\blue45;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c22353\c22353\c23137;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 banner login % "\\n********************************************************************************* \\n*                                                                               * \\n*                                -- WARNING --                                  * \\n*                                                                               * \\n*  You are accessing a corporate sensitive system that is subject to U.S.       * \\n*  Government regulation. This is a private computer system. It is for          * \\n*  authorized use only. Users (authorized or unauthorized) have no explicit     * \\n*  or implicit expectation of privacy.                                          * \\n*                                                                               * \\n*  Any or all uses of this system and all files on this system may be           * \\n*  intercepted, monitored, recorded, copied, audited, inspected, and            * \\n*  disclosed to authorized site, law enforcement personnel, as well as          * \\n*  authorized officials of other agencies.  By using this system, the user      * \\n*  consents to such interception, monitoring, recording, copying, auditing,     * \\n*  inspection and disclosure at the discretion of authorized site personnel.    * \\n*                                                                               * \\n*  Unauthorized or improper use of this system may result in administrative     * \\n*  disciplinary action and civil and criminal penalties. By continuing to       * \\n*  use this system you indicate your awareness of and consent to these terms    * \\n*  and conditions of use.                                                       * \\n*                                                                               * \\n*  LOG OFF IMMEDIATELY if you do not agree to the conditions stated above!      * \\n*                                                                               * \\n*********************************************************************************\\n\\n" %\
+logging 10.26.4.13 vrf default\
+domain name cox.net\
+domain name-server 10.10.10.1\
+domain name-server 10.10.20.1\
+domain name-server 68.9.16.30\
+domain name-server 68.9.16.25\
+netconf agent tty\
+exit\
+netconf-yang agent\
+ ssh\
+exit\
+ntp\
+ server 10.4.7.7\
+ server 10.20.10.110\
+ server 10.26.4.13\
+ server 10.30.10.120\
+ server 172.24.0.53\
+exit\
+aaa group server tacacs+ tacacs-auth\
+ server-private 10.4.7.7 port 49\
+  key XXXX\
+ exit\
+exit\
+object-group network ipv4 1-DST\
+ 68.1.3.69/32\
+exit\
+object-group network ipv4 2-DST\
+exit\
+object-group network ipv6 1-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 10-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 11-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 12-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 13-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 14-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 15-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 16-DST\
+exit\
+object-group network ipv6 2-DST\
+exit\
+object-group network ipv6 3-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 4-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 5-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 6-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 7-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 8-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 9-DST\
+ 2001:578:30:11c3::2/128\
+exit\
+object-group network ipv6 BGP_accept-DST\
+exit\
+object-group network ipv6 Hop-By-Hop_Option-DST\
+exit\
+object-group network ipv6 ICMPv6-DST\
+exit\
+object-group network ipv6 PERMIT-BFD-DST\
+exit\
+object-group network ipv6 PERMIT-BGP-DST\
+exit\
+object-group network ipv6 PERMIT-HOP-BY-HOP-OPTION-DST\
+exit\
+object-group network ipv6 PERMIT-ICMPV6-DST\
+exit\
+object-group network ipv6 PERMIT-L3VPN-BGP-DST\
+exit\
+object-group network ipv6 PERMIT-PIM-DST\
+exit\
+object-group network ipv6 PERMIT-SAMPLING-DST\
+exit\
+object-group network ipv6 PERMIT-TRACEROUTES-DST\
+exit\
+object-group network ipv6 PERMIT-VRRPV6-DST\
+exit\
+object-group network ipv6 PIM-DST\
+exit\
+object-group network ipv6 SAMPLE-AND-ACCEPT-DST\
+exit\
+object-group network ipv6 VRRPv6_accept-DST\
+ ff02::12/128\
+exit\
+object-group network ipv6 traceroutes-DST\
+exit\
+snmp-server contact cciatl-engineeringlabsupport@cox.com\
+snmp-server location "6;;30;100 NEP6 LAB;ATLANTA;GA;NEP;GA;TSRITM;"\
+ssh server netconf\
+ssh server v2\
+lldp\
+exit\
+interface Loopback 0\
+ description "NEP6DSRJ11 LOOPBACK"\
+ no shutdown\
+exit\
+interface Bundle-Ether 2\
+ description "2x100G; NEP6DSRJ11 AE2 - NEP6HUBC11 BE2"\
+ ipv4 address 70.175.244.52 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 7\
+ description "2x100G; NEP6DSRJ11 AE7 - NEP6HUBC13 BE7"\
+ ipv4 address 70.175.244.72 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 10\
+ description "4x100G; NEP6DSRJ11 AE10 - NEP6BBRJ02 AE10"\
+ ipv4 address 174.68.232.71 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 11\
+ description "10x10G; NEP6DSRJ11 AE11 - NEP6HHRC11 BE11"\
+ ipv4 address 70.175.244.0 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 21\
+ description "1x10G; NEP6DSRJ11 ae21.0 - AEP6D1FX01 NTAx1"\
+ ipv4 address 174.68.235.168 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 52\
+ description "10x10G; NEP6DSRJ11 AE52 - NEP6TORJ02 AE52"\
+ ipv4 address 70.175.244.20 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 80\
+ ipv4 address 174.68.232.192 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 81\
+ ipv4 address 174.68.232.194 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 82\
+ ipv4 address 174.68.232.196 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 83\
+ ipv4 address 174.68.232.198 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 96\
+ description ";;NEP6SLRC15.AT.AT;BE96.0;MR;NEP6SLRC15.AT.AT BE96.0"\
+ ipv4 address 70.175.244.4 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 97\
+ description ";;NEP6SLRC15.AT.AT;BE98.0;MR;NEP6SLRC15.AT.AT BE98.0-V2B MVPN"\
+ ipv4 address 70.175.244.8 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 98\
+ description ";;NEP6SLRC15.AT.AT;BE98.0;MR;NEP6SLRC15.AT.AT BE98.0-V2B MVPN"\
+ ipv4 address 70.175.244.10 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 101\
+ description "1x101G; NEP6DSRJ11 AE101 - NEP6CMTK11 BE1"\
+ ipv4 address 70.175.244.60 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 222\
+ ipv4 address 30.200.200.0 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 398\
+ ipv4 address 174.68.232.106 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 2000\
+ description "2x100G; NEP6DSRJ11 AE2000 - NEP6HUBC13 BE2000"\
+ ipv4 address 70.175.244.72 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 2001\
+ description "2x100G; NEP6DSRJ11 AE2001 - NEP6HUBC14 BE2001"\
+ ipv4 address 70.175.244.170 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 1.1\
+ description "4x100G; NEP6DSRJ11 AE1 - NEP6DSRJ12 AE1"\
+ ipv4 address 174.68.232.74 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 1.10\
+ description "10x10G; OSPF NSSA 10; NEP6DSRJ11 AE1 - NEP6DSRJ12 AE1"\
+ ipv4 address 70.175.244.6 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.100\
+ description "NEA Firewalls IPsec Connections"\
+ ipv4 address 70.187.96.70 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.11\
+ description "Available"\
+ ipv4 address 10.14.22.130 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.12\
+ description "Available"\
+ ipv4 address 10.14.22.146 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.129\
+ description "NEP6DDSC02 PO15;FIREWALL SRX1500 L3VPN;VLAN-129"\
+ ipv4 address 10.14.48.123 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.13\
+ description "Available"\
+ ipv4 address 10.14.22.162 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.130\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-130"\
+ ipv4 address 10.14.35.10 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.131\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-131"\
+ ipv4 address 10.14.35.18 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.132\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-132"\
+ ipv4 address 10.14.35.26 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.133\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-133"\
+ ipv4 address 10.14.35.34 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.134\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-134"\
+ ipv4 address 10.14.35.42 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.135\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-135"\
+ ipv4 address 10.14.35.50 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.14\
+ description "Available"\
+ ipv4 address 10.14.22.178 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.15\
+ description "Available"\
+ ipv4 address 10.14.22.194 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.16\
+ description "Available"\
+ ipv4 address 10.14.22.210 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.17\
+ description "Available"\
+ ipv4 address 10.14.22.226 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.179\
+ description "NEP6DDSC01 PO15;FIREWALL PUBLICS;VLAN-179"\
+ ipv4 address 70.175.244.114 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.18\
+ description "Available"\
+ ipv4 address 10.14.22.242 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.180\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-MGMT L3VPN;VLAN-180"\
+ ipv4 address 10.14.32.2 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.181\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-IDRAC L3VPN;VLAN-181"\
+ ipv4 address 10.14.32.10 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.182\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-DMZ L3VPN;VLAN-182"\
+ ipv4 address 10.14.32.18 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.183\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-SHARED SERVICES L3VPN;VLAN-183"\
+ ipv4 address 10.14.32.26 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.184\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-GLOBAL-DMZ;VLAN-184"\
+ ipv4 address 10.14.32.34 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.185\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-GLOBAL-SHARED-SERVICES;VLAN-185"\
+ ipv4 address 10.14.32.42 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.186\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-MGMT CONDITIONAL ACCESS L3VPN;VLAN-186"\
+ ipv4 address 10.14.32.50 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.187\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-IDRAC CONDITIONAL ACCESS L3VPN;VLAN-187"\
+ ipv4 address 10.14.32.58 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.188\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-DMZ CONDITIONAL ACCESS L3VPN;VLAN-188"\
+ ipv4 address 10.14.32.66 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.189\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-SHARED SERVICES CONDITIONAL ACCESS L3VPN;VLAN-189"\
+ ipv4 address 10.14.32.74 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.190\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-191"\
+ ipv4 address 10.14.32.130 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.191\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-192"\
+ ipv4 address 10.14.32.138 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.192\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-193"\
+ ipv4 address 10.14.32.146 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.193\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-194"\
+ ipv4 address 10.14.32.154 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.194\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-195"\
+ ipv4 address 10.14.32.162 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.195\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-196"\
+ ipv4 address 10.14.32.170 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.196\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-197"\
+ ipv4 address 10.14.32.178 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.197\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-198"\
+ ipv4 address 10.14.32.186 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.198\
+ description "NEP6DDSC01 PO15;PALO ALTO POC FIREWALLS;VLAN-199"\
+ ipv4 address 10.14.32.194 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.199\
+ ipv4 address 10.14.32.202 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.290\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-MGMT HOSTS;VLAN-290"\
+ ipv4 address 10.14.32.90 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.291\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-IDRAC HOSTS;VLAN-291"\
+ ipv4 address 10.14.32.98 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.292\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-DMZ HOSTS;VLAN-292"\
+ ipv4 address 10.14.32.106 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.293\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-SHARED SERVICES HOSTS;VLAN-293"\
+ ipv4 address 10.14.32.114 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.295\
+ description "TEST 100.126.248.0/24 network"\
+ ipv4 address 100.126.248.1 /24\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.296\
+ description "TEST 100.123.192.0/25 network"\
+ ipv4 address 100.123.192.1 /25\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.297\
+ description "TEST 172.22.11.0/27 network"\
+ ipv4 address 172.22.11.1 /27\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.298\
+ description "TEST 100.123.196.0/25 network"\
+ ipv4 address 100.123.196.1 /25\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.300\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-MIS L3VPN;VLAN-300"\
+ ipv4 address 10.14.32.122 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.301\
+ description "NEP6DDSC01 PO15;FIREWALL LIFE CYCLE-MIS CONDITIONAL ACCESS L3VPN;VLAN-301"\
+ ipv4 address 10.14.32.130 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.305\
+ description "TEST 172.16.11.0/24 network"\
+ ipv4 address 172.16.11.1 /24\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.306\
+ description "TEST 98.185.203.0/24 network"\
+ ipv4 address 98.185.203.1 /24\
+ no shutdown\
+exit\
+interface Bundle-Ether 15.98\
+ ipv4 address 10.14.35.3 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.11\
+ description "Available"\
+ ipv4 address 10.14.22.2 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.12\
+ description "Available"\
+ ipv4 address 10.14.22.18 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.128\
+ description "Lawful Intercept VRRP"\
+ ipv4 address 174.68.235.130 /29\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.13\
+ description "Available"\
+ ipv4 address 10.14.22.34 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.14\
+ description "Available"\
+ ipv4 address 10.14.22.50 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.15\
+ description "Available"\
+ ipv4 address 10.14.22.66 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.16\
+ description "Available"\
+ ipv4 address 10.14.22.82 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.17\
+ description "Available"\
+ ipv4 address 10.14.22.98 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.18\
+ description "Available"\
+ ipv4 address 10.14.22.114 /28\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.551\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.552\
+ no shutdown\
+exit\
+interface Bundle-Ether 18.99\
+ description "temp mgmp vlan for NEP6DDSJ01"\
+ no shutdown\
+exit\
+interface Bundle-Ether 199.100\
+ description ";;MGMT;;MR;1ZCNCBPN01 CB MANAGEMENT LINK"\
+ ipv4 address 70.175.244.22 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 199.150\
+ description ";;MGMT;;MR;1ZCNCBPN01 CB GNE MGMT"\
+ ipv4 address 70.175.244.26 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 199.3001\
+ no shutdown\
+exit\
+interface Bundle-Ether 99.10\
+ description ";;NEP6VSRC01.AT.AT;AE99.10;MR;NEP6VSRC01.AT.AT BE99.10-VOD MVPN"\
+ ipv4 address 70.175.244.188 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 99.29\
+ description ";;NEP6VSRC01.AT.AT;AE99.29;MR;NEP6VSRC01.AT.AT BE99.29-V2B MVPN"\
+ ipv4 address 70.175.244.190 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 99.30\
+ description ";;NEP6VSRC01.AT.AT;AE99.30;MR;NEP6VSRC01.AT.AT BE99.30-V2B MVPN"\
+ ipv4 address 70.175.244.202 /31\
+ no shutdown\
+exit\
+interface Bundle-Ether 99.59\
+ ipv4 address 70.175.244.192 /31\
+ no shutdown\
+exit\
+interface TenGigE 0/0/0\
+ ipv4 address 10.10.1.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/1\
+ ipv4 address 10.10.2.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/10\
+ ipv4 address 10.14.8.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/11\
+ ipv4 address 10.14.9.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/12\
+ ipv4 address 10.14.10.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/13\
+ ipv4 address 10.14.11.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/2\
+ ipv4 address 10.10.8.6 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/23\
+ ipv4 address 174.68.235.36 /31\
+ no shutdown\
+exit\
+interface TenGigE 0/0/5\
+ description "NEP6DSRJ11 xe-0/0/5 - NEP6ONPT01 01.06.02"\
+ ipv4 address 10.14.3.1 /24\
+ ipv4 address 100.100.1.1 /30 secondary\
+ no shutdown\
+exit\
+interface TenGigE 0/0/6\
+ ipv4 address 10.14.4.1 /24\
+ ipv4 address 100.100.2.1 /30 secondary\
+ no shutdown\
+exit\
+interface TenGigE 0/0/7\
+ ipv4 address 10.14.5.1 /24\
+ no shutdown\
+exit\
+interface TenGigE 0/0/4.290\
+ description ";;Pretend DUKE MGMT L3VPN HOSTS;"\
+ ipv4 address 10.14.32.89 /29\
+ no shutdown\
+exit\
+interface TenGigE 0/0/4.291\
+ description ";;Pretend DUKE; IDRAC L3VPN HOSTS;"\
+ ipv4 address 10.14.32.97 /29\
+ no shutdown\
+exit\
+interface TenGigE 0/0/4.292\
+ description ";;Pretend DUKE; DMZ L3VPN HOSTS;"\
+ ipv4 address 10.14.32.105 /29\
+ no shutdown\
+exit\
+interface TenGigE 0/0/4.293\
+ description ";;Pretend DUKE; Shared Services L3VPN HOSTS;"\
+ ipv4 address 10.14.32.113 /29\
+ no shutdown\
+exit\
+interface TenGigE 0/1/5.210\
+ description ";;NEP6SWIC02;Eth 1/4;MR;Represent IT DMZ VLAN 210;"\
+ ipv4 address 174.68.235.145 /29\
+ no shutdown\
+exit\
+interface TenGigE 0/1/5.99\
+ description ";;NEP6SWIC02;Eth 1/4;MR;eBGP to DUKE IT WAN Testing;"\
+ ipv4 address 10.14.32.253 /30\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 4/0/9\
+ ipv4 address 30.255.2.15 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/0\
+ ipv4 address 30.14.11.0 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/1\
+ ipv4 address 30.14.12.1 /24\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/2\
+ ipv4 address 30.14.50.6 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/3\
+ ipv4 address 30.0.27.1 /24\
+ ipv4 address 30.14.14.1 /24 secondary\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/6\
+ ipv4 address 30.14.15.1 /24\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/7\
+ ipv4 address 30.14.16.0 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/8\
+ ipv4 address 30.22.22.1 /24\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/1\
+ ipv4 address 30.14.50.10 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 6/1/0\
+ ipv4 address 30.14.11.8 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/9.20\
+ ipv4 address 30.20.20.1 /24\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/9.21\
+ ipv4 address 30.21.21.1 /24\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/0/9.22\
+ ipv4 address 30.21.22.1 /24\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.400\
+ ipv4 address 174.68.235.246 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.401\
+ ipv4 address 174.68.235.248 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.402\
+ ipv4 address 174.68.235.250 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.403\
+ ipv4 address 174.68.235.252 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.404\
+ ipv4 address 174.68.235.254 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.405\
+ ipv4 address 174.68.235.28 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.406\
+ ipv4 address 174.68.235.30 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.407\
+ ipv4 address 174.68.235.8 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.408\
+ ipv4 address 174.68.235.10 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.409\
+ ipv4 address 174.68.235.12 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.410\
+ ipv4 address 30.14.29.20 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.411\
+ ipv4 address 30.14.29.22 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.412\
+ ipv4 address 30.14.29.24 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.413\
+ ipv4 address 30.14.29.26 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.414\
+ ipv4 address 30.14.29.28 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.415\
+ ipv4 address 30.14.29.30 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.416\
+ ipv4 address 30.14.29.32 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.417\
+ ipv4 address 30.14.29.34 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.418\
+ ipv4 address 30.14.29.36 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.419\
+ ipv4 address 30.14.29.38 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.420\
+ ipv4 address 30.14.29.40 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.421\
+ ipv4 address 30.14.29.42 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.422\
+ ipv4 address 30.14.29.44 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.423\
+ ipv4 address 30.14.29.46 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.424\
+ ipv4 address 30.14.29.48 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.425\
+ ipv4 address 30.14.29.50 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.426\
+ ipv4 address 30.14.29.52 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.427\
+ ipv4 address 30.14.29.54 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.428\
+ ipv4 address 30.14.29.56 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.429\
+ ipv4 address 30.14.29.58 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.430\
+ ipv4 address 30.14.29.60 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.431\
+ ipv4 address 30.14.29.62 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.432\
+ ipv4 address 30.14.29.64 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.433\
+ ipv4 address 30.14.29.66 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.434\
+ ipv4 address 30.14.29.68 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.435\
+ ipv4 address 30.14.29.70 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.436\
+ ipv4 address 30.14.29.72 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.437\
+ ipv4 address 30.14.29.74 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.438\
+ ipv4 address 30.14.29.76 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.439\
+ ipv4 address 30.14.29.78 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.440\
+ ipv4 address 30.14.29.80 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.441\
+ ipv4 address 30.14.29.82 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.442\
+ ipv4 address 30.14.29.84 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.443\
+ ipv4 address 30.14.29.86 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.444\
+ ipv4 address 30.14.29.88 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.445\
+ ipv4 address 30.14.29.90 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.446\
+ ipv4 address 30.14.29.92 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.447\
+ ipv4 address 30.14.29.94 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.448\
+ ipv4 address 30.14.29.96 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.449\
+ ipv4 address 30.14.29.98 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.450\
+ ipv4 address 30.14.29.100 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.451\
+ ipv4 address 30.14.29.102 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.452\
+ ipv4 address 30.14.29.104 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.453\
+ ipv4 address 30.14.29.106 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.454\
+ ipv4 address 30.14.29.108 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.455\
+ ipv4 address 30.14.29.110 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.456\
+ ipv4 address 30.14.29.112 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.457\
+ ipv4 address 30.14.29.114 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.458\
+ ipv4 address 30.14.29.116 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.459\
+ ipv4 address 30.14.29.118 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.460\
+ ipv4 address 30.14.29.120 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.461\
+ ipv4 address 30.14.29.122 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.462\
+ ipv4 address 30.14.29.124 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.463\
+ ipv4 address 30.14.29.126 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.464\
+ ipv4 address 30.14.29.128 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.465\
+ ipv4 address 30.14.29.130 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.466\
+ ipv4 address 30.14.29.132 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.467\
+ ipv4 address 30.14.29.134 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.468\
+ ipv4 address 30.14.29.136 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.469\
+ ipv4 address 30.14.29.138 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.470\
+ ipv4 address 30.14.29.140 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.471\
+ ipv4 address 30.14.29.142 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.472\
+ ipv4 address 30.14.29.144 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.473\
+ ipv4 address 30.14.29.146 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.474\
+ ipv4 address 30.14.29.148 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.475\
+ ipv4 address 30.14.29.150 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.476\
+ ipv4 address 30.14.29.152 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.477\
+ ipv4 address 30.14.29.154 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.478\
+ ipv4 address 30.14.29.156 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.479\
+ ipv4 address 30.14.29.158 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.480\
+ ipv4 address 30.14.29.160 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.481\
+ ipv4 address 30.14.29.162 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.482\
+ ipv4 address 30.14.29.164 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.483\
+ ipv4 address 30.14.29.166 /31\
+ no shutdown\
+exit\
+interface TwentyFiveGigE 5/1/0.484\
+ ipv4 address 30.14.29.168 /31\
+ no shutdown\
+exit\
+router isis 16\
+ interface GigabitEthernet5/0/7\
+ exit\
+ interface GigabitEthernet5/0/8\
+  point-to-point\
+ exit\
+ interface GigabitEthernet5/0/9\
+  point-to-point\
+ exit\
+ interface GigabitEthernet5/1/0\
+  point-to-point\
+ exit\
+ interface Loopback\
+ exit\
+ metric-style wide\
+exit\
+router bgp 65001 instance BGP-scale-test\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.232.5\
+ exit\
+ neighbor 174.68.235.17\
+ exit\
+ neighbor 174.68.235.19\
+ exit\
+ neighbor 174.68.235.21\
+ exit\
+ neighbor 174.68.235.23\
+ exit\
+ neighbor 174.68.235.25\
+ exit\
+ neighbor 174.68.235.27\
+ exit\
+ neighbor 174.68.235.241\
+ exit\
+ neighbor 174.68.235.243\
+ exit\
+ neighbor 174.68.235.245\
+ exit\
+exit\
+router bgp 65001 instance CB-LABELED-UNICAST\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 70.175.244.27\
+  description "CB BGPLU"\
+ exit\
+exit\
+router bgp 65001 instance CORE-PE-RR-CLIENTS\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 100.118.11.155\
+ exit\
+ neighbor 174.68.232.35\
+ exit\
+exit\
+router bgp 65001 instance CORE-PE-RR-SERVER\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.8.161.33\
+ exit\
+exit\
+router bgp 65001 instance MAPT-TEST-ROUTES-LLD\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 30.14.11.1\
+  local address 30.14.11.0\
+  description "NEP6IXCCAP15000"\
+ exit\
+ neighbor 30.14.50.7\
+  local address 30.14.50.6\
+  description "NEP6IXCCAP15020"\
+ exit\
+ neighbor 30.14.50.11\
+  local address 30.14.50.10\
+  description "NEP6IXCCAP15110"\
+ exit\
+exit\
+router bgp 65001 instance SHAM\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 1.1.1.1\
+  description "SHAM"\
+ exit\
+exit\
+router bgp 65001 instance V4-CB-CLIENTS\
+ neighbor 70.175.244.23\
+  description "CB Nokia Management BGP session - IPv4"\
+ exit\
+ neighbor 70.175.244.27\
+  description "CB GNE Management BGP session - IPv4"\
+ exit\
+exit\
+router bgp 65001 instance V4-DATA-FIREWALLS\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.4\
+  description "PSP6FWVJ01-02"\
+ exit\
+exit\
+router bgp 65001 instance V4-DSR-TO-BRR-DEFAULT\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.232.16\
+  description "64019,NEP6BRRA01;COX;INTERNAL;DEFAULT-ONLY"\
+ exit\
+exit\
+router bgp 65001 instance V4-DSRJ-TO-RCR-IBGP\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.233.13\
+ exit\
+exit\
+router bgp 65001 instance V4-DSRJ-TO-SPN-IBGP\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.232.128\
+  description "iBGP session to NEP6DESPN01"\
+ exit\
+ neighbor 174.68.232.129\
+  description "iBGP session to NEP6DESPN02"\
+ exit\
+ neighbor 174.68.232.130\
+  description "iBGP session to NEP6DESPN13"\
+ exit\
+ neighbor 174.68.232.131\
+  description "iBGP session to NEP6DESPN14"\
+ exit\
+exit\
+router bgp 65001 instance V4-GLOBAL-DMZ\
+ neighbor 10.14.32.36\
+  description "V4-GLOBAL-DMZ"\
+ exit\
+exit\
+router bgp 65001 instance V4-GLOBAL-SHARED-SERVICE\
+ neighbor 10.14.32.44\
+  description "V4-GLOBAL-SHARED-SERVICE"\
+ exit\
+exit\
+router bgp 65001 instance V4-IXIA-ROUTES\
+ neighbor 10.14.23.2\
+ exit\
+ neighbor 30.0.6.1\
+ exit\
+ neighbor 30.0.7.1\
+ exit\
+ neighbor 30.1.6.1\
+ exit\
+ neighbor 30.1.7.1\
+ exit\
+ neighbor 30.14.16.2\
+  description "NEP6TSTI03 12.5"\
+ exit\
+ neighbor 30.14.29.2\
+  description "NEP6TSTI03 8.1"\
+ exit\
+ neighbor 30.100.0.2\
+ exit\
+ neighbor 30.101.0.2\
+ exit\
+ neighbor 30.102.0.2\
+ exit\
+ neighbor 30.103.0.2\
+ exit\
+ neighbor 30.200.200.1\
+ exit\
+ neighbor 30.255.2.8\
+ exit\
+ neighbor 30.255.2.10\
+ exit\
+ neighbor 30.255.2.12\
+ exit\
+ neighbor 30.255.2.14\
+ exit\
+exit\
+router bgp 65001 instance V4-NORTHSTAR\
+ neighbor 10.3.19.142\
+ exit\
+ neighbor 10.3.19.143\
+ exit\
+ neighbor 10.3.19.144\
+ exit\
+ neighbor 10.4.6.95\
+ exit\
+exit\
+router bgp 65001 instance V4-PE-TO-PE-FULLMESH\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.232.1\
+  description "NEP6BPRJ01"\
+ exit\
+ neighbor 174.68.232.2\
+  description "NEP6BPRJ02"\
+ exit\
+ neighbor 174.68.232.12\
+  description "NEP6DSRJ12"\
+ exit\
+ neighbor 174.68.232.21\
+  description "NEP6DSRJ21"\
+ exit\
+ neighbor 174.68.232.22\
+  description "NEP6DSRJ22"\
+ exit\
+ neighbor 174.68.232.31\
+  description "NEP6DSRJ31"\
+ exit\
+ neighbor 174.68.232.32\
+  description "NEP6DSRJ32"\
+ exit\
+ neighbor 174.68.232.41\
+  description "NEP6DSRJ41"\
+ exit\
+ neighbor 174.68.232.42\
+  description "NEP6DSRJ42"\
+ exit\
+exit\
+router bgp 65001 instance V4-Palo-Firewalls-TST1-Trust\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.12\
+ exit\
+exit\
+router bgp 65001 instance V4-Palo-Firewalls-TST1-Untrust\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.20\
+ exit\
+exit\
+router bgp 65001 instance V4-Palo-Firewalls-TST2-Trust\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.28\
+ exit\
+exit\
+router bgp 65001 instance V4-Palo-Firewalls-TST2-Untrust\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.36\
+ exit\
+exit\
+router bgp 65001 instance V4-Palo-Firewalls-TST3-Trust\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.44\
+ exit\
+exit\
+router bgp 65001 instance V4-Palo-Firewalls-TST3-Untrust\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.14.35.52\
+ exit\
+exit\
+router bgp 65001 instance V4-RR-CLIENTS-CB-FULL-ROUTES\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 10.1.131.250\
+  description "PSP6BE1ZBSPA01"\
+ exit\
+ neighbor 10.1.131.251\
+  description "PSP6BE1ZBSPA02"\
+ exit\
+exit\
+router bgp 65001 instance V4-RR-CLIENTS-DEFAULT-ONLY\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.235.176\
+  description "AEP6D1FX01 NTAx1"\
+ exit\
+exit\
+router bgp 65001 instance V4-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 30.14.48.11\
+  description "NEP6IXIADR11_NEP6TSTI03:12:05"\
+ exit\
+ neighbor 174.68.233.1\
+  description "NEP6HUBC11"\
+ exit\
+ neighbor 174.68.233.2\
+  description "NEP6HUBC12"\
+ exit\
+ neighbor 174.68.233.3\
+  description "NEP6HUBC13"\
+ exit\
+ neighbor 174.68.233.4\
+  description "NEP6HUBC14"\
+ exit\
+ neighbor 174.68.233.84\
+  description "NEP6SLRC15.AT.AT"\
+ exit\
+ neighbor 174.68.233.85\
+  description "NEP6SLRC16.AT.AT"\
+ exit\
+ neighbor 174.68.233.86\
+  description "NEP6VSRC01.AT.AT"\
+ exit\
+ neighbor 174.68.233.87\
+  description "NEP6VSRC02.AT.AT"\
+ exit\
+exit\
+router bgp 65001 instance V4-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES-TOR\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.235.189\
+ exit\
+exit\
+router bgp 65001 instance V4-RR-CLIENTS-FULL-ROUTES\
+ address-family ipv4 unicast\
+ exit\
+ neighbor 174.68.233.1\
+  description "NEP6HUBC11"\
+ exit\
+ neighbor 174.68.233.2\
+  description "NEP6HUBC12"\
+ exit\
+ neighbor 174.68.233.11\
+  description "NEP6HHRC11"\
+ exit\
+ neighbor 174.68.233.12\
+  description "NEP6HHRC12"\
+ exit\
+exit\
+router bgp 65001 instance V6-CB-CLIENTS\
+ neighbor 2001:578:30:1101:70:175:244:23\
+  description "CB Management BGP session - IPv6"\
+ exit\
+exit\
+router bgp 65001 instance V6-DATA-FIREWALLS\
+ neighbor 2001:578:30:113b:10:14:35:4\
+  description "PSP6FWVJ01-02"\
+ exit\
+exit\
+router bgp 65001 instance V6-DSR-TO-BRR-DEFAULT\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1101:174:68:232:16\
+  description "64019,NEP6BRRA01;COX;INTERNAL;DEFAULT-ONLY"\
+ exit\
+exit\
+router bgp 65001 instance V6-DSRJ-TO-RCR-IBGP\
+ address-family ipv6 unicast\
+ exit\
+exit\
+router bgp 65001 instance V6-DSRJ-TO-SPN-IBGP\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1000:174:68:232:128\
+  description "iBGP Session to NEP6DESPN01"\
+ exit\
+ neighbor 2001:578:30:1000:174:68:232:129\
+  description "iBGP Session to NEP6DESPN02"\
+ exit\
+ neighbor 2001:578:30:1000:174:68:232:130\
+  description "iBGP Session to NEP6DESPN13"\
+ exit\
+ neighbor 2001:578:30:1000:174:68:232:131\
+  description "iBGP Session to NEP6DESPN14"\
+ exit\
+exit\
+router bgp 65001 instance V6-IXIA-ROUTES\
+ neighbor 2000::1:30:0:6:1\
+ exit\
+ neighbor 2000::1:30:0:7:1\
+ exit\
+ neighbor 2000::1:30:1:6:1\
+ exit\
+ neighbor 2000::1:30:1:7:1\
+ exit\
+ neighbor 2000::1:30:100:0:2\
+ exit\
+ neighbor 2000::1:30:101:0:2\
+ exit\
+ neighbor 2000::1:30:102:0:2\
+ exit\
+ neighbor 2000::1:30:103:0:2\
+ exit\
+ neighbor 2001:578:30:1000:30:200:200:1\
+ exit\
+ neighbor 2001:578:30:1000:30:255:2:8\
+ exit\
+ neighbor 2001:578:30:1000:30:255:2:a\
+ exit\
+ neighbor 2001:578:30:1000:30:255:2:e\
+ exit\
+ neighbor 2001:578:30:1000:30:255:2:12\
+ exit\
+ neighbor 2001:578:30:1130::2\
+  description "NEP6TSTI03 12.5"\
+ exit\
+ neighbor 2001:578:30:1158::2\
+  description "NEP6TSTI03 8.1"\
+ exit\
+exit\
+router bgp 65001 instance V6-MAPT-TEST-ROUTES-LLD\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1101:30:14:50:7\
+  local address 2001:578:30:1101:30:14:50:6\
+  description "NEP6IXCCAP15020"\
+ exit\
+ neighbor 2001:578:30:1101:30:14:50:11\
+  local address 2001:578:30:1101:30:14:50:10\
+  description "NEP6IXCCAP15110"\
+ exit\
+ neighbor 2001:578:30:1150:30:14:11:1\
+  local address 2001:578:30:1150:30:14:11:0\
+  description "NEP6IXCCAP15000"\
+ exit\
+exit\
+router bgp 65001 instance V6-RR-CLIENTS-CB-FULL-ROUTES\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:6e0f:10:1:131:250\
+  description "PSP6BE1ZBSPA01"\
+ exit\
+ neighbor 2001:578:30:6e0f:10:1:131:251\
+  description "PSP6BE1ZBSPA02"\
+ exit\
+exit\
+router bgp 65001 instance V6-RR-CLIENTS-DEFAULT-ONLY\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1101:174:68:235:176\
+  description "AEP6D1FX01 NTBA1"\
+ exit\
+exit\
+router bgp 65001 instance V6-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1100:30:14:48:11\
+  description "NEP6IXIADR11_NEP6TSTI03:12:05"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:1\
+  description "NEP6HUBC11"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:2\
+  description "NEP6HUBC12"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:3\
+  description "NEP6HUBC13"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:4\
+  description "NEP6HUBC14"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:86\
+  description "NEP6VSRC01.AT.AT"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:87\
+  description "NEP6VSRC02.AT.AT"\
+ exit\
+exit\
+router bgp 65001 instance V6-RR-CLIENTS-FULL-ROUTES\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:1\
+  description "NEP6HUBC11"\
+ exit\
+ neighbor 2001:578:30:1100:174:68:233:2\
+  description "NEP6HUBC11"\
+ exit\
+exit\
+router bgp 65001 instance V6-TEST\
+ address-family ipv6 unicast\
+ exit\
+ neighbor 2001:578:30:1158::1\
+ exit\
+ neighbor 2001:578:30:1158::15\
+ exit\
+exit}

@@ -1,0 +1,1194 @@
+set groups RSVP-OPTIONS protocols rsvp no-node-hello
+set groups RSVP-OPTIONS protocols rsvp interface <*> subscription 92
+set groups MPLS-OPTIONS protocols mpls statistics file mpls.stats
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-BE> priority 7 7
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-EF> priority 2 2
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-AF> priority 4 4
+set groups MPLS-OPTIONS protocols mpls label-switched-path <MVPN*> priority 3 3
+set groups MPLS-OPTIONS-P2MP protocols mpls statistics file mpls.stats
+set groups MPLS-OPTIONS-P2MP protocols mpls label-switched-path <*VIDEO*> priority 3 3
+set groups MPLS-OPTIONS-P2MP protocols mpls label-switched-path <*MCST*> priority 6 6
+set groups MPLS-OPTIONS-P2MP protocols mpls label-switched-path <*> priority 6 6
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 classifiers exp MPLS-CLASSIFY-EXP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 classifiers inet-precedence V4-CLASSIFY-IPP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 rewrite-rules dscp-ipv6 V6-WRITE_WATERMARK-DSCP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 rewrite-rules exp MPLS-WRITE-EXP
+set groups WMK-INTERFACE class-of-service interfaces "<ae[4-7]*>" unit 0 rewrite-rules inet-precedence V4-WRITE-IPP
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[0-9]>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[0-9]>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-9]?>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-9]?>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-4]??>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <*-*> unit "<[1-4]??>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[0-9]>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[0-9]>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-9]?>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-9]?>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-4]??>" family inet filter input V4-DEFAULT_SAMPLE-IN-BB
+set groups INTERFACE-DEFAULT-SAMPLE interfaces <ae*> unit "<[1-4]??>" family inet6 filter input V6-DEFAULT_SAMPLE-IN-BB
+set groups re0 interfaces fxp0 disable
+set groups re1 interfaces fxp0 disable
+set system syslog user * any emergency
+set system syslog host 172.17.1.100 any notice
+set system syslog host 172.17.1.100 authorization info
+set system syslog host 172.17.1.100 daemon info
+set system syslog host 172.17.1.100 kernel error
+set system syslog host 68.1.18.40 any notice
+set system syslog host 68.1.18.40 authorization info
+set system syslog host 68.1.18.40 daemon info
+set system syslog host 68.1.18.40 kernel error
+set system syslog host 172.17.1.103 any notice
+set system syslog host 172.17.1.103 authorization info
+set system syslog host 172.17.1.103 daemon info
+set system syslog host 172.17.1.103 kernel error
+set system syslog host 68.1.19.40 any notice
+set system syslog host 68.1.19.40 authorization info
+set system syslog host 68.1.19.40 daemon info
+set system syslog host 68.1.19.40 kernel error
+set system syslog host 68.1.18.39 any notice
+set system syslog host 68.1.18.39 authorization info
+set system syslog host 68.1.18.39 daemon info
+set system syslog host 68.1.18.39 kernel error
+set system syslog host 172.29.0.11 any notice
+set system syslog host 172.29.0.11 authorization info
+set system syslog host 172.29.0.11 daemon info
+set system syslog host 172.29.0.11 kernel error
+set system syslog host 68.1.19.86 any info
+set system syslog host 184.176.220.121 any info
+set system syslog host 184.176.220.121 interactive-commands notice
+set system syslog host 100.123.115.133 user info
+set system syslog host 100.123.115.133 change-log notice
+set system syslog host 100.123.115.133 interactive-commands notice
+set system syslog host 174.78.111.10 any any
+set system syslog host 98.182.1.182 any notice
+set system syslog host 98.182.1.182 authorization info
+set system syslog host 98.182.1.182 daemon info
+set system syslog host 98.182.1.182 kernel error
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file messages daemon info
+set system syslog file cli-commands interactive-commands any
+set system syslog file firewall firewall any
+set system syslog file default-log-messages any info
+deactivate system syslog file default-log-messages
+set system syslog file lsp-path-changes any notice
+set system syslog file pccd any notice
+set system syslog file rpm-probe any notice
+deactivate chassis fpc 16 sampling-instance IPFIX-INS1
+set security certificates local wildcard.mgt.cox.net "-----BEGIN PRIVATE KEY-----\XXXX\n-----END CERTIFICATE-----\n"
+set interfaces et-0/0/0 gigether-options 802.3ad ae400
+set interfaces et-0/0/1 gigether-options 802.3ad ae400
+set interfaces et-0/0/2 gigether-options 802.3ad ae400
+set interfaces et-0/0/3 gigether-options 802.3ad ae62
+set interfaces et-0/0/6 gigether-options 802.3ad ae61
+set interfaces et-0/0/7 gigether-options 802.3ad ae63
+set interfaces et-0/0/8 gigether-options 802.3ad ae69
+set interfaces et-0/0/9 gigether-options 802.3ad ae400
+set interfaces et-0/1/1 gigether-options 802.3ad ae67
+set interfaces et-0/1/2 gigether-options 802.3ad ae61
+set interfaces et-0/1/3 gigether-options 802.3ad ae72
+set interfaces et-0/1/6 gigether-options 802.3ad ae65
+set interfaces et-0/1/7 gigether-options 802.3ad ae99
+set interfaces et-0/1/8 gigether-options 802.3ad ae99
+set interfaces et-0/1/9 gigether-options 802.3ad ae72
+set interfaces et-2/0/2 gigether-options 802.3ad ae1
+set interfaces et-2/0/3 gigether-options 802.3ad ae1
+set interfaces et-2/0/6 gigether-options 802.3ad ae1
+deactivate interfaces et-2/0/6 gigether-options
+set interfaces et-2/0/7 gigether-options 802.3ad ae1
+set interfaces et-2/1/0 gigether-options 802.3ad ae6
+set interfaces et-2/1/1 gigether-options 802.3ad ae6
+set interfaces et-2/1/2 gigether-options 802.3ad ae6
+set interfaces et-2/1/3 gigether-options 802.3ad ae6
+set interfaces et-2/1/6 gigether-options 802.3ad ae6
+set interfaces et-2/1/7 gigether-options 802.3ad ae6
+set interfaces et-2/1/8 gigether-options 802.3ad ae6
+set interfaces et-2/1/9 gigether-options 802.3ad ae6
+set interfaces et-3/0/0 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-3/0/0 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-3/0/1 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-3/0/1 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-3/0/2 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-3/0/2 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-3/0/3 gigether-options 802.3ad ae63
+set interfaces et-3/0/6 gigether-options 802.3ad ae64
+set interfaces et-3/0/7 gigether-options 802.3ad ae66
+set interfaces et-3/0/8 gigether-options 802.3ad ae61
+set interfaces et-3/0/9 gigether-options 802.3ad ae63
+set interfaces et-3/1/0 gigether-options 802.3ad ae60
+set interfaces et-3/1/1 gigether-options 802.3ad ae61
+set interfaces et-3/1/2 gigether-options 802.3ad ae65
+set interfaces et-3/1/3 gigether-options 802.3ad ae64
+set interfaces et-3/1/6 gigether-options 802.3ad ae62
+set interfaces et-3/1/7 gigether-options 802.3ad ae9
+set interfaces et-3/1/8 gigether-options 802.3ad ae300
+set interfaces et-3/1/9 gigether-options 802.3ad ae300
+set interfaces et-4/0/0 gigether-options 802.3ad ae66
+set interfaces et-4/0/1 gigether-options 802.3ad ae66
+set interfaces et-4/0/2 gigether-options 802.3ad ae60
+set interfaces et-4/0/3 gigether-options 802.3ad ae62
+set interfaces et-4/0/6 gigether-options 802.3ad ae62
+set interfaces et-4/0/7 gigether-options 802.3ad ae67
+set interfaces et-4/0/8 gigether-options 802.3ad ae63
+set interfaces et-4/0/9 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/0/9 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/0 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/1/0 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/1 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/1/1 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/2 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/1/2 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/3 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/1/3 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/6 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/1/6 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/7 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-4/1/7 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-4/1/8 gigether-options 802.3ad ae64
+set interfaces et-4/1/9 gigether-options 802.3ad ae8
+set interfaces et-5/0/0 gigether-options 802.3ad ae400
+set interfaces et-5/0/1 gigether-options 802.3ad ae400
+set interfaces et-5/0/2 gigether-options 802.3ad ae61
+set interfaces et-5/0/3 gigether-options 802.3ad ae67
+set interfaces et-5/0/6 gigether-options 802.3ad ae191
+set interfaces et-5/0/7 gigether-options 802.3ad ae191
+set interfaces et-5/0/8 gigether-options 802.3ad ae191
+set interfaces et-5/0/9 gigether-options 802.3ad ae191
+set interfaces et-5/1/0 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces et-5/1/0 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces et-5/1/1 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces et-5/1/1 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces et-5/1/2 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces et-5/1/2 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces et-5/1/3 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces et-5/1/3 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces et-5/1/6 gigether-options 802.3ad ae66
+set interfaces et-5/1/7 gigether-options 802.3ad ae60
+set interfaces et-5/1/8 gigether-options 802.3ad ae67
+set interfaces et-5/1/9 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-5/1/9 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces xe-6/0/0 unit 152 family inet filter input SERVICE-IN
+set interfaces xe-6/0/0 unit 152 family inet filter output NIP-OUT
+set interfaces xe-6/0/1 gigether-options 802.3ad ae22
+set interfaces xe-6/0/2 gigether-options 802.3ad ae22
+set interfaces xe-6/0/3 gigether-options 802.3ad ae22
+set interfaces xe-6/0/4 gigether-options 802.3ad ae22
+set interfaces xe-6/0/5 gigether-options 802.3ad ae22
+set interfaces xe-6/0/6 gigether-options 802.3ad ae22
+set interfaces xe-6/0/7 gigether-options 802.3ad ae22
+set interfaces xe-6/0/8 gigether-options 802.3ad ae22
+set interfaces xe-6/0/9 gigether-options 802.3ad ae22
+set interfaces xe-6/0/10 gigether-options 802.3ad ae22
+set interfaces xe-6/0/11 gigether-options 802.3ad ae22
+set interfaces xe-6/0/12 gigether-options 802.3ad ae22
+set interfaces xe-6/0/17 gigether-options 802.3ad ae57
+set interfaces xe-6/0/18 gigether-options 802.3ad ae57
+set interfaces xe-6/0/19 gigether-options 802.3ad ae57
+set interfaces xe-6/0/20 gigether-options 802.3ad ae57
+set interfaces xe-6/0/21 gigether-options 802.3ad ae57
+set interfaces xe-6/0/22 gigether-options 802.3ad ae57
+set interfaces xe-6/0/23 unit 0 family inet filter input SYSTEM-IN
+set interfaces xe-6/1/0 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces xe-6/1/0 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces xe-6/1/1 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces xe-6/1/1 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces xe-6/1/2 gigether-options 802.3ad ae33
+set interfaces xe-6/1/3 gigether-options 802.3ad ae23
+set interfaces xe-6/1/4 gigether-options 802.3ad ae24
+set interfaces xe-6/1/5 gigether-options 802.3ad ae25
+set interfaces xe-6/1/6 gigether-options 802.3ad ae26
+set interfaces xe-6/1/7 gigether-options 802.3ad ae301
+set interfaces xe-6/1/8 gigether-options 802.3ad ae301
+set interfaces xe-6/1/9 gigether-options 802.3ad ae301
+set interfaces xe-6/1/10 gigether-options 802.3ad ae301
+set interfaces xe-6/1/11 gigether-options 802.3ad ae301
+set interfaces xe-6/1/12 gigether-options 802.3ad ae301
+set interfaces xe-6/1/13 gigether-options 802.3ad ae20
+set interfaces xe-6/1/14 gigether-options 802.3ad ae16
+set interfaces xe-6/1/15 gigether-options 802.3ad ae16
+set interfaces xe-6/1/16 gigether-options 802.3ad ae17
+set interfaces xe-6/1/17 gigether-options 802.3ad ae17
+set interfaces xe-6/1/20 gigether-options 802.3ad ae59
+set interfaces xe-6/1/21 gigether-options 802.3ad ae59
+set interfaces xe-6/1/22 gigether-options 802.3ad ae58
+set interfaces xe-6/1/23 gigether-options 802.3ad ae58
+set interfaces et-7/0/0 gigether-options 802.3ad ae60
+set interfaces et-7/0/1 gigether-options 802.3ad ae60
+set interfaces et-7/0/2 gigether-options 802.3ad ae60
+set interfaces et-7/0/3 gigether-options 802.3ad ae72
+set interfaces et-7/0/6 gigether-options 802.3ad ae66
+set interfaces et-7/0/7 gigether-options 802.3ad ae66
+set interfaces et-7/0/8 gigether-options 802.3ad ae66
+set interfaces et-7/0/9 gigether-options 802.3ad ae66
+set interfaces et-7/1/0 gigether-options 802.3ad ae74
+set interfaces et-7/1/1 gigether-options 802.3ad ae67
+set interfaces et-7/1/2 gigether-options 802.3ad ae67
+set interfaces et-7/1/3 gigether-options 802.3ad ae60
+set interfaces et-7/1/6 gigether-options 802.3ad ae68
+set interfaces et-7/1/7 gigether-options 802.3ad ae64
+set interfaces et-7/1/8 gigether-options 802.3ad ae60
+set interfaces et-7/1/9 gigether-options 802.3ad ae66
+set interfaces et-8/0/0 gigether-options 802.3ad ae61
+set interfaces et-8/0/1 gigether-options 802.3ad ae61
+set interfaces et-8/0/2 gigether-options 802.3ad ae61
+set interfaces et-8/0/3 gigether-options 802.3ad ae62
+set interfaces et-8/0/6 gigether-options 802.3ad ae62
+set interfaces et-8/0/7 gigether-options 802.3ad ae62
+set interfaces et-8/0/8 gigether-options 802.3ad ae62
+set interfaces et-8/0/9 gigether-options 802.3ad ae62
+set interfaces et-8/1/0 gigether-options 802.3ad ae61
+set interfaces et-8/1/1 gigether-options 802.3ad ae65
+set interfaces et-8/1/2 gigether-options 802.3ad ae65
+set interfaces et-8/1/3 gigether-options 802.3ad ae63
+set interfaces et-8/1/6 gigether-options 802.3ad ae69
+set interfaces et-8/1/7 gigether-options 802.3ad ae62
+set interfaces et-8/1/8 gigether-options 802.3ad ae60
+set interfaces et-8/1/9 gigether-options 802.3ad ae69
+set interfaces et-9/0/0 gigether-options 802.3ad ae64
+set interfaces et-9/0/1 gigether-options 802.3ad ae64
+set interfaces et-9/0/2 gigether-options 802.3ad ae64
+set interfaces et-9/0/3 gigether-options 802.3ad ae64
+set interfaces et-9/0/6 gigether-options 802.3ad ae63
+set interfaces et-9/0/7 gigether-options 802.3ad ae63
+set interfaces et-9/0/8 gigether-options 802.3ad ae63
+set interfaces et-9/0/9 gigether-options 802.3ad ae63
+set interfaces et-9/1/0 gigether-options 802.3ad ae311
+set interfaces et-9/1/1 gigether-options 802.3ad ae312
+set interfaces et-9/1/2 gigether-options 802.3ad ae27
+set interfaces et-9/1/3 gigether-options 802.3ad ae28
+set interfaces et-9/1/6 gigether-options 802.3ad ae300
+set interfaces et-9/1/7 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces et-9/1/7 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces et-9/1/8 gigether-options 802.3ad ae300
+set interfaces et-9/1/9 gigether-options 802.3ad ae64
+set interfaces et-12/0/0 gigether-options 802.3ad ae1
+set interfaces et-12/0/1 gigether-options 802.3ad ae1
+set interfaces et-12/0/2 gigether-options 802.3ad ae1
+set interfaces et-12/0/3 gigether-options 802.3ad ae1
+set interfaces et-12/0/6 gigether-options 802.3ad ae1
+set interfaces et-12/0/7 gigether-options 802.3ad ae1
+set interfaces et-12/0/8 gigether-options 802.3ad ae1
+set interfaces et-12/0/9 gigether-options 802.3ad ae1
+set interfaces et-12/1/0 gigether-options 802.3ad ae1
+set interfaces et-12/1/1 gigether-options 802.3ad ae1
+set interfaces et-12/1/2 gigether-options 802.3ad ae6
+set interfaces et-12/1/6 gigether-options 802.3ad ae1
+set interfaces et-12/1/9 gigether-options 802.3ad ae1
+set interfaces et-13/0/0 gigether-options 802.3ad ae0
+set interfaces et-13/0/1 gigether-options 802.3ad ae0
+set interfaces et-13/0/2 gigether-options 802.3ad ae0
+set interfaces et-13/0/3 gigether-options 802.3ad ae0
+set interfaces et-13/0/6 gigether-options 802.3ad ae0
+set interfaces et-13/0/7 gigether-options 802.3ad ae0
+set interfaces et-13/0/8 gigether-options 802.3ad ae0
+set interfaces et-13/0/9 gigether-options 802.3ad ae0
+set interfaces et-13/1/0 gigether-options 802.3ad ae8
+set interfaces et-13/1/1 gigether-options 802.3ad ae8
+set interfaces et-13/1/2 gigether-options 802.3ad ae8
+set interfaces et-13/1/3 gigether-options 802.3ad ae8
+set interfaces et-13/1/6 gigether-options 802.3ad ae8
+set interfaces et-13/1/7 gigether-options 802.3ad ae8
+set interfaces et-13/1/8 gigether-options 802.3ad ae8
+set interfaces et-13/1/9 gigether-options 802.3ad ae8
+set interfaces et-14/0/0 gigether-options 802.3ad ae1
+set interfaces et-14/0/1 gigether-options 802.3ad ae1
+set interfaces et-14/0/2 gigether-options 802.3ad ae1
+set interfaces et-14/0/3 gigether-options 802.3ad ae1
+set interfaces et-14/0/6 gigether-options 802.3ad ae1
+set interfaces et-14/0/7 gigether-options 802.3ad ae1
+set interfaces et-14/0/8 gigether-options 802.3ad ae1
+set interfaces et-14/0/9 gigether-options 802.3ad ae1
+set interfaces et-14/1/0 gigether-options 802.3ad ae6
+set interfaces et-14/1/1 gigether-options 802.3ad ae6
+set interfaces et-14/1/2 gigether-options 802.3ad ae6
+set interfaces et-14/1/3 gigether-options 802.3ad ae6
+set interfaces et-14/1/6 gigether-options 802.3ad ae6
+set interfaces et-14/1/7 gigether-options 802.3ad ae6
+set interfaces et-14/1/8 gigether-options 802.3ad ae6
+set interfaces et-14/1/9 gigether-options 802.3ad ae6
+set interfaces et-15/0/0 gigether-options 802.3ad ae0
+set interfaces et-15/0/1 gigether-options 802.3ad ae0
+set interfaces et-15/0/2 gigether-options 802.3ad ae0
+set interfaces et-15/0/3 gigether-options 802.3ad ae0
+set interfaces et-15/0/6 gigether-options 802.3ad ae0
+set interfaces et-15/0/7 gigether-options 802.3ad ae0
+set interfaces et-15/0/9 gigether-options 802.3ad ae0
+set interfaces et-15/1/0 gigether-options 802.3ad ae8
+set interfaces et-15/1/1 gigether-options 802.3ad ae8
+set interfaces et-15/1/2 gigether-options 802.3ad ae8
+set interfaces et-15/1/3 gigether-options 802.3ad ae8
+set interfaces et-15/1/6 gigether-options 802.3ad ae8
+set interfaces et-15/1/7 gigether-options 802.3ad ae8
+set interfaces et-15/1/8 gigether-options 802.3ad ae8
+set interfaces et-15/1/9 gigether-options 802.3ad ae8
+set interfaces xe-17/0/0 gigether-options 802.3ad ae33
+set interfaces xe-17/0/1 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces xe-17/0/1 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces xe-17/0/2 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces xe-17/0/2 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces xe-17/0/3 unit 0 family inet filter input MARK-L3VPN-IN
+set interfaces xe-17/0/4 gigether-options 802.3ad ae19
+set interfaces xe-17/0/5 gigether-options 802.3ad ae59
+set interfaces xe-17/0/6 gigether-options 802.3ad ae70
+set interfaces xe-17/0/7 gigether-options 802.3ad ae100
+set interfaces xe-17/0/8 unit 0 family inet filter input WIFI-IN
+set interfaces xe-17/0/9 unit 0 family inet filter input WIFI-IN
+set interfaces xe-17/0/10 gigether-options 802.3ad ae101
+set interfaces xe-17/0/11 gigether-options 802.3ad ae14
+set interfaces xe-17/0/12 gigether-options 802.3ad ae14
+set interfaces xe-17/0/13 gigether-options 802.3ad ae19
+set interfaces xe-17/0/14 unit 31 family inet filter input LDCO-VOIP
+set interfaces xe-17/0/14 unit 32 family inet filter input LDCO-VOIP
+set interfaces xe-17/0/14 unit 89 family inet filter input MARK-TOS
+set interfaces xe-17/0/14 unit 99 family inet filter input SERVICE-IN
+set interfaces xe-17/0/14 unit 175 family inet filter input MARK-TOS
+set interfaces xe-17/0/14 unit 176 family inet filter input MARK-TOS
+set interfaces xe-17/0/15 gigether-options 802.3ad ae15
+set interfaces xe-17/0/16 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces xe-17/0/16 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces xe-17/0/18 gigether-options 802.3ad ae10
+set interfaces xe-17/0/19 gigether-options 802.3ad ae10
+set interfaces xe-17/0/20 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces xe-17/0/20 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces xe-17/0/21 gigether-options 802.3ad ae59
+set interfaces xe-17/0/22 gigether-options 802.3ad ae57
+set interfaces xe-17/0/23 gigether-options 802.3ad ae59
+set interfaces xe-17/1/0 gigether-options 802.3ad ae50
+set interfaces xe-17/1/1 gigether-options 802.3ad ae50
+set interfaces xe-17/1/2 gigether-options 802.3ad ae50
+set interfaces xe-17/1/3 gigether-options 802.3ad ae50
+set interfaces xe-17/1/4 gigether-options 802.3ad ae57
+set interfaces xe-17/1/5 unit 0 family inet filter output PROTECT-CDN-EDGE
+set interfaces xe-17/1/5 unit 0 family inet6 filter output PROTECT-CDN-EDGE-V6
+set interfaces xe-17/1/7 unit 0 family inet filter output PROTECT-WCDN-CRS
+set interfaces xe-17/1/7 unit 0 family inet6 filter output PROTECT-WCDN-CRSV6
+set interfaces xe-17/1/9 gigether-options 802.3ad ae57
+set interfaces xe-17/1/10 gigether-options 802.3ad ae23
+set interfaces xe-17/1/11 gigether-options 802.3ad ae24
+set interfaces xe-17/1/12 gigether-options 802.3ad ae25
+set interfaces xe-17/1/13 gigether-options 802.3ad ae59
+set interfaces xe-17/1/14 gigether-options 802.3ad ae59
+set interfaces xe-17/1/15 gigether-options 802.3ad ae26
+set interfaces xe-17/1/17 gigether-options 802.3ad ae52
+set interfaces xe-17/1/18 gigether-options 802.3ad ae52
+set interfaces xe-17/1/21 gigether-options 802.3ad ae20
+set interfaces xe-18/0/3 gigether-options 802.3ad ae41
+deactivate interfaces xe-18/0/3
+set interfaces et-19/0/0 gigether-options 802.3ad ae62
+set interfaces et-19/0/1 gigether-options 802.3ad ae64
+set interfaces xe-19/0/6 gigether-options 802.3ad ae41
+deactivate interfaces xe-19/0/6
+set interfaces xe-19/0/7 gigether-options 802.3ad ae41
+deactivate interfaces xe-19/0/7
+set interfaces xe-19/0/8 gigether-options 802.3ad ae41
+deactivate interfaces xe-19/0/8
+set interfaces xe-19/0/9 gigether-options 802.3ad ae41
+deactivate interfaces xe-19/0/9
+set interfaces xe-19/0/10 gigether-options 802.3ad ae41
+deactivate interfaces xe-19/0/10
+set interfaces xe-19/0/11 gigether-options 802.3ad ae41
+deactivate interfaces xe-19/0/11
+set interfaces xe-19/1/4 gigether-options 802.3ad ae40
+set interfaces ae0 unit 1 family inet filter input INTERCONNECT-IN
+set interfaces ae14 unit 1062 family inet filter input SERVICE-IN
+set interfaces ae15 unit 0 family inet filter input MARK-LOCAL-VIDEO
+set interfaces ae16 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces ae16 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces ae17 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces ae17 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+deactivate interfaces ae19 unit 44
+set interfaces ae19 unit 46 family inet6 filter input MARK-STB-SESSION-SETUP
+deactivate interfaces ae19 unit 46
+set interfaces ae19 unit 52 family inet filter input SERVICE-IN
+set interfaces ae19 unit 52 family inet filter output DNS-PROTECT
+set interfaces ae19 unit 52 family inet6 filter input SERVICE-INV6
+set interfaces ae19 unit 52 family inet6 filter output DNS6-PROTECT
+deactivate interfaces ae19 unit 52
+set interfaces ae19 unit 53 family inet filter input SERVICE-IN
+set interfaces ae19 unit 53 family inet filter output DNS-PROTECT
+set interfaces ae19 unit 53 family inet6 filter input SERVICE-INV6
+set interfaces ae19 unit 53 family inet6 filter output DNS6-PROTECT
+deactivate interfaces ae19 unit 53
+deactivate interfaces ae19 unit 67
+set interfaces ae19 unit 81 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 81
+set interfaces ae19 unit 82 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 82
+set interfaces ae19 unit 93 family inet6 filter input PROVTOOLSv6-IN
+set interfaces ae19 unit 93 family inet6 filter output PROVTOOLSv6-OUT
+deactivate interfaces ae19 unit 93
+set interfaces ae19 unit 98 family inet filter output dns-protect
+deactivate interfaces ae19 unit 98
+set interfaces ae19 unit 99 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 99
+set interfaces ae19 unit 100 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 100
+set interfaces ae19 unit 117 family inet filter output Brix
+deactivate interfaces ae19 unit 117
+deactivate interfaces ae19 unit 123
+deactivate interfaces ae19 unit 129
+set interfaces ae19 unit 130 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 130
+set interfaces ae19 unit 143 family inet filter input vrrp_limit_1m
+set interfaces ae19 unit 143 family inet filter output PROTECT-WCDN-CRS
+set interfaces ae19 unit 143 family inet6 filter output PROTECT-WCDN-CRSV6
+set interfaces ae19 unit 144 family inet filter input CGN-IN
+deactivate interfaces ae19 unit 144
+set interfaces ae19 unit 150 family inet filter input MARK-NeuStar
+set interfaces ae19 unit 166 family inet filter output PROTECT-WCDN-VHST
+set interfaces ae19 unit 174 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 174
+set interfaces ae19 unit 191 family inet filter input WEB-NMS-POLLERS-V4-IN
+set interfaces ae19 unit 191 family inet filter output WEB-NMS-POLLERS-V4-OUT
+set interfaces ae19 unit 191 family inet6 filter input WEB-NMS-POLLERS-V6-IN
+set interfaces ae19 unit 191 family inet6 filter output WEB-NMS-POLLERS-V6-OUT
+deactivate interfaces ae19 unit 191
+set interfaces ae19 unit 192 family inet filter input WEB-NMS-POLLERS-V4-IN
+set interfaces ae19 unit 192 family inet filter output WEB-NMS-POLLERS-V4-OUT
+set interfaces ae19 unit 192 family inet6 filter input WEB-NMS-POLLERS-V6-IN
+set interfaces ae19 unit 192 family inet6 filter output WEB-NMS-POLLERS-V6-OUT
+deactivate interfaces ae19 unit 192
+deactivate interfaces ae19 unit 202
+deactivate interfaces ae19 unit 246
+deactivate interfaces ae19 unit 290
+deactivate interfaces ae19 unit 293
+set interfaces ae19 unit 294 family inet filter input V4-PROTECT-DMZ-MGMT-IN
+set interfaces ae19 unit 294 family inet filter output V4-PROTECT-DMZ-MGMT-OUT
+set interfaces ae19 unit 294 family inet6 filter input V6-PROTECT-DMZ-MGMT-IN
+set interfaces ae19 unit 294 family inet6 filter output V6-PROTECT-DMZ-MGMT-OUT
+deactivate interfaces ae19 unit 294
+set interfaces ae19 unit 295 family inet filter input V4-PROTECT-SHARED-SERVICE-MGMT-IN
+set interfaces ae19 unit 295 family inet filter output V4-PROTECT-SHARED-SERVICE-MGMT-OUT
+set interfaces ae19 unit 295 family inet6 filter input V6-PROTECT-SHARED-SERVICE-MGMT-IN
+set interfaces ae19 unit 295 family inet6 filter output V6-PROTECT-SHARED-SERVICE-MGMT-OUT
+deactivate interfaces ae19 unit 295
+deactivate interfaces ae19 unit 296
+set interfaces ae19 unit 299 family inet filter input SERVICE-IN
+deactivate interfaces ae19 unit 299
+deactivate interfaces ae19 unit 300
+deactivate interfaces ae19 unit 302
+set interfaces ae19 unit 499 family inet filter output TMS-MANAGEMENT
+deactivate interfaces ae19 unit 3862
+deactivate interfaces ae19 unit 3863
+deactivate interfaces ae19 unit 3864
+set interfaces ae191 unit 125 family inet filter input SYSTEM-IN
+set interfaces ae191 unit 125 family inet6 filter input SYSTEMV6-IN
+set interfaces ae20 unit 294 family inet filter input V4-PROTECT-DMZ-MGMT-IN
+set interfaces ae20 unit 294 family inet filter output V4-PROTECT-DMZ-MGMT-OUT
+set interfaces ae20 unit 294 family inet6 filter input V6-PROTECT-DMZ-MGMT-IN
+set interfaces ae20 unit 294 family inet6 filter output V6-PROTECT-DMZ-MGMT-OUT
+set interfaces ae20 unit 295 family inet filter input V4-PROTECT-SHARED-SERVICE-MGMT-IN
+set interfaces ae20 unit 295 family inet filter output V4-PROTECT-SHARED-SERVICE-MGMT-OUT
+set interfaces ae20 unit 295 family inet6 filter input V6-PROTECT-SHARED-SERVICE-MGMT-IN
+set interfaces ae20 unit 295 family inet6 filter output V6-PROTECT-SHARED-SERVICE-MGMT-OUT
+deactivate interfaces ae20 unit 296 family inet6 address 2001:578:6:1004:174:78:217:66/64
+deactivate interfaces ae21
+set interfaces ae23 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces ae23 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces ae24 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces ae24 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces ae25 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces ae25 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces ae26 unit 0 family inet filter output PROTECT-CDN-MID
+set interfaces ae26 unit 0 family inet6 filter output PROTECT-CDN-MID-V6
+set interfaces ae300 unit 125 family inet filter input SYSTEM-IN
+set interfaces ae300 unit 125 family inet6 filter input SYSTEMV6-IN
+set interfaces ae301 unit 0 family inet filter input V4-WIFI-IN
+set interfaces ae33 unit 0 family inet filter input MARK-V2B-VIDEO
+set interfaces ae40 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae40 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae400 unit 0 family inet filter input EDGE-IN
+set interfaces ae400 unit 0 family inet filter output EDGE-OUT
+set interfaces ae400 unit 0 family inet6 filter input EDGE-INv6
+set interfaces ae400 unit 0 family inet6 filter output EDGE-OUTv6
+set interfaces ae41 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae41 unit 0 family inet6 filter input SYSTEMV6-IN
+deactivate interfaces ae41
+set interfaces ae50 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae50 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae52 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae52 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae57 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae57 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae58 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae58 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae59 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae59 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae60 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae60 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae61 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae61 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae62 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae62 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae63 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae63 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae64 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae64 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae65 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae65 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae66 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae66 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae67 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae67 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae68 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae68 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae69 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae69 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae72 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae72 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae74 unit 0 family inet filter input SYSTEM-IN
+set interfaces ae74 unit 0 family inet6 filter input SYSTEMV6-IN
+set interfaces ae99 unit 10 family inet filter input MARK-LOCAL-VIDEO
+set interfaces lo0 unit 0 family inet filter input V4-PROTECT_RE-IN-BB
+set interfaces lo0 unit 0 family inet6 filter input V6-PROTECT_RE-IN-BB
+set interfaces lo0 unit 1 family inet filter input V4-PROTECT_RE-IN-BB
+set interfaces lo0 unit 2 family inet filter input V4-PROTECT_RE-IN-BB
+set interfaces rlt0 unit 1 family inet filter output PROTECT-BB-CLOUD
+set snmp stats-cache-lifetime 60
+set snmp trap-options source-address 172.17.248.54
+set forwarding-options sampling instance IPFIX-INS1 family inet output flow-server 98.173.128.23 version-ipfix template V4-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet output flow-server 100.120.87.217 version-ipfix template V4-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet6 output flow-server 98.173.128.23 version-ipfix template V6-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family inet6 output flow-server 100.120.87.217 version-ipfix template V6-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family mpls output flow-server 98.173.128.23 version-ipfix template MPLS-FM-TEMPLATE
+set forwarding-options sampling instance IPFIX-INS1 family mpls output flow-server 100.120.87.217 version-ipfix template MPLS-FM-TEMPLATE
+set event-options policy disable_sbe_report within 20 trigger 1
+deactivate routing-options rib inet6.0 static route 2001:578:6:1002::/64
+set routing-options rib inet6.0 aggregate defaults metric 0
+set routing-options rib inet6.0 aggregate route 2001:578:6::/48 preference 5
+deactivate routing-options static route 184.188.10.3/32
+deactivate routing-options static route 184.188.10.4/32
+deactivate routing-options static route 98.180.128.0/20
+deactivate routing-options static route 184.176.59.24/29
+deactivate routing-options static route 100.80.1.0/24
+set routing-options aggregate defaults metric 0
+set routing-options aggregate defaults as-path aggregator 22773 172.17.248.54
+set routing-options autonomous-system 22773
+set routing-options dynamic-tunnels OS-GRE source-address 172.17.248.54
+set routing-options dynamic-tunnels OS-GRE gre
+set routing-options dynamic-tunnels OS-GRE destination-networks 100.123.194.0/24
+set protocols mpls admin-groups AT-P2MP-EXCLUDE 16
+set protocols mpls admin-groups SD-P2MP-EXCLUDE 17
+set protocols mpls admin-groups DTCR-EXCLUDE 18
+set protocols mpls label-switched-path CHNDDSRJ01-NWSTDSRJ01-AF traceoptions file chnd-nwst-lsp-logs
+set protocols mpls label-switched-path MVPN-LSP-TEMPLATE-MCST bandwidth 5m
+set protocols mpls label-switched-path V2B-INCLUSIVE-TEMPLATE bandwidth 15g
+protect protocols bgp group SHAM
+set protocols bgp group V4-PE-TO-PE-FULLMESH family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group V4-PE-TO-PE-FULLMESH family inet6 labeled-unicast rib-group ARBOR_TMS_ONRAMP_RIB_IPV6
+set protocols bgp group CB-WIFI-RR-CLIENTS family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group CB-WIFI-RR-CLIENTS neighbor 72.215.228.113 family inet any prefix-limit teardown 65
+deactivate protocols bgp group CB-WIFI-RR-CLIENTS neighbor 72.215.228.113
+set protocols bgp group CB-WIFI-RR-CLIENTS neighbor 72.215.228.114 family inet any prefix-limit teardown 65
+deactivate protocols bgp group CB-WIFI-RR-CLIENTS neighbor 72.215.228.114
+set protocols bgp group CB-WIFI-RR-CLIENTS neighbor 72.215.228.115 family inet any prefix-limit teardown 65
+set protocols bgp group CB-WIFI-RR-CLIENTS neighbor 72.215.228.116 family inet any prefix-limit teardown 65
+set protocols bgp group V4-RR-CLIENTS-FULL-ROUTES family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group V4-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group V4-RR-CLIENTS-DEFAULT-ONLY family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group V4-CB-CLIENTS family inet any prefix-limit teardown 80
+set protocols bgp group V6-CB-CLIENTS family inet6 any prefix-limit teardown 80
+deactivate protocols bgp group CB-LABELED-UNICAST
+set protocols bgp group V4-NTP-SVCS family inet unicast prefix-limit teardown 65
+deactivate protocols bgp group V4-NTP-SVCS
+deactivate protocols bgp group V6-NTP-SVCS
+deactivate protocols bgp group V6-DSRJ-TO-SPN-IBGP neighbor 2001:578:116:1113:100:118:191:129
+deactivate protocols bgp group V6-DSRJ-TO-SPN-IBGP neighbor 2001:578:116:1113:100:118:191:130
+set protocols bgp group V4-RR-CLIENTS-CB-FULL-ROUTES family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group V4-RR-DNS-CLIENTS family inet unicast rib-group ARBOR_TMS_ONRAMP_RIB
+set protocols bgp group V4-RR-DNS-CLIENTS family inet any prefix-limit teardown 65
+deactivate protocols bgp group V4-RR-DNS-CLIENTS
+set protocols bgp group V6-RR-DNS-CLIENTS family inet6 unicast prefix-limit teardown 65
+deactivate protocols bgp group V6-RR-DNS-CLIENTS
+deactivate protocols bgp group V4-DATA-FIREWALL
+deactivate protocols bgp group V6-DATA-FIREWALL
+set protocols bgp group ARBOR-DDOS neighbor 68.111.110.162 family inet unicast prefix-limit teardown idle-timeout 120
+set protocols bgp group ARBOR-DDOS neighbor 68.111.110.162 family inet6 unicast prefix-limit teardown idle-timeout 120
+deactivate protocols bgp group ARBOR-DDOS neighbor 68.111.110.162
+set protocols bgp group ARBOR-DDOS neighbor 68.111.110.164 family inet unicast prefix-limit teardown idle-timeout 120
+set protocols bgp group ARBOR-DDOS neighbor 68.111.110.164 family inet6 unicast prefix-limit teardown idle-timeout 120
+set protocols bgp group V4-DSR-TO-LOCAL-TRANSIT family inet unicast prefix-limit teardown 90
+set protocols bgp group V6-DSR-TO-LOCAL-TRANSIT family inet6 unicast prefix-limit teardown 80
+set protocols isis suppress-attached-bit
+set protocols oam ethernet link-fault-management quick-transmit-threshold-interval 300ms
+
+
+set policy-options policy-statement ARBOR-out term MARKET-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement ARBOR-out term MARKET-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement ARBOR-out term STATIC_and_DIRECT then metric 0
+set policy-options policy-statement CONDITIONAL-ACCESS-L3VPN-EXPORT term ACCEPT-CONDITIONAL-ACCESS-V4 then local-preference 170
+set policy-options policy-statement CONDITIONAL-ACCESS-L3VPN-EXPORT term ACCEPT-CONDITIONAL-ACCESS-V6 then local-preference 170
+set policy-options policy-statement DMZ-L3VPN-EXPORT term ACCEPT-DMZ-V4 then local-preference 170
+set policy-options policy-statement DMZ-L3VPN-EXPORT term ACCEPT-DMZ-V6 then local-preference 170
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement DMZ-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement DNS-ANYCAST-ACCEPT-V4 term DNS-ANYCAST-V4 then local-preference 130
+set policy-options policy-statement DNS-ANYCAST-ACCEPT-V6 term DNS-ANYCAST-V6 then local-preference 130
+set policy-options policy-statement LDCO-BGP-IN term VoIP-MGMT-PRIMARY then local-preference 130
+set policy-options policy-statement LDCO-BGP-IN term VoIP-MGMT-BACKUP then local-preference 125
+set policy-options policy-statement LDCO-BGP-IN term VoIP-SIG-PRIMARY then local-preference 130
+set policy-options policy-statement LDCO-BGP-IN term VoIP-SIG-BACKUP then local-preference 125
+set policy-options policy-statement MIS-L3VPN-EXPORT term ACCEPT-MIS-V4 then local-preference 170
+set policy-options policy-statement MIS-L3VPN-EXPORT term ACCEPT-MIS-V6 then local-preference 170
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement MIS-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement MIS-LOCAL-IN term SET-LOCAL-PREF-170 then local-preference 170
+set policy-options policy-statement MIS-LOCAL-IN term med-0 then metric 0
+set policy-options policy-statement MVPN-BGP-IN term CHND_SOURCE then local-preference 130
+set policy-options policy-statement MVPN-BGP-IN term MCDL_SOURCE then local-preference 130
+set policy-options policy-statement MVPN-BGP-IN term UNIONHILL_SOURCE then local-preference 130
+set policy-options policy-statement OOB-L3VPN-EXPORT term ACCEPT-OOB-V4 then local-preference 170
+set policy-options policy-statement OOB-L3VPN-EXPORT term ACCEPT-OOB-V6 then local-preference 170
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement OOB-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement PHX-WIFI-BGP-IN term WIFI-ACCEPT then metric 0
+set policy-options policy-statement PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-OUT term PRIMARY-FEED-A then metric 22000
+set policy-options policy-statement PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-OUT term SECONDARY-FEED-B then next-hop 172.29.193.168
+set policy-options policy-statement PRIMARY-A-SECONDARY-B-V2B-MVPN-SOURCE-BGP-IN term CHND-LOCAL-CONTENT-FEED-B then local-preference 130
+set policy-options policy-statement SHARED-SERVICE-L3VPN-EXPORT term ACCEPT-SHARED-SERVICE-V4 then local-preference 170
+set policy-options policy-statement SHARED-SERVICE-L3VPN-EXPORT term ACCEPT-SHARED-SERVICE-V6 then local-preference 170
+set policy-options policy-statement SHARED-SERVICE-L3VPN-IMPORT-LP term LP150 then local-preference 150
+set policy-options policy-statement SHARED-SERVICE-L3VPN-IMPORT-LP term LP140 then local-preference 140
+set policy-options policy-statement SHARED-SERVICE-L3VPN-IMPORT-LP term LP130 then local-preference 130
+set policy-options policy-statement SHARED-SERVICE-L3VPN-IMPORT-LP term LP120 then local-preference 120
+set policy-options policy-statement SHARED-SERVICE-L3VPN-IMPORT-LP term LP110 then local-preference 110
+set policy-options policy-statement SHARED-SERVICE-L3VPN-IMPORT-LP term LP100 then local-preference 100
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS_LOCAL_DIRECT then local-preference 500
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS then local-preference 500
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS_LOCAL then local-preference 500
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS_RDC then local-preference 510
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS_V6 then local-preference 500
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS_LOCAL_V6 then local-preference 500
+set policy-options policy-statement TMS_ROUTES_IN term ACCEPT_TMS_RDC_V6 then local-preference 510
+set policy-options policy-statement V4-CB-MGMT-IN term CB-MGMT-PREFIXES then local-preference 130
+set policy-options policy-statement V4-CB-MGMT-IN term CB-GNE-MGMT-PREFIXES then local-preference 130
+set policy-options policy-statement V4-DATA-FIREWALL-BGP-IN term DATA-FW-ROUTES then local-preference 170
+set policy-options policy-statement V4-DEEPFIELD-EXPORT term MARKET-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement V4-DEEPFIELD-EXPORT term MARKET-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement V4-DEEPFIELD-EXPORT term STATIC_and_DIRECT then metric 0
+set policy-options policy-statement V4-DSR-TO-RCR-EXPORT-POLICY term MARKET-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement V4-DSR-TO-RCR-EXPORT-POLICY term MARKET-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-LOCAL-AGGREGATES then metric 15
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-EXACT-AGGREGATES then metric 15
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-LOCAL-CB-BGP then metric 15
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-LOCAL-RCC-BGP then metric 15
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-VALID-ACCEPT-TRANSIT-PREFIXES then metric 0
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-VALID-ACCEPT-TRANSIT-PREFIXES then local-preference 110
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-UNKNOWN-ACCEPT-TRANSIT-PREFIXES then metric 0
+set policy-options policy-statement V4-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-UNKNOWN-ACCEPT-TRANSIT-PREFIXES then local-preference 110
+set policy-options policy-statement V4-GLOBAL-DATA-FIREWALL-IN term DATA-FIREWALL then metric 0
+set policy-options policy-statement V4-GLOBAL-DATA-FIREWALL-IN term DATA-FIREWALL then local-preference 130
+deactivate policy-options policy-statement V4-GLOBAL-TO-ITEGRESSFW-OUT term MAINTENANCE then reject
+set policy-options policy-statement V4-ITL3VPN-TO-EGRESSFW-IN term ACCEPT-DEFAULT then local-preference 170
+set policy-options policy-statement V4-OOB-NETWORK-IN term OOB-NETWORK-IN then local-preference 170
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term LEGACY-LOCAL-DNS-ANYCAST-V4 then local-preference 110
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term ATL-DNS-ANYCAST-V4 then local-preference 110
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term ATL-DNS-ANYCAST-V6 then local-preference 110
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term MRKT-EXACT-AGGREGATE then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term MRKT-EXACT-AGGREGATE then local-preference 130
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term MARKET-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term MARKET-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term LOCAL-CB then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term STATIC_and_DIRECT-Internal then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term STATIC_and_DIRECT-IT then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term Local-to-BGPv6 then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term LD-Routes then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term VOIP-Routes then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term BGP-VOIP-Routes then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term CDN-Routes then metric 0
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term RCC-STACKPATH-ANYCAST then local-preference 130
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term RCC-TRAFFIC-STEERING then local-preference 110
+set policy-options policy-statement V4-PE-TO-PE-FULLMESH-EXPORT term LOCAL-BGP-CB then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-LOCAL-L3VPN-ROUTES then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-TRANS-DATA-RESIDENTIAL then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-TRANS-DATA-RESIDENTIAL then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-BUSINESS then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-BUSINESS then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-VOIP-BUSINESS then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-VOIP-BUSINESS then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-VOIP-RESIDENTIAL-PRIVATE then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-VOIP-RESIDENTIAL-PRIVATE then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-CABLE-MODEM-MGMT then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-CABLE-MODEM-MGMT then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-MGMT-CENTRAL-SERVICES then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-MGMT-CENTRAL-SERVICES then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-WIFI-BACKUP then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-WIFI-BACKUP then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-RDC-INTERNAL-ROUTES then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-RDC-INTERNAL-ROUTES then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-LOCAL-MCAST-ROUTES then metric 0
+set policy-options policy-statement V4-RR-BGP-IN term MRKT-LOCAL-MCAST-ROUTES then local-preference 130
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then local-preference 90
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then local-preference 110
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then local-preference 120
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then metric 0
+set policy-options policy-statement V4-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then local-preference 125
+set policy-options policy-statement V4-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES-EXPORT term MARKET-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement V4-RR-CLIENTS-DEFAULT-PLUS-LOCAL-ROUTES-EXPORT term MARKET-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term STATIC_and_DIRECT then metric 0
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term STATIC_and_DIRECT then local-preference 130
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term STATIC_and_DIRECT_LOCAL_ONLY then metric 0
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term STATIC_and_DIRECT_LOCAL_ONLY then local-preference 130
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term STATIC then metric 0
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term STATIC then local-preference 130
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term MARKET-AGGREGATE-ROUTES then metric 0
+set policy-options policy-statement V4-RR-FULL-ROUTES-EXPORT term MARKET-AGGREGATE-ROUTES then local-preference 130
+set policy-options policy-statement V4-SHARED-SERVICE-CIENA-IN term CIENA-SS-ACCEPT then local-preference 170
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term CGNAT-PUBLIC-PREFIXES-LP130 then metric 0
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term CGNAT-PUBLIC-PREFIXES-LP130 then local-preference 130
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term PRIMARY-WAG-LP110 then metric 0
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term PRIMARY-WAG-LP110 then local-preference 110
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term BACKUP-WAG-1-LP100 then metric 0
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term BACKUP-WAG-1-LP100 then local-preference 100
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term BACKUP-WAG-2-LP90 then metric 0
+set policy-options policy-statement V4-WAG-WIFI-BGP-IN term BACKUP-WAG-2-LP90 then local-preference 90
+set policy-options policy-statement V6-CB-MGMT-IN term CB-MGMT-PREFIXES then local-preference 130
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-LOCAL-AGGREGATESv6 then metric 15
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-LOCAL-CBv6-BGP then metric 15
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-EXPORT term ACCEPT-LOCAL-RCCv6-BGP then metric 15
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-VALID-ACCEPT-TRANSIT-PREFIXES then metric 0
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-VALID-ACCEPT-TRANSIT-PREFIXES then local-preference 110
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-UNKNOWN-ACCEPT-TRANSIT-PREFIXES then metric 0
+set policy-options policy-statement V6-DSR-TO-TELIA-LOCAL-TRANSIT-IMPORT term RPKI-UNKNOWN-ACCEPT-TRANSIT-PREFIXES then local-preference 110
+set policy-options policy-statement V6-GLOBAL-DATA-FIREWALL-IN term DATA-FIREWALL then metric 0
+set policy-options policy-statement V6-GLOBAL-DATA-FIREWALL-IN term DATA-FIREWALL then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-AGGREGATE then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-AGGREGATE then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-ANNOUNCED then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-BUSINESS-ANNOUNCED then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-DATA-RESIDENTIAL then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-INFRASTRUCTURE then metric 0
+set policy-options policy-statement V6-RR-BGP-IN term MRKT-INFRASTRUCTURE then local-preference 130
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-90 then local-preference 90
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-110 then local-preference 110
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term BACKUP-Routes then local-preference 125
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then metric 0
+set policy-options policy-statement V6-RR-BGP-IN-IMPORT-OPTIONS term SET-LOCAL-PREF-120 then local-preference 120
+set policy-options policy-statement iBGP-ARBOR-OUT term AGGREGATE-Primary then local-preference 130
+set policy-options policy-statement iBGP-ARBOR-OUT term AGGREGATE-Backup then local-preference 125
+set policy-options policy-statement iBGP-ARBOR-OUT term AGGREGATE-Internal then local-preference 100
+set policy-options policy-statement iBGP-ARBOR-OUT term STATIC_and_DIRECT-Internal then metric 0
+set policy-options policy-statement iBGP-ARBOR-OUT term LD-Routes then metric 0
+set policy-options as-path DENY-ASN->25 ".{26,}"
+set policy-options as-path PHOENIX-EBGP-AS "6298 .*"
+set policy-options condition DSR-BBR-LINK-UP if-route-exists 68.1.5.210/31
+set policy-options condition GRANDMASTER-CLT-VIP if-route-exists 2001:578:6:1004::1/128
+set policy-options condition GRANDMASTER-SRV-VIP if-route-exists 2001:578:6:1003::1/128
+set class-of-service code-point-aliases dscp-ipv6 BEST-EFFORT-BE 000000
+set class-of-service code-point-aliases dscp-ipv6 NON-REAL-TIME-AF11 001000
+set class-of-service code-point-aliases dscp-ipv6 INTERACTIVE-AF21 010000
+set class-of-service code-point-aliases dscp-ipv6 REAL-TIME-AF31 011000
+set class-of-service code-point-aliases dscp-ipv6 VIDEO-AF41 100000
+set class-of-service code-point-aliases dscp-ipv6 VOICE-EF 101000
+set class-of-service code-point-aliases dscp-ipv6 NETWORK-CONTROL-NC 110000
+set class-of-service code-point-aliases dscp-ipv6 INTERACTIVE-WMK-AF32 011100
+set class-of-service code-point-aliases exp BEST-EFFORT-BE 000
+set class-of-service code-point-aliases exp NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases exp INTERACTIVE-AF21 010
+set class-of-service code-point-aliases exp REAL-TIME-AF31 011
+set class-of-service code-point-aliases exp VIDEO-AF41 100
+set class-of-service code-point-aliases exp VOICE-EF 101
+set class-of-service code-point-aliases exp NETWORK-CONTROL-NC1 110
+set class-of-service code-point-aliases ieee-802.1 BEST-EFFORT-BE 000
+set class-of-service code-point-aliases ieee-802.1 NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases ieee-802.1 INTERACTIVE-AF21 010
+set class-of-service code-point-aliases ieee-802.1 REAL-TIME-AF31 011
+set class-of-service code-point-aliases ieee-802.1 VIDEO-AF41 100
+set class-of-service code-point-aliases ieee-802.1 VOICE-EF 101
+set class-of-service code-point-aliases ieee-802.1 NETWORK-CONTROL-NC 110
+set class-of-service code-point-aliases inet-precedence BEST-EFFORT-BE 000
+set class-of-service code-point-aliases inet-precedence NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases inet-precedence INTERACTIVE-AF21 010
+set class-of-service code-point-aliases inet-precedence REAL-TIME-AF31 011
+set class-of-service code-point-aliases inet-precedence VIDEO-AF41 100
+set class-of-service code-point-aliases inet-precedence VOICE-EF 101
+set class-of-service code-point-aliases inet-precedence NETWORK-CONTROL-NC1 110
+set class-of-service forwarding-classes queue 0 BEST-EFFORT
+set class-of-service forwarding-classes queue 1 NON-REAL-TIME
+set class-of-service forwarding-classes queue 2 INTERACTIVE
+set class-of-service forwarding-classes queue 3 REAL-TIME
+set class-of-service forwarding-classes queue 4 VIDEO
+set class-of-service forwarding-classes queue 5 VOICE
+set class-of-service forwarding-classes queue 6 NETWORK-CONTROL
+set class-of-service interfaces et-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces et-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces et-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces et-*/*/* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces et-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces et-*/*/* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces ge-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ge-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces ge-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces ge-*/*/* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces ge-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ge-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces ge-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces ge-*/*/* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces xe-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces xe-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces xe-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces xe-*/*/* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces xe-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces xe-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces xe-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces xe-*/*/* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces xe-17/0/3 scheduler-map BB-QOS-POLICY
+set class-of-service interfaces xe-17/0/3 unit 0 classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces xe-17/0/3 unit 0 classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ae* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ae* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces ae* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces ae* unit * classifiers ieee-802.1 L2-CLASSIFY-DOT1P
+set class-of-service interfaces ae* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ae* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces ae* unit * rewrite-rules exp MPLS-WRITE-EXP protocol mpls-any
+set class-of-service interfaces ae* unit * rewrite-rules inet-precedence V4-WRITE-IPP
+set class-of-service interfaces ae0 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae19 scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ae40 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae41 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae43 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae47 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae50 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae52 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae55 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae57 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae58 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae59 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae60 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae62 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae63 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae64 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae65 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae66 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae67 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae68 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae69 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae72 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae74 scheduler-map MRKT-QOS-POLICY
+set class-of-service interfaces ae99 scheduler-map MRKT-QOS-POLICY
+set class-of-service routing-instances all classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER drop-profile-map loss-priority any protocol any drop-profile RED-BEST-EFFORT
+set firewall filter SYSTEM-IN term REDIRECTED-TO-CGN-1 then routing-instance FWD-TO-CGN-1
+deactivate firewall filter SYSTEM-IN term permitted-icmp-types then policer
+set firewall filter INTERCONNECT-IN term REDIRECTED-TO-CGN-1 then routing-instance FWD-TO-CGN-1
+set firewall filter WIFI-IN term REDIRECTED-TO-CGN-1 then routing-instance FWD-TO-CGN-1
+set firewall filter EDGE-IN term tms-dns-redirect then routing-instance FWD-TO-TMS
+set firewall filter EDGE-IN term tms-blackhole-redirect then routing-instance FWD-TO-TMS
+set routing-instances ARBOR_TMS_VR instance-type virtual-router
+set routing-instances ARBOR_TMS_VR interface ae21.498
+set routing-instances ARBOR_TMS_VR interface ae22.498
+set routing-instances CHNDJ1-IDRAC-L3VPN instance-type vrf
+set routing-instances CHNDJ1-IDRAC-L3VPN interface ae19.67
+set routing-instances CHNDJ1-IDRAC-L3VPN route-distinguisher 90:15
+set routing-instances CHNDJ1-IDRAC-L3VPN vrf-target target:22773:15
+set routing-instances CHNDJ1-IDRAC-L3VPN vrf-table-label
+set routing-instances CHNDJ1-IDRAC-L3VPN routing-options multipath
+set routing-instances CHNDJ1-VoIP-MGMT instance-type vrf
+set routing-instances CHNDJ1-VoIP-MGMT interface xe-17/0/14.31
+set routing-instances CHNDJ1-VoIP-MGMT interface xe-17/0/14.33
+set routing-instances CHNDJ1-VoIP-MGMT route-distinguisher 90:9
+set routing-instances CHNDJ1-VoIP-MGMT vrf-target target:22773:9
+set routing-instances CHNDJ1-VoIP-MGMT vrf-table-label
+set routing-instances CHNDJ1-VoIP-MGMT routing-options multipath
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL type internal
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL description "CHNDFWVJ15 & 16 VoIP Firewall"
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL local-address 172.17.250.202
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL family inet any
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL authentication-key "XXXX"
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL export DEFAULT-DENY
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL bfd-liveness-detection minimum-interval 300
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL bfd-liveness-detection multiplier 3
+set routing-instances CHNDJ1-VoIP-MGMT protocols bgp group VoIP-FIREWALL neighbor 172.17.250.204
+set routing-instances CHNDJ1-VoIP-SIGNALING instance-type vrf
+set routing-instances CHNDJ1-VoIP-SIGNALING interface xe-17/0/14.32
+set routing-instances CHNDJ1-VoIP-SIGNALING interface xe-17/0/14.34
+set routing-instances CHNDJ1-VoIP-SIGNALING interface xe-17/0/14.35
+set routing-instances CHNDJ1-VoIP-SIGNALING interface xe-17/0/14.36
+set routing-instances CHNDJ1-VoIP-SIGNALING route-distinguisher 90:10
+set routing-instances CHNDJ1-VoIP-SIGNALING vrf-target target:22773:10
+set routing-instances CHNDJ1-VoIP-SIGNALING vrf-table-label
+set routing-instances CHNDJ1-VoIP-SIGNALING routing-options multipath
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL type internal
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL description "CHNDFWVJ15 & 16 VoIP Firewall"
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL local-address 184.182.241.202
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL family inet any
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL authentication-key "XXXX"
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL export DEFAULT-DENY
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL bfd-liveness-detection minimum-interval 300
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL bfd-liveness-detection multiplier 3
+set routing-instances CHNDJ1-VoIP-SIGNALING protocols bgp group VoIP-FIREWALL neighbor 184.182.241.204
+set routing-instances CHNDJ1SS7 instance-type vrf
+set routing-instances CHNDJ1SS7 interface xe-17/0/14.37
+set routing-instances CHNDJ1SS7 interface xe-17/0/14.38
+set routing-instances CHNDJ1SS7 route-distinguisher 90:7
+set routing-instances CHNDJ1SS7 vrf-target target:22773:7
+set routing-instances CHNDJ1SS7 vrf-table-label
+set routing-instances CONDITIONAL-ACCESS-L3VPN instance-type vrf
+set routing-instances CONDITIONAL-ACCESS-L3VPN interface ae19.129
+set routing-instances CONDITIONAL-ACCESS-L3VPN route-distinguisher 90:34
+set routing-instances CONDITIONAL-ACCESS-L3VPN vrf-import CONDITIONAL-ACCESS-L3VPN-IMPORT
+set routing-instances CONDITIONAL-ACCESS-L3VPN vrf-export CONDITIONAL-ACCESS-L3VPN-EXPORT
+set routing-instances CONDITIONAL-ACCESS-L3VPN vrf-table-label
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL type external
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL description CHNDFWV01/02
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL local-address 100.122.192.154
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL import V4-DATA-FIREWALL-BGP-IN
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL authentication-key "XXXX"
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL export V4-DATA-FIREWALL-BGP-OUT
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL peer-as 65174
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL bfd-liveness-detection minimum-interval 1000
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL bfd-liveness-detection multiplier 6
+set routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL neighbor 100.122.192.158
+deactivate routing-instances CONDITIONAL-ACCESS-L3VPN protocols bgp group V4-DATA-FIREWALL neighbor 100.122.192.158
+set routing-instances DCC-TRANSPORT-L3VPN instance-type vrf
+set routing-instances DCC-TRANSPORT-L3VPN interface ae19.120
+set routing-instances DCC-TRANSPORT-L3VPN route-distinguisher 90:20
+set routing-instances DCC-TRANSPORT-L3VPN vrf-target target:22773:20
+set routing-instances DCC-TRANSPORT-L3VPN vrf-table-label
+set routing-instances DCC-TRANSPORT-L3VPN protocols ospf export DCC-TRANSPORT-IGP-EXPORT
+set routing-instances DCC-TRANSPORT-L3VPN protocols ospf area 0.0.0.0 interface ae19.120
+set routing-instances DMZ-L3VPN instance-type vrf
+set routing-instances DMZ-L3VPN interface xe-17/0/14.292
+set routing-instances DMZ-L3VPN interface xe-17/0/14.294
+set routing-instances DMZ-L3VPN interface ae19.292
+set routing-instances DMZ-L3VPN interface ae19.294
+set routing-instances DMZ-L3VPN interface ae19.296
+set routing-instances DMZ-L3VPN interface ae20.292
+set routing-instances DMZ-L3VPN interface ae20.294
+set routing-instances DMZ-L3VPN interface ae20.296
+set routing-instances DMZ-L3VPN route-distinguisher 90:32
+set routing-instances DMZ-L3VPN vrf-import DMZ-L3VPN-IMPORT
+set routing-instances DMZ-L3VPN vrf-export DMZ-L3VPN-EXPORT
+set routing-instances DMZ-L3VPN vrf-table-label
+set routing-instances FWD-TO-CGN-1 instance-type forwarding
+set routing-instances FWD-TO-CGN-1 routing-options static route 0.0.0.0/0 qualified-next-hop 184.188.10.68 preference 10
+set routing-instances FWD-TO-CGN-1 routing-options static route 0.0.0.0/0 qualified-next-hop 68.1.1.78 preference 20
+deactivate routing-instances FWD-TO-CGN-1
+set routing-instances FWD-TO-TMS instance-type forwarding
+set routing-instances FWD-TO-TMS routing-options static route 0.0.0.0/0 lsp-next-hop CHNDDSRJ01-LANGBPRJ01-BE preference 10
+set routing-instances FWD-TO-TMS routing-options static route 0.0.0.0/0 lsp-next-hop CHNDDSRJ01-DALSBPRJ01-BE preference 20
+set routing-instances FWD-TO-TMS routing-options static route 0.0.0.0/0 lsp-next-hop CHNDDSRJ01-ASHBBPRJ01-BE preference 30
+set routing-instances MIS-L3VPN instance-type vrf
+set routing-instances MIS-L3VPN interface xe-17/0/3.0
+set routing-instances MIS-L3VPN interface ae20.206
+set routing-instances MIS-L3VPN route-distinguisher 90:1
+set routing-instances MIS-L3VPN vrf-import MIS-L3VPN-IMPORT
+set routing-instances MIS-L3VPN vrf-export MIS-L3VPN-EXPORT
+set routing-instances MIS-L3VPN vrf-table-label
+set routing-instances MIS-L3VPN routing-options multipath
+set routing-instances MIS-L3VPN routing-options autonomous-system 22773
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE local-address 70.166.169.1
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE hold-time 20
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE import MIS-LOCAL-IN
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE family inet unicast prefix-limit maximum 1000
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE authentication-key "XXXX"
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE export MIS-LOCAL-OUT
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE peer-as 65001
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE as-override
+set routing-instances MIS-L3VPN protocols bgp group V4-IT-REMOTE-SITE neighbor 70.166.169.2 description "Phoenix IT WAN Router 1"
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE local-address 2001:578:106:110e::0
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE hold-time 20
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE import MIS-LOCAL-IN
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE authentication-key "XXXX"
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE export MIS-LOCAL-OUT
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE peer-as 65001
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE as-override
+set routing-instances MIS-L3VPN protocols bgp group V6-IT-REMOTE-SITE neighbor 2001:578:106:110e::1 description "Phoenix IT WAN Router 1"
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW local-address 100.120.225.50
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW hold-time 20
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW import V4-ITL3VPN-TO-EGRESSFW-IN
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW family inet unicast prefix-limit maximum 1000
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW authentication-key "XXXX"
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW export V4-ITL3VPN-TO-EGRESSFW-OUT
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW peer-as 65154
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW bfd-liveness-detection minimum-interval 1000
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW bfd-liveness-detection multiplier 6
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW as-override
+set routing-instances MIS-L3VPN protocols bgp group V4-ITEGRESSFW neighbor 100.120.225.52 description "IT L3VPN to IT Egress FW Trust Interface"
+set routing-instances MVPN instance-type vrf
+set routing-instances MVPN interface ae15.0
+set routing-instances MVPN interface ae99.10
+set routing-instances MVPN interface lo0.1
+set routing-instances MVPN route-distinguisher 90:2
+set routing-instances MVPN provider-tunnel selective group 224.0.0.0/4 source 0.0.0.0/0 ingress-replication create-new-ucast-tunnel
+set routing-instances MVPN provider-tunnel selective group 224.0.0.0/4 source 0.0.0.0/0 ingress-replication label-switched-path label-switched-path-template MVPN-LSP-TEMPLATE
+set routing-instances MVPN vrf-import MVPN-IMPORT
+set routing-instances MVPN vrf-export MVPN-EXPORT
+set routing-instances MVPN vrf-table-label
+set routing-instances MVPN routing-options router-id 172.29.193.117
+set routing-instances MVPN routing-options multicast ssm-groups 224.0.0.0/4
+set routing-instances MVPN protocols bgp group MVPN type internal
+set routing-instances MVPN protocols bgp group MVPN local-address 172.29.193.117
+set routing-instances MVPN protocols bgp group MVPN import MVPN-BGP-IN-IMPORT-OPTIONS
+set routing-instances MVPN protocols bgp group MVPN import MVPN-BGP-IN
+set routing-instances MVPN protocols bgp group MVPN family inet multicast
+set routing-instances MVPN protocols bgp group MVPN authentication-key "XXXX"
+set routing-instances MVPN protocols bgp group MVPN export MVPN-BGP-OUT-EXPORT-OPTIONS
+set routing-instances MVPN protocols bgp group MVPN export MVPN-BGP-OUT
+set routing-instances MVPN protocols bgp group MVPN neighbor 172.29.193.115 description "IBGP session to CHNDVSRC01"
+set routing-instances MVPN protocols bgp group MVPN neighbor 100.119.251.96 description "IBGP session to CHNDVSRC11.PH.PH"
+set routing-instances MVPN protocols bgp group MVPN neighbor 100.119.251.99 description "IBGP session to CHNDVSRC12.PH.PH"
+set routing-instances MVPN protocols bgp group MVPN neighbor 172.29.193.116 description "IBGP session to CHNDVSRC02"
+set routing-instances MVPN protocols bgp group NGDC type internal
+set routing-instances MVPN protocols bgp group NGDC preference 170
+set routing-instances MVPN protocols bgp group NGDC family inet any
+set routing-instances MVPN protocols bgp group NGDC authentication-key "XXXX"
+set routing-instances MVPN protocols bgp group NGDC neighbor 100.118.199.97 description "IBGP session to DVTCBBSPN01"
+set routing-instances MVPN protocols bgp group NGDC neighbor 100.118.199.97 local-address 100.118.199.96
+set routing-instances MVPN protocols bgp group NGDC neighbor 100.118.199.101 description "IBGP session to DVTCBBSPN02"
+set routing-instances MVPN protocols bgp group NGDC neighbor 100.118.199.101 local-address 100.118.199.100
+set routing-instances MVPN protocols isis suppress-attached-bit
+set routing-instances MVPN protocols isis level 1 wide-metrics-only
+set routing-instances MVPN protocols isis level 2 disable
+set routing-instances MVPN protocols isis interface ae15.0 point-to-point
+set routing-instances MVPN protocols isis interface ae15.0 level 1 metric 16
+set routing-instances MVPN protocols isis interface ae15.0 level 1 hello-authentication-key "XXXX"
+set routing-instances MVPN protocols isis interface ae15.0 level 1 hello-authentication-type md5
+set routing-instances MVPN protocols isis interface ae99.10 point-to-point
+set routing-instances MVPN protocols isis interface ae99.10 level 1 metric 16
+set routing-instances MVPN protocols isis interface ae99.10 level 1 hello-authentication-key "XXXX"
+set routing-instances MVPN protocols isis interface ae99.10 level 1 hello-authentication-type md5
+set routing-instances MVPN protocols isis interface lo0.1 passive
+set routing-instances MVPN protocols isis interface lo0.1 level 2 disable
+set routing-instances MVPN protocols pim rib-group inet MVPN-PIM
+set routing-instances MVPN protocols pim import MVPN-PIM-IMPORT
+set routing-instances MVPN protocols pim interface ae15.0 mode sparse
+set routing-instances MVPN protocols pim interface ae15.0 hello-interval 1
+set routing-instances MVPN protocols pim interface ae99.10 mode sparse
+set routing-instances MVPN protocols pim interface ae99.10 hello-interval 1
+set routing-instances MVPN protocols mvpn
+set routing-instances NGDC-DCI-L3VPN instance-type vrf
+set routing-instances NGDC-DCI-L3VPN route-distinguisher 172.17.248.54:41
+set routing-instances NGDC-DCI-L3VPN vrf-target target:400:41
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI type internal
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI bfd-liveness-detection minimum-interval 100
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI bfd-liveness-detection multiplier 3
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI neighbor 100.118.199.107 description "IBGP session to DDTCBBSPN01"
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI neighbor 100.118.199.107 local-address 100.118.199.106
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI neighbor 100.118.199.111 description "IBGP session to DDTCBBSPN02"
+set routing-instances NGDC-DCI-L3VPN protocols bgp group V4-NGDC-DCI neighbor 100.118.199.111 local-address 100.118.199.110
+set routing-instances OOB-L3VPN instance-type vrf
+set routing-instances OOB-L3VPN interface ae19.174
+set routing-instances OOB-L3VPN interface ae19.300
+set routing-instances OOB-L3VPN interface ae19.302
+set routing-instances OOB-L3VPN route-distinguisher 90:31
+set routing-instances OOB-L3VPN vrf-import OOB-L3VPN-IMPORT
+set routing-instances OOB-L3VPN vrf-export OOB-L3VPN-EXPORT
+set routing-instances OOB-L3VPN vrf-table-label
+set routing-instances OOB-L3VPN routing-options static route 0.0.0.0/0 discard
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND type external
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND local-address 100.120.254.112
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND import V4-OOB-NETWORK-IN
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND authentication-key "XXXX"
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND export V4-OOB-NETWORK-OUT
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND bfd-liveness-detection minimum-interval 1000
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND bfd-liveness-detection multiplier 6
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-CHND neighbor 100.120.254.113 peer-as 65063
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL type external
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL local-address 100.120.254.116
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL import V4-OOB-NETWORK-IN
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL authentication-key "XXXX"
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL export V4-OOB-NETWORK-OUT
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL bfd-liveness-detection minimum-interval 1000
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL bfd-liveness-detection multiplier 6
+set routing-instances OOB-L3VPN protocols bgp group V4-OOB-MGMT-MCDL neighbor 100.120.254.117 peer-as 65063
+set routing-instances OS-EXT-GW instance-type vrf
+set routing-instances OS-EXT-GW interface rlt0.1
+set routing-instances OS-EXT-GW route-distinguisher 90:74
+set routing-instances OS-EXT-GW vrf-target target:400:74
+set routing-instances OS-EXT-GW vrf-table-label
+set routing-instances OS-EXT-GW routing-options static route 0.0.0.0/0 next-hop 70.171.151.224
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN instance-type vrf
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN interface ae33.0
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN interface ae99.29
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN interface lo0.2
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN route-distinguisher 90:5
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN provider-tunnel rsvp-te label-switched-path-template V2B-INCLUSIVE-TEMPLATE
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN vrf-import PRIMARY-A-SECONDARY-B-V2B-MVPN-VRF-IMPORT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN vrf-export PRIMARY-A-SECONDARY-B-V2B-MVPN-VRF-EXPORT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN vrf-table-label
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN routing-options router-id 172.29.193.168
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN routing-options multicast ssm-groups 224.0.0.0/4
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER type internal
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER local-address 172.29.193.168
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER import PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-IN
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER family inet multicast
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER authentication-key "XXXX"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER export PRIMARY-A-SECONDARY-B-V2B-MVPN-RECEIVER-BGP-OUT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER cluster 0.0.90.1
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 172.29.193.169 description "V2B MVPN IBGP session to CHNDVSRJ01"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 172.29.193.171 description "V2B MVPN IBGP session to CHNDVSRJ02"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 100.119.251.97 description "V2B MVPN IBGP session to CHNDVSRC11.PH.PH"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-RECEIVER neighbor 100.119.251.100 description "V2B MVPN IBGP session to CHNDVSRC12.PH.PH"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE type internal
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE local-address 24.252.223.204
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE import PRIMARY-A-SECONDARY-B-V2B-MVPN-SOURCE-BGP-IN
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE family inet multicast
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE authentication-key "XXXX"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE export PRIMARY-A-SECONDARY-B-V2B-MVPN-SOURCE-BGP-OUT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols bgp group V2B-MVPN-SOURCE neighbor 24.252.223.205 description "IBGP session to CHNDVNNEXC01"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis suppress-attached-bit
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis level 1 wide-metrics-only
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis level 2 disable
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 point-to-point
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 level 1 metric 16
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 level 1 hello-authentication-key "XXXX"
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface ae99.29 level 1 hello-authentication-type md5
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface lo0.2 passive
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols isis interface lo0.2 level 2 disable
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim rib-group inet PRIMARY-A-SECONDARY-B-V2B-MVPN-PIM
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim import V2B-MVPN-PIM-IMPORT
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae33.0 mode sparse
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae33.0 hello-interval 1
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae99.29 mode sparse
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols pim interface ae99.29 hello-interval 1
+set routing-instances PRIMARY-A-SECONDARY-B-V2B-MVPN protocols mvpn
+set routing-instances SHARED-SERVICE-L3VPN instance-type vrf
+set routing-instances SHARED-SERVICE-L3VPN interface ae19.246
+set routing-instances SHARED-SERVICE-L3VPN interface ae19.290
+set routing-instances SHARED-SERVICE-L3VPN interface ae19.293
+set routing-instances SHARED-SERVICE-L3VPN interface ae19.295
+set routing-instances SHARED-SERVICE-L3VPN interface ae19.3717
+set routing-instances SHARED-SERVICE-L3VPN interface ae20.290
+set routing-instances SHARED-SERVICE-L3VPN interface ae20.293
+set routing-instances SHARED-SERVICE-L3VPN interface ae20.295
+set routing-instances SHARED-SERVICE-L3VPN route-distinguisher 90:33
+set routing-instances SHARED-SERVICE-L3VPN vrf-import SHARED-SERVICE-L3VPN-IMPORT
+set routing-instances SHARED-SERVICE-L3VPN vrf-export SHARED-SERVICE-L3VPN-EXPORT
+set routing-instances SHARED-SERVICE-L3VPN vrf-table-label
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 type external
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 description CIENA_DCN
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 local-address 10.224.83.10
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 import V4-SHARED-SERVICE-CIENA-IN
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 authentication-key "XXXX"
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 export V4-SHARED-SERVICE-CIENA-OUT
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 peer-as 64900
+set routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 neighbor 10.224.83.11 description "eBGP Session to CIENA GNE-PHNAAZVUOPARDCRLSCN01"
+deactivate routing-instances SHARED-SERVICE-L3VPN protocols bgp group V4-CIENA-DCN-GNE1 neighbor 10.224.83.11
+{master}
+njump2.corp.cox.com [njump2.corp.cox.com] – 10-24-2022 13h40m16s

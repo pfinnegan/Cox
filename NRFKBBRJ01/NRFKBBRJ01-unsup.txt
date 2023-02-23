@@ -1,0 +1,352 @@
+﻿set groups re0 system backup-router 172.16.5.1
+set groups re0 interfaces fxp0 disable
+set groups re0 interfaces em0 disable
+set groups re1 system backup-router destination 172.16.5.0/24
+set groups re1 interfaces fxp0 disable
+set groups re1 interfaces em0 disable
+set groups RSVP-OPTIONS protocols rsvp interface <*> subscription 92
+set groups MPLS-OPTIONS protocols mpls statistics file mpls.stats
+set system syslog user * any emergency
+set system syslog host 172.17.1.100 any notice
+set system syslog host 172.17.1.100 authorization info
+set system syslog host 172.17.1.100 daemon info
+set system syslog host 172.17.1.100 kernel error
+set system syslog host 68.1.18.40 any notice
+set system syslog host 68.1.18.40 authorization info
+set system syslog host 68.1.18.40 daemon info
+set system syslog host 68.1.18.40 kernel error
+set system syslog host 172.17.1.103 any notice
+set system syslog host 172.17.1.103 authorization info
+set system syslog host 172.17.1.103 daemon info
+set system syslog host 172.17.1.103 kernel error
+set system syslog host 68.1.19.40 any notice
+set system syslog host 68.1.19.40 authorization info
+set system syslog host 68.1.19.40 daemon info
+set system syslog host 68.1.19.40 kernel error
+set system syslog host 68.1.18.39 any notice
+set system syslog host 68.1.18.39 authorization info
+set system syslog host 68.1.18.39 daemon info
+set system syslog host 68.1.18.39 kernel error
+set system syslog host 172.22.8.11 any notice
+set system syslog host 172.22.8.11 authorization info
+set system syslog host 172.22.8.11 daemon info
+set system syslog host 172.22.8.11 kernel error
+set system syslog host 68.1.19.86 any info
+set system syslog host 184.176.220.121 any info
+set system syslog host 184.176.220.121 interactive-commands notice
+set system syslog host 174.78.111.10 any any
+set system syslog host 98.182.1.182 any notice
+set system syslog host 98.182.1.182 authorization info
+set system syslog host 98.182.1.182 daemon info
+set system syslog host 98.182.1.182 kernel error
+set system syslog file messages any notice
+set system syslog file messages authorization info
+set system syslog file messages daemon info
+set system syslog file interactive-commands interactive-commands any
+set system syslog file cli-commands interactive-commands any
+set system syslog file firewall firewall any
+set system syslog file default-log-messages any info
+set system syslog file pccd any notice
+set system syslog file rpm-probe any notice
+set security certificates local wildcard.mgt.cox.net "-----BEGIN PRIVATE KEY-----\XXXX\n-----END CERTIFICATE-----\n"
+set interfaces et-0/0/0 gigether-options 802.3ad ae0
+set interfaces et-0/0/1 gigether-options 802.3ad ae0
+set interfaces et-0/0/2 gigether-options 802.3ad ae0
+set interfaces et-0/0/3 gigether-options 802.3ad ae0
+set interfaces et-0/0/4 gigether-options 802.3ad ae0
+set interfaces et-0/0/5 gigether-options 802.3ad ae0
+set interfaces et-0/0/6 gigether-options 802.3ad ae0
+set interfaces et-0/0/7 gigether-options 802.3ad ae0
+set interfaces et-0/0/8 gigether-options 802.3ad ae0
+set interfaces et-0/0/9 gigether-options 802.3ad ae0
+set interfaces et-0/0/10 gigether-options 802.3ad ae0
+set interfaces et-1/0/0 gigether-options 802.3ad ae1
+set interfaces et-1/0/1 gigether-options 802.3ad ae1
+set interfaces et-1/0/2 gigether-options 802.3ad ae1
+set interfaces et-1/0/3 gigether-options 802.3ad ae1
+set interfaces et-1/0/4 gigether-options 802.3ad ae1
+set interfaces et-1/0/5 gigether-options 802.3ad ae1
+set interfaces et-1/0/6 gigether-options 802.3ad ae1
+set interfaces et-1/0/7 gigether-options 802.3ad ae1
+set interfaces et-1/0/8 gigether-options 802.3ad ae1
+set interfaces et-1/0/9 gigether-options 802.3ad ae1
+set interfaces et-1/0/10 gigether-options 802.3ad ae1
+set interfaces et-1/0/11 gigether-options 802.3ad ae1
+set interfaces et-1/0/12 gigether-options 802.3ad ae1
+set interfaces et-1/0/13 gigether-options 802.3ad ae1
+set interfaces et-1/0/14 gigether-options 802.3ad ae1
+set interfaces et-1/0/15 gigether-options 802.3ad ae1
+set interfaces et-3/0/0 gigether-options 802.3ad ae7
+set interfaces et-3/0/1 gigether-options 802.3ad ae7
+set interfaces et-3/0/2 gigether-options 802.3ad ae7
+set interfaces et-3/0/3 gigether-options 802.3ad ae7
+set interfaces et-3/0/4 gigether-options 802.3ad ae7
+set interfaces et-3/0/5 gigether-options 802.3ad ae7
+set interfaces et-3/0/6 gigether-options 802.3ad ae7
+set interfaces et-3/0/7 gigether-options 802.3ad ae7
+set interfaces et-3/0/8 gigether-options 802.3ad ae7
+set interfaces et-3/0/9 gigether-options 802.3ad ae7
+set interfaces et-3/0/10 gigether-options 802.3ad ae7
+set interfaces et-3/0/11 gigether-options 802.3ad ae8
+set interfaces et-3/0/12 gigether-options 802.3ad ae8
+set interfaces et-3/0/13 gigether-options 802.3ad ae8
+set interfaces et-3/0/14 gigether-options 802.3ad ae8
+set interfaces et-3/0/15 gigether-options 802.3ad ae8
+set interfaces et-3/0/16 gigether-options 802.3ad ae8
+set interfaces et-3/0/17 gigether-options 802.3ad ae8
+set interfaces et-3/0/18 gigether-options 802.3ad ae8
+set interfaces et-3/0/19 gigether-options 802.3ad ae8
+set interfaces et-3/0/20 gigether-options 802.3ad ae8
+set interfaces et-3/0/21 gigether-options 802.3ad ae8
+set interfaces et-3/0/22 gigether-options 802.3ad ae8
+set interfaces et-3/0/23 gigether-options 802.3ad ae8
+set interfaces et-3/0/24 gigether-options 802.3ad ae7
+set interfaces et-3/0/25 gigether-options 802.3ad ae8
+set interfaces et-3/0/26 gigether-options 802.3ad ae8
+set interfaces lo0 unit 0 family inet filter input V4-PROTECT_RE-IN-BB
+set snmp stats-cache-lifetime 60
+set snmp trap-options source-address 172.17.248.234
+set event-options policy check_lfm_problem within 3 trigger 1
+set event-options policy check_lfm_problem then event-script check_lfm_problem.slax arguments threshold-output-pps 1000
+set event-options policy disable_sbe_report within 20 trigger 1
+set routing-options aggregate defaults metric 0
+set routing-options autonomous-system 22773
+set protocols mpls admin-groups AT-P2MP-EXCLUDE 16
+set protocols mpls admin-groups SD-P2MP-EXCLUDE 17
+set protocols mpls admin-groups DTCR-EXCLUDE 18
+set policy-options prefix-list V4-NTP-LIST-BB 172.17.248.0/21
+set policy-options prefix-list V4-NTP-LIST-BB 172.22.8.33/32
+set policy-options prefix-list V4-NTP-LIST-BB 172.22.64.53/32
+set policy-options prefix-list V4-TACACS-LIST-BB 68.1.18.42/32
+set policy-options prefix-list V4-TACACS-LIST-BB 68.6.16.42/32
+set policy-options prefix-list V4-TACACS-LIST-BB 68.12.16.42/32
+set policy-options prefix-list V4-TACACS-LIST-BB 68.110.132.230/32
+set policy-options prefix-list V4-TACACS-LIST-BB 184.185.14.11/32
+set policy-options prefix-list V4-SSH-LIST-BB 24.248.74.254/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.18.39/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.18.40/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.40/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.60/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.81/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.82/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.86/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.87/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.88/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.89/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.1.19.90/32
+set policy-options prefix-list V4-SSH-LIST-BB 68.111.106.128/25
+set policy-options prefix-list V4-SSH-LIST-BB 70.175.247.5/32
+set policy-options prefix-list V4-SSH-LIST-BB 100.122.55.192/28
+set policy-options prefix-list V4-SSH-LIST-BB 172.16.5.0/24
+set policy-options prefix-list V4-SSH-LIST-BB 172.17.1.4/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.18.196.4/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.18.196.5/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.0.30/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.0.31/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.0.32/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.50.35/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.50.36/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.50.37/32
+set policy-options prefix-list V4-SSH-LIST-BB 172.20.50.38/32
+set policy-options prefix-list V4-SSH-LIST-BB 174.78.111.0/24
+set policy-options prefix-list V4-SSH-LIST-BB 184.176.220.0/24
+set policy-options prefix-list V4-SSH-LIST-BB 184.176.220.128/27
+set policy-options prefix-list V4-SSH-LIST-BB 184.183.108.160/30
+set policy-options prefix-list V4-SSH-LIST-BB 184.183.108.164/30
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.18.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.18.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.208.20/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.208.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.1.208.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.2.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.2.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.4.16.20/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.4.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.4.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.6.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.6.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.9.16.20/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.9.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.9.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.10.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.10.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.11.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.11.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.12.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.12.16.29/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.12.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.13.16.20/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.13.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.13.16.30/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.100.16.25/32
+set policy-options prefix-list V4-DNS-LIST-BB 68.100.16.30/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.18.40/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.18.60/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.18.61/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.18.62/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.6/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.39/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.40/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.42/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.46/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.47/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.52/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.53/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.54/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.55/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.57/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.60/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.61/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.81/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.82/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.86/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.87/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.88/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.89/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.19.90/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.1.208.62/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.4.16.62/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.6.16.62/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.12.16.61/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.100.16.62/32
+set policy-options prefix-list V4-SNMP-LIST-BB 68.111.106.128/25
+set policy-options prefix-list V4-SNMP-LIST-BB 100.122.4.128/26
+set policy-options prefix-list V4-SNMP-LIST-BB 100.122.12.128/26
+set policy-options prefix-list V4-SNMP-LIST-BB 100.122.55.192/28
+set policy-options prefix-list V4-SNMP-LIST-BB 172.16.0.94/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.16.8.193/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.16.8.194/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.16.8.195/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.16.8.196/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.17.1.43/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.17.1.103/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.17.1.107/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.17.1.241/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.17.142.206/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.17.142.207/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.18.43.243/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.18.196.4/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.18.196.5/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.0.30/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.0.31/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.0.32/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.0.45/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.5/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.22/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.136/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.138/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.139/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.140/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.231/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.232/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.7.233/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.50.35/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.50.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.50.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.20.50.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.22.8.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.22.8.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.22.8.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.22.64.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.22.64.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.22.64.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.23.0.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.23.0.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.23.0.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.23.0.39/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.24.0.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.24.0.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.24.4.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.24.4.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.24.4.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.25.1.12/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.0.11/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.0.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.0.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.0.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.0.45/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.12/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.40/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.41/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.26.128.42/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.27.0.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.27.0.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.27.0.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.28.0.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.28.0.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.28.0.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.28.0.39/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.29.0.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.29.0.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.29.0.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.29.0.39/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.29.0.40/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.29.0.41/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.30.1.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.30.1.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.31.1.36/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.31.1.37/32
+set policy-options prefix-list V4-SNMP-LIST-BB 172.31.1.38/32
+set policy-options prefix-list V4-SNMP-LIST-BB 174.78.111.0/24
+set policy-options prefix-list V4-SNMP-LIST-BB 174.78.111.23/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.0/24
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.80/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.81/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.82/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.90/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.91/32
+set policy-options prefix-list V4-SNMP-LIST-BB 184.176.220.128/27
+set policy-options prefix-list V4-STREAMING-TELEMETRY-LIST-BB 100.120.230.0/24
+set policy-options prefix-list V4-RSVP-LIST-BB 68.1.0.0/21
+set policy-options prefix-list V4-RSVP-LIST-BB 172.17.248.0/21
+set policy-options prefix-list V4-RSVP-LIST-BB 184.183.108.188/31
+set policy-options prefix-list V4-LDP-LIST-BB 172.17.248.0/21
+set policy-options prefix-list V4-OPENSHIFT-LIST-BB 100.120.230.0/24
+set policy-options prefix-list V4-OPENSHIFT-LIST-BB 100.121.87.192/26
+set class-of-service code-point-aliases dscp-ipv6 BEST-EFFORT-BE 000000
+set class-of-service code-point-aliases dscp-ipv6 NON-REAL-TIME-AF11 001000
+set class-of-service code-point-aliases dscp-ipv6 INTERACTIVE-AF21 010000
+set class-of-service code-point-aliases dscp-ipv6 REAL-TIME-AF31 011000
+set class-of-service code-point-aliases dscp-ipv6 VIDEO-AF41 100000
+set class-of-service code-point-aliases dscp-ipv6 VOICE-EF 101000
+set class-of-service code-point-aliases dscp-ipv6 NETWORK-CONTROL-NC 110000
+set class-of-service code-point-aliases exp BEST-EFFORT-BE 000
+set class-of-service code-point-aliases exp NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases exp INTERACTIVE-AF21 010
+set class-of-service code-point-aliases exp REAL-TIME-AF31 011
+set class-of-service code-point-aliases exp VIDEO-AF41 100
+set class-of-service code-point-aliases exp VOICE-EF 101
+set class-of-service code-point-aliases exp NETWORK-CONTROL-NC1 110
+set class-of-service code-point-aliases inet-precedence BEST-EFFORT-BE 000
+set class-of-service code-point-aliases inet-precedence NON-REAL-TIME-AF11 001
+set class-of-service code-point-aliases inet-precedence INTERACTIVE-AF21 010
+set class-of-service code-point-aliases inet-precedence REAL-TIME-AF31 011
+set class-of-service code-point-aliases inet-precedence VIDEO-AF41 100
+set class-of-service code-point-aliases inet-precedence VOICE-EF 101
+set class-of-service code-point-aliases inet-precedence NETWORK-CONTROL-NC1 110
+set class-of-service forwarding-classes queue 0 BEST-EFFORT
+set class-of-service forwarding-classes queue 1 NON-REAL-TIME
+set class-of-service forwarding-classes queue 2 INTERACTIVE
+set class-of-service forwarding-classes queue 3 REAL-TIME
+set class-of-service forwarding-classes queue 4 VIDEO
+set class-of-service forwarding-classes queue 5 VOICE
+set class-of-service forwarding-classes queue 6 NETWORK-CONTROL
+set class-of-service interfaces et-*/*/* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces et-*/*/* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces et-*/*/* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces et-*/*/* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces et-*/*/* unit * rewrite-rules exp MPLS-WRITE-EXP
+set class-of-service interfaces ae* scheduler-map BB-QOS-POLICY
+set class-of-service interfaces ae* unit * classifiers dscp-ipv6 V6-CLASSIFY-DSCP
+set class-of-service interfaces ae* unit * classifiers exp MPLS-CLASSIFY-EXP
+set class-of-service interfaces ae* unit * classifiers inet-precedence V4-CLASSIFY-IPP
+set class-of-service interfaces ae* unit * rewrite-rules dscp-ipv6 V6-WRITE-DSCP
+set class-of-service interfaces ae* unit * rewrite-rules exp MPLS-WRITE-EXP
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER drop-profile-map loss-priority any protocol any drop-profile RED-BEST-EFFORT
+{master}
+njump2.corp.cox.com [njump2.corp.cox.com] – 10-24-2022 13h39m13s

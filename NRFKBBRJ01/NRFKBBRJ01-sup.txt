@@ -1,0 +1,1126 @@
+﻿set version 17.3R3.9
+set groups RPM-OPTIONS services rpm probe <*> test <*> probe-type icmp-ping
+set groups RPM-OPTIONS services rpm probe <*> test <*> probe-count 10
+set groups RPM-OPTIONS services rpm probe <*> test <*> probe-interval 5
+set groups RPM-OPTIONS services rpm probe <*> test <*> test-interval 5
+set groups RPM-OPTIONS services rpm probe <*> test <*> data-size 100
+set groups RPM-OPTIONS services rpm probe <*> test <*> one-way-hardware-timestamp
+set groups re0 system host-name NRFKBBRJ01.RD.HR-RE0
+set groups re0 system backup-router destination 172.16.5.0/24
+set groups re1 system host-name NRFKBBRJ01.RD.HR-RE1
+set groups re1 system backup-router 172.16.5.1
+set groups RSVP-OPTIONS protocols rsvp preemption aggressive
+set groups RSVP-OPTIONS protocols rsvp preemption soft-preemption cleanup-timer 30
+set groups RSVP-OPTIONS protocols rsvp interface <*> authentication-key "XXXX"
+set groups RSVP-OPTIONS protocols rsvp interface <*> aggregate
+set groups RSVP-OPTIONS protocols rsvp interface <*> update-threshold 2
+set groups RSVP-OPTIONS protocols rsvp interface <*> link-protection optimize-timer 300
+set groups RSVP-OPTIONS protocols rsvp interface lo0.0
+set groups RSVP-OPTIONS protocols rsvp interface fxp0.0 disable
+set groups MPLS-OPTIONS protocols mpls statistics interval 300
+set groups MPLS-OPTIONS protocols mpls log-updown syslog
+set groups MPLS-OPTIONS protocols mpls log-updown trap
+set groups MPLS-OPTIONS protocols mpls traffic-engineering bgp
+set groups MPLS-OPTIONS protocols mpls no-propagate-ttl
+set groups MPLS-OPTIONS protocols mpls explicit-null
+set groups MPLS-OPTIONS protocols mpls optimize-timer 300
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-EF> auto-bandwidth minimum-bandwidth 100k
+set groups MPLS-OPTIONS protocols mpls label-switched-path <*-AF> auto-bandwidth minimum-bandwidth 100k
+set groups MPLS-OPTIONS protocols mpls interface lo0.0
+set groups MPLS-OPTIONS protocols mpls interface fxp0.0 disable
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile PEER-DOWN-DROP-LINK event link-adjacency-loss
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile PEER-DOWN-DROP-LINK action syslog
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile PEER-DOWN-DROP-LINK action link-down
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile LQM-FAULT-DROP-LINK event link-event-rate symbol-period 5
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile LQM-FAULT-DROP-LINK event link-event-rate frame-error 5
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile LQM-FAULT-DROP-LINK event link-event-rate frame-period 10
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile LQM-FAULT-DROP-LINK event link-event-rate frame-period-summary 2
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile LQM-FAULT-DROP-LINK action syslog
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management action-profile LQM-FAULT-DROP-LINK action link-down
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> apply-action-profile PEER-DOWN-DROP-LINK
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> apply-action-profile LQM-FAULT-DROP-LINK
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> pdu-interval 300
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> link-discovery active
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> pdu-threshold 3
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> negotiation-options allow-remote-loopback
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> event-thresholds symbol-period 5
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> event-thresholds frame-error 5
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> event-thresholds frame-period 10
+set groups ETH-OAM-OPTIONS protocols oam ethernet link-fault-management interface <*> event-thresholds frame-period-summary 2
+set groups DENY-COMMAND system login class <*> deny-commands "restart routing"
+set groups ISIS-L2-OPTIONS protocols isis interface <*> point-to-point
+set groups ISIS-L2-OPTIONS protocols isis interface <*> level 2 hello-authentication-key "XXXX"
+set groups ISIS-L2-OPTIONS protocols isis interface <*> level 2 hello-authentication-type md5
+set groups ISIS-L2-OPTIONS protocols isis interface <*> level 1 disable
+set apply-groups re0
+set apply-groups re1
+set system domain-name cox.net
+set system time-zone UTC
+set system switchover-on-routing-crash
+set system no-redirects
+set system authentication-order tacplus
+set system authentication-order password
+set system location latitude 36.862989000
+set system location longitude -76.230463000
+set system ports console log-out-on-disconnect
+set system ports console type vt100
+set system root-authentication encrypted-password "XXXX"
+set system name-server 68.10.16.25
+set system name-server 68.10.16.30
+set system tacplus-server 68.110.132.230 port 49
+set system tacplus-server 68.110.132.230 secret "XXXX"
+set system tacplus-server 68.110.132.230 timeout 5
+set system tacplus-server 68.110.132.230 single-connection
+set system tacplus-server 68.110.132.230 source-address 172.17.248.234
+set system tacplus-server 184.185.14.11 port 49
+set system tacplus-server 184.185.14.11 secret "XXXX"
+set system tacplus-server 184.185.14.11 timeout 5
+set system tacplus-server 184.185.14.11 single-connection
+set system tacplus-server 184.185.14.11 source-address 172.17.248.234
+set system accounting events login
+set system accounting events change-log
+set system accounting events interactive-commands
+set system accounting destination tacplus
+set system scripts commit file commit-interface-options-p.slax
+set system scripts commit file intf_compliance.slax
+set system scripts commit file bundle_deactivate.slax
+set system scripts commit file reject_term.slax
+set system scripts commit file commit_comment.slax
+set system scripts commit file top_level_config.slax
+set system scripts op file class.slax
+set system scripts op file interfaces.slax
+set system scripts op file light.slax
+set system scripts language python
+set system scripts synchronize
+set system login apply-groups DENY-COMMAND
+set system login announcement "\n*******************************************************************************\n*                                                                             *\n*                         Welcome to NRFKBBRJ01.RD.HR                         *\n*                                                                             *\n*              This is a Cox Communications Backbone production               *\n*    device, so think before you type and remember all commands are logged.   *\n*                                                                             *\n*   On-call engineers are available for emergencies only. All non-emergency   *\n*            requests should be sent to CCIATL-NOCEngineer@cox.com            *\n*                                                                             *\n*       Configured with IPBB Playbook Template Version 3.0 [01/22/2020]       *\n*                                                                             *\n*******************************************************************************\n\n"
+set system login message "\n********************************************************************************* \n*                                                                               * \n*                                -- WARNING --                                  * \n*                                                                               * \n*  You are accessing a corporate sensitive system that is subject to U.S.       * \n*  Government regulation. This is a private computer system. It is for          * \n*  authorized use only. Users (authorized or unauthorized) have no explicit     * \n*  or implicit expectation of privacy.                                          * \n*                                                                               * \n*  Any or all uses of this system and all files on this system may be           * \n*  intercepted, monitored, recorded, copied, audited, inspected, and            * \n*  disclosed to authorized site, law enforcement personnel, as well as          * \n*  authorized officials of other agencies.  By using this system, the user      * \n*  consents to such interception, monitoring, recording, copying, auditing,     * \n*  inspection and disclosure at the discretion of authorized site personnel.    * \n*                                                                               * \n*  Unauthorized or improper use of this system may result in administrative     * \n*  disciplinary action and civil and criminal penalties. By continuing to       * \n*  use this system you indicate your awareness of and consent to these terms    * \n*  and conditions of use.                                                       * \n*                                                                               * \n*  LOG OFF IMMEDIATELY if you do not agree to the conditions stated above!      * \n*                                                                               * \n*********************************************************************************\n\n"
+set system login retry-options tries-before-disconnect 10
+set system login retry-options lockout-period 15
+set system login class operator-remote idle-timeout 15
+set system login class operator-remote permissions clear
+set system login class operator-remote permissions network
+set system login class operator-remote permissions reset
+set system login class operator-remote permissions trace
+set system login class operator-remote permissions view
+set system login class readonly-hpna idle-timeout 15
+set system login class readonly-hpna permissions view-configuration
+set system login class readonly-remote idle-timeout 15
+set system login class readonly-remote permissions firewall
+set system login class readonly-remote permissions interface
+set system login class readonly-remote permissions network
+set system login class readonly-remote permissions routing
+set system login class readonly-remote permissions view
+set system login class superuser-remote idle-timeout 15
+set system login class superuser-remote permissions all
+set system login user OPremote full-name "Remote Operator User"
+set system login user OPremote uid 2004
+set system login user OPremote class operator-remote
+set system login user ROremote full-name "Remote readonly user"
+set system login user ROremote uid 2005
+set system login user ROremote class readonly-remote
+set system login user SUremote full-name "Remote superuser"
+set system login user SUremote uid 2006
+set system login user SUremote class superuser-remote
+set system login user a1hpna-readonly uid 2002
+set system login user a1hpna-readonly class readonly-hpna
+set system login user backboneops-script uid 2001
+set system login user backboneops-script class superuser-remote
+set system login user backboneops-script authentication ssh-rsa "ssh-rsa XXXX== bbscript@dukescri01.cox.net"
+set system services ssh root-login deny
+set system services ssh protocol-version v2
+set system services ssh max-sessions-per-connection 32
+set system services ssh connection-limit 20
+set system services ssh rate-limit 5
+set system services extension-service request-response grpc ssl port 50051
+set system services extension-service request-response grpc ssl local-certificate wildcard.mgt.cox.net
+set system services extension-service notification allow-clients address 0.0.0.0
+set system services netconf ssh
+set system syslog host 172.17.1.100 facility-override local3
+set system syslog host 172.17.1.100 log-prefix JunOS
+set system syslog host 68.1.18.40 facility-override local3
+set system syslog host 68.1.18.40 log-prefix JunOS
+set system syslog host 172.17.1.103 facility-override local7
+set system syslog host 172.17.1.103 log-prefix JunOS
+set system syslog host 68.1.19.40 facility-override local3
+set system syslog host 68.1.19.40 log-prefix JunOS
+set system syslog host 68.1.18.39 facility-override local3
+set system syslog host 68.1.18.39 log-prefix JunOS
+set system syslog host 172.22.8.11 facility-override local3
+set system syslog host 172.22.8.11 log-prefix JunOS
+set system syslog host 68.1.19.86 facility-override local2
+set system syslog host 68.1.19.86 log-prefix JunOS
+set system syslog host 184.176.220.121 port 5514
+set system syslog host 184.176.220.121 facility-override local5
+set system syslog host 174.78.111.10 log-prefix JunOS
+set system syslog host 98.182.1.182 facility-override local3
+set system syslog host 98.182.1.182 log-prefix JunOS
+set system syslog file messages match "!(.*MPLS.*_BANDWIDTH_CHANGE.*)|(.*xntpd.*)|(mcsn)|(.*RPD_MPLS_LSP_CHANGE.*)|(pccd:)|rmopd"
+set system syslog file default-log-messages match "(requested 'commit' operation)|(requested 'commit synchronize' operation)|(copying configuration to juniper.save)|(commit complete)|ifAdminStatus|(FRU power)|(FRU removal)|(FRU insertion)|(link UP)|transitioned|Transferred|transfer-file|(license add)|(license delete)|(package -X update)|(package -X delete)|(FRU Online)|(FRU Offline)|(plugged in)|(unplugged)|CFMD_CCM_DEFECT| LFMD_3AH | RPD_MPLS_PATH_BFD|(Master Unchanged, Members Changed)|(Master Changed, Members Changed)|(Master Detected, Members Changed)|(vc add)|(vc delete)|(Master detected)|(Master changed)|(Backup detected)|(Backup changed)|(interface vcp-)|(AIS_DATA_AVAILABLE)"
+set system syslog file default-log-messages structured-data
+set system syslog file pccd match .*pccd:*
+set system syslog file rpm-probe match .*rmopd*
+set system syslog time-format year
+set system syslog time-format millisecond
+set system syslog source-address 172.17.248.234
+set system commit synchronize
+set system processes routing failover other-routing-engine
+set system ntp server 172.22.8.33
+set system ntp server 172.22.64.53
+set system ntp source-address 172.17.248.234
+set chassis redundancy routing-engine 0 master
+set chassis redundancy routing-engine 1 backup
+set chassis redundancy failover on-loss-of-keepalives
+set chassis redundancy failover on-disk-failure
+set chassis redundancy graceful-switchover
+set chassis routing-engine on-disk-failure disk-failure-action reboot
+set chassis aggregated-devices ethernet device-count 64
+set chassis aggregated-devices maximum-links 64
+set chassis fpc 7 power off
+set chassis alarm management-ethernet link-down ignore
+set services analytics streaming-server V4-IFD-NST-SERVER-1 remote-address 100.122.55.202
+set services analytics streaming-server V4-IFD-NST-SERVER-1 remote-port 2000
+set services analytics streaming-server V4-IFL-NST-SERVER-1 remote-address 100.122.55.202
+set services analytics streaming-server V4-IFL-NST-SERVER-1 remote-port 2001
+set services analytics streaming-server V4-LSP-NST-SERVER-1 remote-address 100.122.55.202
+set services analytics streaming-server V4-LSP-NST-SERVER-1 remote-port 2002
+set services analytics export-profile V4-NST-EXPORT-PROFILE local-address 172.17.248.234
+set services analytics export-profile V4-NST-EXPORT-PROFILE reporting-rate 60
+set services analytics export-profile V4-NST-EXPORT-PROFILE format gpb
+set services analytics export-profile V4-NST-EXPORT-PROFILE transport udp
+set services analytics sensor IFD-SENSOR server-name V4-IFD-NST-SERVER-1
+set services analytics sensor IFD-SENSOR export-name V4-NST-EXPORT-PROFILE
+set services analytics sensor IFD-SENSOR resource /junos/system/linecard/interface/
+set services analytics sensor IFL-SENSOR server-name V4-IFL-NST-SERVER-1
+set services analytics sensor IFL-SENSOR export-name V4-NST-EXPORT-PROFILE
+set services analytics sensor IFL-SENSOR resource /junos/system/linecard/interface/logical/usage/
+set services analytics sensor LSP-SENSOR server-name V4-LSP-NST-SERVER-1
+set services analytics sensor LSP-SENSOR export-name V4-NST-EXPORT-PROFILE
+set services analytics sensor LSP-SENSOR resource /junos/services/label-switched-path/usage/
+set services rpm apply-groups RPM-OPTIONS
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-VBCHBBRJ01 target address 68.1.0.37
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-VBCHBBRJ01 source-address 68.1.0.36
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-VBCHBBRJ01 destination-interface ae0.0
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-NRFKDSRJ01 target address 68.1.0.25
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-NRFKDSRJ01 source-address 68.1.0.24
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-NRFKDSRJ01 destination-interface ae1.0
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-MRFDBBRJ01 target address 68.1.0.238
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-MRFDBBRJ01 source-address 68.1.0.239
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-MRFDBBRJ01 destination-interface ae7.0
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-ASHBBBRJ02 target address 184.183.108.189
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-ASHBBBRJ02 source-address 184.183.108.188
+set services rpm probe NRFKBBRJ01 test NRFKBBRJ01-ASHBBBRJ02 destination-interface ae8.0
+set interfaces et-0/0/0 description "COX;66001.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/0;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/1 description "COX;66002.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/1;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/2 description "COX;66009.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/2;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/3 description "COX;66010.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/3;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/4 description "COX;66005.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/4;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/5 description "COX;66006.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/5;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/6 description "COX;66007.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/6;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/7 description "COX;66008.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/7;100G;MR;VIRGINIA BEACH SHORT;"
+set interfaces et-0/0/8 description "COX;66012.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/8;100G;MR;;"
+set interfaces et-0/0/9 description "COX;66013.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/9;100G;MR;;"
+set interfaces et-0/0/10 description "COX;66011.GE100.NRFLVAJTJAW.VRBHVAZDJAW;C4 VBCHBBRJ01;ET-0/0/10;100G;MR;;"
+set interfaces et-1/0/0 description "COX;;RDC NRFKDSRJ01;ET-12/0/0;100G;MR;;"
+set interfaces et-1/0/1 description "COX;;RDC NRFKDSRJ01;ET-12/0/1;100G;MR;;"
+set interfaces et-1/0/2 description "COX;;RDC NRFKDSRJ01;ET-12/0/2;100G;MR;;"
+set interfaces et-1/0/3 description "COX;;RDC NRFKDSRJ01;ET-12/0/3;100G;MR;;"
+set interfaces et-1/0/4 description "COX;;RDC NRFKDSRJ01;ET-12/0/4;100G;MR;;"
+set interfaces et-1/0/5 description "COX;;RDC NRFKDSRJ01;ET-12/0/6;100G;MR;;"
+set interfaces et-1/0/6 description "COX;;RDC NRFKDSRJ01;ET-12/0/7;100G;MR;;"
+set interfaces et-1/0/7 description "COX;;RDC NRFKDSRJ01;ET-12/0/9;100G;MR;;"
+set interfaces et-1/0/8 description "COX;;RDC NRFKDSRJ01;ET-12/1/0;100G;MR;;"
+set interfaces et-1/0/9 description "COX;;RDC NRFKDSRJ01;ET-12/1/1;100G;MR;;"
+set interfaces et-1/0/9 enable
+set interfaces et-1/0/10 description "COX;;RDC NRFKDSRJ01;ET-12/1/2;100G;MR;;"
+set interfaces et-1/0/11 description "COX;;RDC NRFKDSRJ01;ET-12/1/3;100G;MR;;"
+set interfaces et-1/0/12 description "COX;;RDC NRFKDSRJ01;ET-10/0/0;100G;MR;;"
+set interfaces et-1/0/13 description "COX;;RDC NRFKDSRJ01;ET-10/0/1;100G;MR;;"
+set interfaces et-1/0/14 description "COX;;RDC NRFKDSRJ01;ET-10/0/2;100G;MR;;"
+set interfaces et-1/0/15 description "COX;;RDC NRFKDSRJ01;ET-10/0/3;100G;MR;;"
+set interfaces et-3/0/0 description "COX;66001.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/0;100G;MR;RICHMOND;"
+set interfaces et-3/0/1 description "COX;66002.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/1;100G;MR;RICHMOND;"
+set interfaces et-3/0/2 description "COX;66003.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/3;100G;MR;RICHMOND;"
+set interfaces et-3/0/3 description "COX;66004.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/2;100G;MR;RICHMOND;"
+set interfaces et-3/0/4 description "COX;66005.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/4;100G;MR;RICHMOND;"
+set interfaces et-3/0/5 description "COX;66007.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/5;100G;MR;RICHMOND;"
+set interfaces et-3/0/6 description "COX;66006.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/6;100G;MR;RICHMOND;"
+set interfaces et-3/0/7 description "COX;66008.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/7;100G;MR;RICHMOND;"
+set interfaces et-3/0/8 description "COX;66009.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/8;100G;MR;RICHMOND;"
+set interfaces et-3/0/9 description "COX;66010.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/9;100G;MR;RICHMOND;"
+set interfaces et-3/0/10 description "COX;66011.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/10;100G;MR;RICHMOND;"
+set interfaces et-3/0/11 description "COX;66001.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/16;100G;MR;RICHMOND;"
+set interfaces et-3/0/12 description "COX;66002.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/17;100G;MR;RICHMOND;"
+set interfaces et-3/0/13 description "COX;66003.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/18;100G;MR;RICHMOND;"
+set interfaces et-3/0/14 description "COX;66004.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/19;100G;MR;RICHMOND;"
+set interfaces et-3/0/15 description "COX;66005.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/20;100G;MR;RICHMOND;"
+set interfaces et-3/0/16 description "COX;66006.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/21;100G;MR;RICHMOND;"
+set interfaces et-3/0/17 description "COX;66007.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/22;100G;MR;RICHMOND;"
+set interfaces et-3/0/18 description "COX;66008.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/23;100G;MR;RICHMOND;"
+set interfaces et-3/0/19 description "COX;66009.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/24;100G;MR;RICHMOND;"
+set interfaces et-3/0/20 description "COX;66010.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/25;100G;MR;RICHMOND;"
+set interfaces et-3/0/21 description "COX;66011.GE100.ASBNVACYJDW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/26;100G;MR;RICHMOND;"
+set interfaces et-3/0/22 description "COX;66001.GE100.ASBNVACYJBW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/28;100G;MR;;"
+set interfaces et-3/0/23 description "COX;66002.GE100.ASBNVACYJBW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-4/0/29;100G;MR;;"
+set interfaces et-3/0/24 description "COX;66012.GE100.FLCHVA19JAW.NRFLVAJTJAW;C4 MRFDBBRJ01;ET-3/0/11;100G;MR;;"
+set interfaces et-3/0/25 description "COX;66004.GE100.ASBNVACYJBW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-5/0/1;100G;MR;;"
+set interfaces et-3/0/26 description "COX;66003.GE100.ASBNVACYJBW.NRFLVAJTJAW;C4 ASHBBBRJ02;ET-5/0/2;100G;MR;;"
+set interfaces et-7/0/0 description "RESERVED; SPARE LC1101"
+set interfaces et-7/0/1 description "RESERVED; SPARE LC1101"
+set interfaces et-7/0/2 description "RESERVED; SPARE LC1101"
+set interfaces et-7/0/3 description "RESERVED; SPARE LC1101"
+set interfaces ae0 description "COX;;C4 VBCHBBRJ01;AE0;1100G;MR;;"
+set interfaces ae0 mtu 9100
+set interfaces ae0 aggregated-ether-options no-flow-control
+set interfaces ae0 aggregated-ether-options minimum-links 1
+set interfaces ae0 aggregated-ether-options link-speed 100g
+set interfaces ae0 unit 0 description "COX;;C4 VBCHBBRJ01;AE0;1100G;MR;;"
+set interfaces ae0 unit 0 family inet address 68.1.0.36/31
+set interfaces ae0 unit 0 family iso
+set interfaces ae0 unit 0 family mpls maximum-labels 5
+set interfaces ae1 description "COX;;RDC NRFKDSRJ01;AE1;1600G;MR;;"
+set interfaces ae1 mtu 9100
+set interfaces ae1 aggregated-ether-options no-flow-control
+set interfaces ae1 aggregated-ether-options minimum-links 1
+set interfaces ae1 aggregated-ether-options link-speed 100g
+set interfaces ae1 unit 0 description "COX;;RDC NRFKDSRJ01;AE1;1600G;MR;;"
+set interfaces ae1 unit 0 family inet address 68.1.0.24/31
+set interfaces ae1 unit 0 family iso
+set interfaces ae1 unit 0 family mpls maximum-labels 5
+set interfaces ae7 description "COX;;C4 MRFDBBRJ01;AE4;1200G;MR;;"
+set interfaces ae7 mtu 9100
+set interfaces ae7 aggregated-ether-options no-flow-control
+set interfaces ae7 aggregated-ether-options minimum-links 1
+set interfaces ae7 aggregated-ether-options link-speed 100g
+set interfaces ae7 unit 0 description "COX;;C4 MRFDBBRJ01;AE4;1200G;MR;;"
+set interfaces ae7 unit 0 family inet address 68.1.0.239/31
+set interfaces ae7 unit 0 family iso
+set interfaces ae7 unit 0 family mpls maximum-labels 5
+set interfaces ae8 description "COX;;C4 ASHBBBRJ02;AE12;1500G;MR;;"
+set interfaces ae8 mtu 9100
+set interfaces ae8 aggregated-ether-options no-flow-control
+set interfaces ae8 aggregated-ether-options minimum-links 1
+set interfaces ae8 aggregated-ether-options link-speed 100g
+set interfaces ae8 unit 0 description "COX;;C4 ASHBBBRJ02;AE12;1500G;MR;;"
+set interfaces ae8 unit 0 family inet address 184.183.108.188/31
+set interfaces ae8 unit 0 family iso
+set interfaces ae8 unit 0 family mpls maximum-labels 5
+set interfaces dsc description "NRFKBBRJ01.RD.HR Discard Interface"
+set interfaces dsc unit 0 family inet address 10.254.254.253/32 destination 10.254.254.254
+set interfaces fxp0 disable
+set interfaces lo0 description "NRFKBBRJ01.RD.HR Loopback Interface"
+set interfaces lo0 unit 0 family inet address 172.17.248.234/32
+set interfaces lo0 unit 0 family iso address 49.0000.1720.1724.8234.00
+set snmp description NRFKBBRJ01.RD.HR
+set snmp location ";;;4585 VILLAGE AVE;NORFOLK;VA;RDC;HAMPTON ROADS;NRFLVA;"
+set snmp contact "IR8040;172.22.8.7;1;757-222-8811;;ATLANTA;NOC;BBOPS;888-326-9266;;"
+set snmp filter-interfaces all-internal-interfaces
+set snmp filter-duplicates
+set snmp v3 usm local-engine user AUTHPRIV authentication-md5 authentication-key "XXXX"
+set snmp v3 usm local-engine user AUTHPRIV privacy-des privacy-key "XXXX"
+set snmp v3 vacm security-to-group security-model v2c security-name NOSNMPV3 group COX-BB-SNMPV3GROUP
+set snmp v3 vacm security-to-group security-model usm security-name AUTHPRIV group COX-BB-SNMPV3GROUP
+set snmp v3 vacm access group COX-BB-SNMPV3GROUP default-context-prefix security-model any security-level none read-view FULL-MIB
+set snmp v3 vacm access group COX-BB-SNMPV3GROUP default-context-prefix security-model usm security-level privacy read-view FULL-MIB
+set snmp v3 vacm access group COX-BB-SNMPV3GROUP default-context-prefix security-model usm security-level privacy notify-view FULL-MIB
+set snmp v3 snmp-community COX-BB-SNMPV3COMMUNITY community-name "XXXX"
+set snmp v3 snmp-community COX-BB-SNMPV3COMMUNITY security-name NOSNMPV3
+set snmp view FULL-MIB oid .1 include
+set snmp trap-group COX-NMS-TRAP-GROUP categories authentication
+set snmp trap-group COX-NMS-TRAP-GROUP categories chassis
+set snmp trap-group COX-NMS-TRAP-GROUP categories link
+set snmp trap-group COX-NMS-TRAP-GROUP categories routing
+set snmp trap-group COX-NMS-TRAP-GROUP categories startup
+set snmp trap-group COX-NMS-TRAP-GROUP categories rmon-alarm
+set snmp trap-group COX-NMS-TRAP-GROUP targets 172.17.1.103
+set snmp trap-group COX-NMS-TRAP-GROUP targets 184.176.220.90
+set forwarding-options hash-key family inet layer-3
+set forwarding-options hash-key family inet layer-4
+set forwarding-options hash-key family mpls label-1
+set forwarding-options hash-key family mpls label-2
+set forwarding-options hash-key family mpls payload ip
+set event-options policy check_lfm_problem events snmp_trap_link_up
+set event-options policy check_lfm_problem within 3 trigger on
+set event-options policy disable_sbe_report events PIC
+set event-options policy disable_sbe_report within 20 trigger on
+set event-options policy disable_sbe_report attributes-match PIC.message matches errstat:16
+set event-options policy disable_sbe_report then execute-commands commands "start shell sh command \"csh /var/db/scripts/event/disable_sbe.csh\""
+set event-options policy disable_sbe_report then execute-commands output-format text
+set event-options event-script file check_lfm_problem.slax
+set routing-options srlg ALPS-ATLN-01-WEST srlg-value 441012100
+set routing-options srlg ALPS-ATLN-01-WEST srlg-cost 10000
+set routing-options srlg ALPS-LTSP-01-ORIG srlg-value 441015100
+set routing-options srlg ALPS-LTSP-01-ORIG srlg-cost 10000
+set routing-options srlg ALPS-RLGI-01-ORIG srlg-value 441075100
+set routing-options srlg ALPS-RLGI-01-ORIG srlg-cost 10000
+set routing-options srlg ALPS-SNSP-01-ORIG srlg-value 441076100
+set routing-options srlg ALPS-SNSP-01-ORIG srlg-cost 10000
+set routing-options srlg ASBN-FLCH-01-NRTH srlg-value 441113100
+set routing-options srlg ASBN-FLCH-01-NRTH srlg-cost 10000
+set routing-options srlg ASBN-FLCH-02-SOUT srlg-value 441113200
+set routing-options srlg ASBN-FLCH-02-SOUT srlg-cost 10000
+set routing-options srlg ASBN-PHLA-01-ORIG srlg-value 441172100
+set routing-options srlg ASBN-PHLA-01-ORIG srlg-cost 10000
+set routing-options srlg ASBN-PHLA-02-TRIV srlg-value 441172200
+set routing-options srlg ASBN-PHLA-02-TRIV srlg-cost 10000
+set routing-options srlg ASBN-RONL-01-ORIG srlg-value 441122100
+set routing-options srlg ASBN-RONL-01-ORIG srlg-cost 10000
+set routing-options srlg ATLD-CHMB-01-ORIG srlg-value 447071100
+set routing-options srlg ATLD-CHMB-01-ORIG srlg-cost 10000
+set routing-options srlg ATLD-SNSP-01-ORIG srlg-value 447076100
+set routing-options srlg ATLD-SNSP-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-ATLN-01-ORIG srlg-value 441212100
+set routing-options srlg ATLN-ATLN-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-BRHO-01-ORIG srlg-value 431271100
+set routing-options srlg ATLN-BRHO-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-CHMB-01-ORIG srlg-value 441271100
+set routing-options srlg ATLN-CHMB-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-GSVL-01-ORIG srlg-value 441214100
+set routing-options srlg ATLN-GSVL-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-LTSP-01-ORIG srlg-value 441215100
+set routing-options srlg ATLN-LTSP-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-MACN-01-LVL3 srlg-value 441216100
+set routing-options srlg ATLN-MACN-01-LVL3 srlg-cost 10000
+set routing-options srlg ATLN-MACN-01-STII srlg-value 441216200
+set routing-options srlg ATLN-MACN-01-STII srlg-cost 10000
+set routing-options srlg ATLN-RONL-01-ORIG srlg-value 441222100
+set routing-options srlg ATLN-RONL-01-ORIG srlg-cost 10000
+set routing-options srlg BRAR-JHSN-01-ORIG srlg-value 337014100
+set routing-options srlg BRAR-JHSN-01-ORIG srlg-cost 10000
+set routing-options srlg BRAR-TULV-01-ORIG srlg-value 337018100
+set routing-options srlg BRAR-TULV-01-ORIG srlg-cost 10000
+set routing-options srlg BRHO-BTRG-01-ORIG srlg-value 337110100
+set routing-options srlg BRHO-BTRG-01-ORIG srlg-cost 10000
+set routing-options srlg BRHO-NSVN-01-ORIG srlg-value 337173100
+set routing-options srlg BRHO-NSVN-01-ORIG srlg-cost 10000
+set routing-options srlg BTRG-HRHN-01-COXC srlg-value 331013100
+set routing-options srlg BTRG-HRHN-01-COXC srlg-cost 10000
+set routing-options srlg BTRG-HRHN-02-LVL3 srlg-value 331013200
+set routing-options srlg BTRG-HRHN-02-LVL3 srlg-cost 10000
+set routing-options srlg BTRG-HSTQ-01-ORIG srlg-value 331072100
+set routing-options srlg BTRG-HSTQ-01-ORIG srlg-cost 10000
+set routing-options srlg CHCG-KSCY-01-ORIG srlg-value 331115100
+set routing-options srlg CHCG-KSCY-01-ORIG srlg-cost 10000
+set routing-options srlg CHCG-NSVN-01-ORIG srlg-value 331173100
+set routing-options srlg CHCG-NSVN-01-ORIG srlg-cost 10000
+set routing-options srlg CHCG-OMAJ-01-ORIG srlg-value 331117100
+set routing-options srlg CHCG-OMAJ-01-ORIG srlg-cost 10000
+set routing-options srlg CHCG-CLED-01-ORIG srlg-value 341119100
+set routing-options srlg CHCG-CLED-01-ORIG srlg-cost 10000
+set routing-options srlg CHND-ELCJ-01-ORIG srlg-value 211010100
+set routing-options srlg CHND-ELCJ-01-ORIG srlg-cost 10000
+set routing-options srlg CHND-PHNA-01-ORIG srlg-value 221013100
+set routing-options srlg CHND-PHNA-01-ORIG srlg-cost 10000
+set routing-options srlg CHND-PHNM-01-ORIG srlg-value 221014100
+set routing-options srlg CHND-PHNM-01-ORIG srlg-cost 10000
+set routing-options srlg CHND-SNTS-01-ORIG srlg-value 221072100
+set routing-options srlg CHND-SNTS-01-ORIG srlg-cost 10000
+set routing-options srlg DLLS-HSTQ-01-ORIG srlg-value 331272100
+set routing-options srlg DLLS-HSTQ-01-ORIG srlg-cost 10000
+set routing-options srlg DLLS-OKCY-01-ORIG srlg-value 331216100
+set routing-options srlg DLLS-OKCY-01-ORIG srlg-cost 10000
+set routing-options srlg DLLS-SRFR-01-ORIG srlg-value 321273100
+set routing-options srlg DLLS-SRFR-01-ORIG srlg-cost 10000
+set routing-options srlg DNVT-OMAJ-01-ORIG srlg-value 237017100
+set routing-options srlg DNVT-OMAJ-01-ORIG srlg-cost 10000
+set routing-options srlg DNVT-SLKD-01-ORIG srlg-value 227071100
+set routing-options srlg DNVT-SLKD-01-ORIG srlg-cost 10000
+set routing-options srlg DNVT-SLKD-02-TRIV srlg-value 227071200
+set routing-options srlg DNVT-SLKD-02-TRIV srlg-cost 10000
+set routing-options srlg DNVT-SRFR-01-ORIG srlg-value 227073100
+set routing-options srlg DNVT-SRFR-01-ORIG srlg-cost 10000
+set routing-options srlg DNVT-WCHT-01-ORIG srlg-value 237019100
+set routing-options srlg DNVT-WCHT-01-ORIG srlg-cost 10000
+set routing-options srlg ELCJ-RSMG-01-ORIG srlg-value 111012100
+set routing-options srlg ELCJ-RSMG-01-ORIG srlg-cost 10000
+set routing-options srlg ELCJ-SNDI-01-LONG srlg-value 111013100
+set routing-options srlg ELCJ-SNDI-01-LONG srlg-cost 10000
+set routing-options srlg ELCJ-SNDI-02-SHRT srlg-value 111013200
+set routing-options srlg ELCJ-SNDI-02-SHRT srlg-cost 10000
+set routing-options srlg FLCH-RCHN-01-ORIG srlg-value 441374100
+set routing-options srlg FLCH-RCHN-01-ORIG srlg-cost 10000
+set routing-options srlg GSVL-MACN-01-ORIG srlg-value 441416100
+set routing-options srlg GSVL-MACN-01-ORIG srlg-cost 10000
+set routing-options srlg GSVL-PNSC-01-ORIG srlg-value 441420100
+set routing-options srlg GSVL-PNSC-01-ORIG srlg-cost 10000
+set routing-options srlg HNSO-LSVR-01-LONG srlg-value 221112100
+set routing-options srlg HNSO-LSVR-01-LONG srlg-cost 10000
+set routing-options srlg HNSO-LSVR-02-SHRT srlg-value 221112200
+set routing-options srlg HNSO-LSVR-02-SHRT srlg-cost 10000
+set routing-options srlg HNSO-PHNA-01-ORIG srlg-value 221113100
+set routing-options srlg HNSO-PHNA-01-ORIG srlg-cost 10000
+set routing-options srlg HRHN-PNSC-01-ORIG srlg-value 341320100
+set routing-options srlg HRHN-PNSC-01-ORIG srlg-cost 10000
+set routing-options srlg HSTQ-SNTS-01-ORIG srlg-value 327272100
+set routing-options srlg HSTQ-SNTS-01-ORIG srlg-cost 10000
+set routing-options srlg JHSN-KSCY-01-ORIG srlg-value 331415100
+set routing-options srlg JHSN-KSCY-01-ORIG srlg-cost 10000
+set routing-options srlg KSCY-OMAJ-01-ORIG srlg-value 331517100
+set routing-options srlg KSCY-OMAJ-01-ORIG srlg-cost 10000
+set routing-options srlg KSCY-TULV-01-ORIG srlg-value 331518100
+set routing-options srlg KSCY-TULV-01-ORIG srlg-cost 10000
+set routing-options srlg KSCY-WCHT-01-ORIG srlg-value 331519100
+set routing-options srlg KSCY-WCHT-01-ORIG srlg-cost 10000
+set routing-options srlg LSAN-RSMG-01-C4CX srlg-value 111112100
+set routing-options srlg LSAN-RSMG-01-C4CX srlg-cost 10000
+set routing-options srlg LSAN-RSMG-02-C5CX srlg-value 111112200
+set routing-options srlg LSAN-RSMG-02-C5CX srlg-cost 10000
+set routing-options srlg LSAN-SNBB-01-ORIG srlg-value 111170100
+set routing-options srlg LSAN-SNBB-01-ORIG srlg-cost 10000
+set routing-options srlg LSAN-SNBR-01-ORIG srlg-value 111171100
+set routing-options srlg LSAN-SNBR-01-ORIG srlg-cost 10000
+set routing-options srlg LSVR-SLKD-01-ORIG srlg-value 221271100
+set routing-options srlg LSVR-SLKD-01-ORIG srlg-cost 10000
+set routing-options srlg LSVR-SLKD-02-TRIV srlg-value 221271200
+set routing-options srlg LSVR-SLKD-02-TRIV srlg-cost 10000
+set routing-options srlg LSVR-SNBR-01-ORIG srlg-value 211271100
+set routing-options srlg LSVR-SNBR-01-ORIG srlg-cost 10000
+set routing-options srlg NRFL-RCHN-01-LUMS srlg-value 441774100
+set routing-options srlg NRFL-RCHN-01-LUMS srlg-cost 10000
+set routing-options srlg NRFL-VRBH-01-LONG srlg-value 441723100
+set routing-options srlg NRFL-VRBH-01-LONG srlg-cost 10000
+set routing-options srlg NRFL-VRBH-02-SHRT srlg-value 441723200
+set routing-options srlg NRFL-VRBH-02-SHRT srlg-cost 10000
+set routing-options srlg NYCM-PHLA-01-ORIG srlg-value 441872100
+set routing-options srlg NYCM-PHLA-01-ORIG srlg-cost 10000
+set routing-options srlg NYCM-PRVE-01-ORIG srlg-value 441821100
+set routing-options srlg NYCM-PRVE-01-ORIG srlg-cost 10000
+set routing-options srlg OKCY-TULV-01-ORIG srlg-value 331618100
+set routing-options srlg OKCY-TULV-01-ORIG srlg-cost 10000
+set routing-options srlg OKCY-WCHT-01-ORIG srlg-value 331619100
+set routing-options srlg OKCY-WCHT-01-ORIG srlg-cost 10000
+set routing-options srlg CLED-PITE-01-ORIG srlg-value 441921100
+set routing-options srlg CLED-PITE-01-ORIG srlg-cost 10000
+set routing-options srlg CLED-PRVE-01-ORIG srlg-value 441973100
+set routing-options srlg CLED-PRVE-01-ORIG srlg-cost 10000
+set routing-options srlg PHLA-PITE-01-ORIG srlg-value 447273100
+set routing-options srlg PHLA-PITE-01-ORIG srlg-cost 10000
+set routing-options srlg PHLA-PRVE-01-ORIG srlg-value 447221100
+set routing-options srlg PHLA-PRVE-01-ORIG srlg-cost 10000
+set routing-options srlg PHNA-PHNM-01-ORIG srlg-value 221314100
+set routing-options srlg PHNA-PHNM-01-ORIG srlg-cost 10000
+set routing-options srlg RCHN-RLGI-01-ORIG srlg-value 447475100
+set routing-options srlg RCHN-RLGI-01-ORIG srlg-cost 10000
+set routing-options srlg RLGI-VRBH-01-ORIG srlg-value 447523100
+set routing-options srlg RLGI-VRBH-01-ORIG srlg-cost 10000
+set routing-options srlg RONL-VRBH-01-ORIG srlg-value 442223100
+set routing-options srlg RONL-VRBH-01-ORIG srlg-cost 10000
+set routing-options srlg RSMG-SNDI-01-ORIG srlg-value 111213100
+set routing-options srlg RSMG-SNDI-01-ORIG srlg-cost 10000
+set routing-options srlg SNBB-SNJY-01-ORIG srlg-value 117014100
+set routing-options srlg SNBB-SNJY-01-ORIG srlg-cost 10000
+set routing-options srlg SNBR-SNJY-01-ORIG srlg-value 117114100
+set routing-options srlg SNBR-SNJY-01-ORIG srlg-cost 10000
+set routing-options srlg SNTS-SRFR-01-ORIG srlg-value 227273100
+set routing-options srlg SNTS-SRFR-01-ORIG srlg-cost 10000
+set routing-options srlg ATLN-LTSP-02-TRIV srlg-value 441215200
+set routing-options srlg ATLN-LTSP-02-TRIV srlg-cost 10000
+set routing-options srlg FTSM-JHSN-01-ORIG srlg-value 337414100
+set routing-options srlg FTSM-JHSN-01-ORIG srlg-cost 10000
+set routing-options srlg FTSM-OKCY-01-ORIG srlg-value 337416100
+set routing-options srlg FTSM-OKCY-01-ORIG srlg-cost 10000
+set routing-options srlg LSAN-SNBB-01-TRIV srlg-value 111170200
+set routing-options srlg LSAN-SNBB-01-TRIV srlg-cost 10000
+set routing-options srlg DLLS-LTRK-01-ORIG srlg-value 331276100
+set routing-options srlg DLLS-LTRK-01-ORIG srlg-cost 10000
+set routing-options srlg FTSM-LTRK-01-ORIG srlg-value 337476100
+set routing-options srlg FTSM-LTRK-01-ORIG srlg-cost 10000
+set routing-options srlg HRHN-SLID-01-TRIV srlg-value 331375100
+set routing-options srlg HRHN-SLID-01-TRIV srlg-cost 10000
+set routing-options srlg LTRK-NSVN-01-ORIG srlg-value 337673100
+set routing-options srlg LTRK-NSVN-01-ORIG srlg-cost 10000
+set routing-options srlg PNSC-SLID-01-TRIV srlg-value 432075100
+set routing-options srlg PNSC-SLID-01-TRIV srlg-cost 10000
+set routing-options nonstop-routing
+set routing-options static route 0.0.0.0/0 discard
+set routing-options static route 10.254.254.254/32 discard
+set routing-options static route 100.122.4.128/26 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 100.122.4.128/26 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 100.122.4.128/26 resolve
+set routing-options static route 100.122.12.128/26 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 100.122.12.128/26 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 100.122.12.128/26 resolve
+set routing-options static route 100.120.230.0/24 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 100.120.230.0/24 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 100.120.230.0/24 resolve
+set routing-options static route 184.183.108.160/29 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 184.183.108.160/29 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 184.183.108.160/29 resolve
+set routing-options static route 172.18.43.243/32 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 172.18.43.243/32 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 172.18.43.243/32 resolve
+set routing-options static route 172.22.64.53/32 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 172.22.64.53/32 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 172.22.64.53/32 resolve
+set routing-options static route 172.22.8.33/32 qualified-next-hop 172.17.248.236 preference 10
+set routing-options static route 172.22.8.33/32 qualified-next-hop 172.17.248.238 preference 20
+set routing-options static route 172.22.8.33/32 resolve
+set routing-options martians 127.0.0.1/32 exact allow
+set routing-options aggregate defaults discard
+set routing-options router-id 172.17.248.234
+set routing-options forwarding-table export LOAD-BALANCE-ALL-EXPORT
+set routing-options fate-sharing group ALPSGA_3_2-ATLNGA_1_1 cost 10000
+set routing-options fate-sharing group ALPSGA_3_2-ATLNGA_1_1 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group ALPSGA_3_2-ATLNGA_1_1 from 68.1.0.40 to 68.1.0.41
+set routing-options fate-sharing group ALPSGA_3_2-ATLNGA_1_1 from 68.1.0.41 to 68.1.0.40
+set routing-options fate-sharing group ALPSGA_3_2-ATLNGA_1_1 from 68.1.2.148 to 68.1.2.149
+set routing-options fate-sharing group ALPSGA_3_2-ATLNGA_1_1 from 68.1.2.149 to 68.1.2.148
+set routing-options fate-sharing group ALPSGA_3_2-MACNGA_1_1 cost 10000
+set routing-options fate-sharing group ALPSGA_3_2-MACNGA_1_1 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group ALPSGA_3_2-MACNGA_1_1 from 68.1.1.110 to 68.1.1.111
+set routing-options fate-sharing group ALPSGA_3_2-MACNGA_1_1 from 68.1.1.111 to 68.1.1.110
+set routing-options fate-sharing group ALPSGA_3_2-MACNGA_1_1 from 68.1.2.142 to 68.1.2.143
+set routing-options fate-sharing group ALPSGA_3_2-MACNGA_1_1 from 68.1.2.143 to 68.1.2.142
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 cost 10000
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 from 68.1.0.11 to 68.1.0.10
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 from 68.1.0.92 to 68.1.0.93
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 from 68.1.1.16 to 68.1.1.17
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 from 68.1.1.17 to 68.1.1.16
+set routing-options fate-sharing group ALPSGA_1_2-NSVNTN_2_1 from 68.1.5.151 to 68.1.5.150
+set routing-options fate-sharing group ALPSGA_2_1-RLGINC_2_2 cost 10000
+set routing-options fate-sharing group ALPSGA_2_1-RLGINC_2_2 from 68.1.0.23 to 68.1.0.22
+set routing-options fate-sharing group ALPSGA_2_1-RLGINC_2_2 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group ALPSGA_2_1-RLGINC_2_2 from 68.1.0.30 to 68.1.0.31
+set routing-options fate-sharing group ALPSGA_2_1-RLGINC_2_2 from 68.1.0.92 to 68.1.0.93
+set routing-options fate-sharing group ASBNVA_2_1-FLCHVA_1_2 cost 10000
+set routing-options fate-sharing group ASBNVA_2_1-FLCHVA_1_2 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group ASBNVA_2_1-FLCHVA_1_2 from 68.1.0.92 to 68.1.0.93
+set routing-options fate-sharing group ASBNVA_2_1-FLCHVA_1_2 from 68.1.0.237 to 68.1.0.236
+set routing-options fate-sharing group ASBNVA_3_1-FLCHVA_4_2 cost 10000
+set routing-options fate-sharing group ASBNVA_3_1-FLCHVA_4_2 from 68.1.0.30 to 68.1.0.31
+set routing-options fate-sharing group ASBNVA_1_2-NYCMNY_2_1 cost 10000
+set routing-options fate-sharing group ASBNVA_1_2-NYCMNY_2_1 from 68.1.0.20 to 68.1.0.21
+set routing-options fate-sharing group ASBNVA_1_2-NYCMNY_2_1 from 68.1.0.21 to 68.1.0.20
+set routing-options fate-sharing group ATLNGA_2_2-MACNGA_1_1 cost 10000
+set routing-options fate-sharing group ATLNGA_2_2-MACNGA_1_1 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group ATLNGA_2_2-MACNGA_1_1 from 68.1.0.68 to 68.1.0.69
+set routing-options fate-sharing group ATLNGA_2_2-MACNGA_1_1 from 68.1.0.69 to 68.1.0.68
+set routing-options fate-sharing group ATLNGA_2_2-MACNGA_1_1 from 68.1.2.148 to 68.1.2.149
+set routing-options fate-sharing group ATLNGA_2_2-MACNGA_1_1 from 68.1.2.149 to 68.1.2.148
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 cost 10000
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.0.138 to 68.1.0.139
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.0.139 to 68.1.0.138
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.4.154 to 68.1.4.155
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.4.155 to 68.1.4.154
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.4.156 to 68.1.4.157
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.4.157 to 68.1.4.156
+set routing-options fate-sharing group BTRGLA_3_1-DLLSTX_3_1 from 68.1.4.158 to 68.1.4.159
+set routing-options fate-sharing group BTRGLA_1_1-HRHNLA_1_2 cost 10000
+set routing-options fate-sharing group BTRGLA_1_1-HRHNLA_1_2 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group BTRGLA_1_2-HRHNLA_1_1 cost 10000
+set routing-options fate-sharing group BTRGLA_1_2-HRHNLA_1_1 from 68.1.4.154 to 68.1.4.155
+set routing-options fate-sharing group BTRGLA_1_2-HRHNLA_1_1 from 68.1.4.155 to 68.1.4.154
+set routing-options fate-sharing group BTRGLA_1_2-HRHNLA_1_1 from 68.1.4.156 to 68.1.4.157
+set routing-options fate-sharing group BTRGLA_1_2-HRHNLA_1_1 from 68.1.4.157 to 68.1.4.156
+set routing-options fate-sharing group BTRGLA_1_2-HRHNLA_1_1 from 68.1.4.158 to 68.1.4.159
+set routing-options fate-sharing group BTRGLA_4_2-HRHNLA_4_2 cost 10000
+set routing-options fate-sharing group BTRGLA_4_2-HRHNLA_4_2 from 68.1.0.163 to 68.1.0.162
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 cost 10000
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.0.68 to 68.1.0.69
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.0.69 to 68.1.0.68
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.1.110 to 68.1.1.111
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.1.111 to 68.1.1.110
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.2.142 to 68.1.2.143
+set routing-options fate-sharing group BXLYGA_1_1-MACNGA_2_2 from 68.1.2.143 to 68.1.2.142
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 cost 10000
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.0.68 to 68.1.0.69
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.0.69 to 68.1.0.68
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.1.110 to 68.1.1.111
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.1.111 to 68.1.1.110
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.2.142 to 68.1.2.143
+set routing-options fate-sharing group BXLYGA_1_2-ORLFFL_1_1 from 68.1.2.143 to 68.1.2.142
+set routing-options fate-sharing group CHCGIL_1_2-KSCYMO_3_1 cost 10000
+set routing-options fate-sharing group CHCGIL_1_2-KSCYMO_3_1 from 68.1.0.169 to 68.1.0.168
+set routing-options fate-sharing group CHCGIL_1_2-KSCYMO_3_1 from 68.1.4.130 to 68.1.4.131
+set routing-options fate-sharing group CHCGIL_4_2-NSVNTN_3_1 cost 10000
+set routing-options fate-sharing group CHCGIL_4_2-NSVNTN_3_1 from 68.1.5.151 to 68.1.5.150
+set routing-options fate-sharing group CHCGIL_4_1-OMAJNE_3_1 cost 10000
+set routing-options fate-sharing group CHCGIL_4_1-OMAJNE_3_1 from 68.1.0.131 to 68.1.0.130
+set routing-options fate-sharing group CHCGIL_3_1-PARMOH_1_2 cost 10000
+set routing-options fate-sharing group CHCGIL_3_1-PARMOH_1_2 from 68.1.1.94 to 68.1.1.95
+set routing-options fate-sharing group CHCGIL_3_1-PARMOH_1_2 from 68.1.1.95 to 68.1.1.94
+set routing-options fate-sharing group CHCGIL_3_1-PARMOH_1_2 from 68.1.5.168 to 68.1.5.169
+set routing-options fate-sharing group CHCGIL_3_1-PARMOH_1_2 from 68.1.5.169 to 68.1.5.168
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 cost 10000
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.0.11 to 68.1.0.10
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.0.113 to 68.1.0.112
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.1.241 to 68.1.1.240
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.2.98 to 68.1.2.99
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.4.243 to 68.1.4.242
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.5.218 to 68.1.5.219
+set routing-options fate-sharing group CHNDAZ_3_2-ELCJCA_3_1 from 68.1.5.219 to 68.1.5.218
+set routing-options fate-sharing group CHNDAZ_5_1-ELPUTX_1_1 cost 10000
+set routing-options fate-sharing group CHNDAZ_5_1-ELPUTX_1_1 from 68.1.0.11 to 68.1.0.10
+set routing-options fate-sharing group CHNDAZ_5_1-ELPUTX_1_1 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group CHNDAZ_5_1-ELPUTX_1_1 from 68.1.2.98 to 68.1.2.99
+set routing-options fate-sharing group CHNDAZ_5_1-ELPUTX_1_1 from 68.1.4.152 to 68.1.4.153
+set routing-options fate-sharing group CHNDAZ_5_1-ELPUTX_1_1 from 68.1.4.153 to 68.1.4.152
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 cost 10000
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 from 68.1.0.113 to 68.1.0.112
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 from 68.1.0.249 to 68.1.0.248
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 from 68.1.5.218 to 68.1.5.219
+set routing-options fate-sharing group CHNDAZ_1_1-PHNAAZ_1_2 from 68.1.5.219 to 68.1.5.218
+set routing-options fate-sharing group CHNDAZ_2_2-PHNMAZ_1_1 cost 10000
+set routing-options fate-sharing group CHNDAZ_2_2-PHNMAZ_1_1 from 68.1.5.14 to 68.1.5.13
+set routing-options fate-sharing group DLLSTX_4_1-NSVNTN_1_2 cost 10000
+set routing-options fate-sharing group DLLSTX_4_1-NSVNTN_1_2 from 68.1.0.11 to 68.1.0.10
+set routing-options fate-sharing group DLLSTX_4_1-NSVNTN_1_2 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group DLLSTX_4_1-NSVNTN_1_2 from 68.1.0.92 to 68.1.0.93
+set routing-options fate-sharing group DLLSTX_4_1-NSVNTN_1_2 from 68.1.1.16 to 68.1.1.17
+set routing-options fate-sharing group DLLSTX_4_1-NSVNTN_1_2 from 68.1.1.17 to 68.1.1.16
+set routing-options fate-sharing group DLLSTX_2_1-OKCYOK_2_2 cost 10000
+set routing-options fate-sharing group DLLSTX_2_1-OKCYOK_2_2 from 68.1.0.140 to 68.1.0.141
+set routing-options fate-sharing group DLLSTX_2_1-OKCYOK_2_2 from 68.1.0.141 to 68.1.0.140
+set routing-options fate-sharing group DLLSTX_2_1-OKCYOK_2_2 from 68.1.2.90 to 68.1.2.91
+set routing-options fate-sharing group DLLSTX_1_2-SRFRTX_1_1 cost 10000
+set routing-options fate-sharing group DLLSTX_1_2-SRFRTX_1_1 from 68.1.0.11 to 68.1.0.10
+set routing-options fate-sharing group DLLSTX_1_2-SRFRTX_1_1 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group DLLSTX_1_2-SRFRTX_1_1 from 68.1.2.98 to 68.1.2.99
+set routing-options fate-sharing group DLLSTX_1_2-SRFRTX_1_1 from 68.1.4.152 to 68.1.4.153
+set routing-options fate-sharing group DLLSTX_1_2-SRFRTX_1_1 from 68.1.4.153 to 68.1.4.152
+set routing-options fate-sharing group DNVTCO_1_1-HANNWY_1_2 cost 10000
+set routing-options fate-sharing group DNVTCO_1_1-HANNWY_1_2 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group DNVTCO_1_2-OMAJNE_1_1 cost 10000
+set routing-options fate-sharing group DNVTCO_1_2-OMAJNE_1_1 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group DNVTCO_1_2-OMAJNE_1_1 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group DNVTCO_1_2-OMAJNE_1_1 from 68.1.1.10 to 68.1.1.11
+set routing-options fate-sharing group DNVTCO_1_2-OMAJNE_1_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group DNVTCO_3_2-SLKDUT_2_1 cost 10000
+set routing-options fate-sharing group DNVTCO_3_2-SLKDUT_2_1 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group DNVTCO_3_2-SLKDUT_2_1 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group DNVTCO_3_2-SLKDUT_2_1 from 68.1.1.10 to 68.1.1.11
+set routing-options fate-sharing group DNVTCO_3_2-SLKDUT_2_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group ELCJCA_2_2-RSMGCA_2_2 cost 10000
+set routing-options fate-sharing group ELCJCA_2_2-RSMGCA_2_2 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group ELCJCA_2_2-RSMGCA_2_2 from 68.1.0.113 to 68.1.0.112
+set routing-options fate-sharing group ELCJCA_2_2-RSMGCA_2_2 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group ELCJCA_2_2-RSMGCA_2_2 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group ELCJCA_2_2-RSMGCA_2_2 from 68.1.4.243 to 68.1.4.242
+set routing-options fate-sharing group ELCJCA_2_1-SNDICA_2_2 cost 10000
+set routing-options fate-sharing group ELCJCA_2_1-SNDICA_2_2 from 68.1.2.160 to 68.1.2.161
+set routing-options fate-sharing group ELKONV_1_2-SLKDUT_1_1 cost 10000
+set routing-options fate-sharing group ELKONV_1_2-SLKDUT_1_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group ELPUTX_2_1-SRFRTX_2_1 cost 10000
+set routing-options fate-sharing group ELPUTX_2_1-SRFRTX_2_1 from 68.1.0.11 to 68.1.0.10
+set routing-options fate-sharing group ELPUTX_2_1-SRFRTX_2_1 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group ELPUTX_2_1-SRFRTX_2_1 from 68.1.2.98 to 68.1.2.99
+set routing-options fate-sharing group ELPUTX_2_1-SRFRTX_2_1 from 68.1.4.152 to 68.1.4.153
+set routing-options fate-sharing group ELPUTX_2_1-SRFRTX_2_1 from 68.1.4.153 to 68.1.4.152
+set routing-options fate-sharing group FLCHVA_2_1-RCHNVA_1_2 cost 10000
+set routing-options fate-sharing group FLCHVA_2_1-RCHNVA_1_2 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group FLCHVA_2_1-RCHNVA_1_2 from 68.1.0.30 to 68.1.0.31
+set routing-options fate-sharing group FLCHVA_2_1-RCHNVA_1_2 from 68.1.0.92 to 68.1.0.93
+set routing-options fate-sharing group FLCHVA_2_1-RCHNVA_1_2 from 68.1.0.238 to 68.1.0.239
+set routing-options fate-sharing group FLCHVA_2_1-RCHNVA_1_2 from 68.1.0.239 to 68.1.0.238
+set routing-options fate-sharing group GNRVWY_1_1-SLKDUT_1_2 cost 10000
+set routing-options fate-sharing group GNRVWY_1_1-SLKDUT_1_2 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group GSVLFL_1_2-MACNGA_2_1 cost 10000
+set routing-options fate-sharing group GSVLFL_1_2-MACNGA_2_1 from 68.1.4.158 to 68.1.4.159
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 cost 10000
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.0.68 to 68.1.0.69
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.0.69 to 68.1.0.68
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.1.110 to 68.1.1.111
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.1.111 to 68.1.1.110
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.2.142 to 68.1.2.143
+set routing-options fate-sharing group GSVLFL_1_1-ORLFFL_1_2 from 68.1.2.143 to 68.1.2.142
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 cost 10000
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.0.68 to 68.1.0.69
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.0.69 to 68.1.0.68
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.1.110 to 68.1.1.111
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.1.111 to 68.1.1.110
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.4.154 to 68.1.4.155
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.4.155 to 68.1.4.154
+set routing-options fate-sharing group GSVLFL_2_1-PNSCFL_1_2 from 68.1.4.158 to 68.1.4.159
+set routing-options fate-sharing group HNSONV_1_1-LSVRNV_1_2 cost 10000
+set routing-options fate-sharing group HNSONV_1_1-LSVRNV_1_2 from 68.1.0.194 to 68.1.0.195
+set routing-options fate-sharing group HNSONV_1_1-LSVRNV_1_2 from 68.1.1.10 to 68.1.1.11
+set routing-options fate-sharing group HNSONV_1_1-LSVRNV_1_2 from 68.1.5.208 to 68.1.5.209
+set routing-options fate-sharing group HNSONV_1_1-LSVRNV_1_2 from 68.1.5.219 to 68.1.5.218
+set routing-options fate-sharing group HNSONV_2_2-LSVRNV_2_1 cost 10000
+set routing-options fate-sharing group HNSONV_2_2-LSVRNV_2_1 from 68.1.0.194 to 68.1.0.195
+set routing-options fate-sharing group HNSONV_2_2-LSVRNV_2_1 from 68.1.1.10 to 68.1.1.11
+set routing-options fate-sharing group HNSONV_2_2-LSVRNV_2_1 from 68.1.5.218 to 68.1.5.219
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 cost 10000
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.0.113 to 68.1.0.112
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.1.114 to 68.1.1.115
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.1.115 to 68.1.1.114
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.5.208 to 68.1.5.209
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.5.218 to 68.1.5.219
+set routing-options fate-sharing group HNSONV_1_2-PHNAAZ_1_1 from 68.1.5.219 to 68.1.5.218
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 cost 10000
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.0.36 to 68.1.0.37
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.0.68 to 68.1.0.69
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.0.69 to 68.1.0.68
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.1.105 to 68.1.1.104
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.4.154 to 68.1.4.155
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.4.155 to 68.1.4.154
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.4.156 to 68.1.4.157
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.4.157 to 68.1.4.156
+set routing-options fate-sharing group HRHNLA_3_1-PNSCFL_2_1 from 68.1.4.158 to 68.1.4.159
+set routing-options fate-sharing group KSCYMO_1_1-OMAJNE_2_2 cost 10000
+set routing-options fate-sharing group KSCYMO_1_1-OMAJNE_2_2 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group KSCYMO_1_1-OMAJNE_2_2 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group KSCYMO_1_1-OMAJNE_2_2 from 68.1.0.202 to 68.1.0.203
+set routing-options fate-sharing group KSCYMO_1_1-OMAJNE_2_2 from 68.1.0.203 to 68.1.0.202
+set routing-options fate-sharing group KSCYMO_1_1-OMAJNE_2_2 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 cost 10000
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.0.169 to 68.1.0.168
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.1.56 to 68.1.1.57
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.1.57 to 68.1.1.56
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.1.194 to 68.1.1.195
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.1.195 to 68.1.1.194
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.2.90 to 68.1.2.91
+set routing-options fate-sharing group KSCYMO_2_2-TULVOK_1_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 cost 10000
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 from 68.1.0.113 to 68.1.0.112
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 from 68.1.4.240 to 68.1.4.241
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 from 68.1.4.241 to 68.1.4.240
+set routing-options fate-sharing group LSANCA_1_1-RSMGCA_1_1 from 68.1.4.243 to 68.1.4.242
+set routing-options fate-sharing group LSANCA_5_1-RSMGCA_6_2 cost 10000
+set routing-options fate-sharing group LSANCA_5_1-RSMGCA_6_2 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group LSANCA_5_1-RSMGCA_6_2 from 68.1.4.241 to 68.1.4.240
+set routing-options fate-sharing group LSANCA_5_1-RSMGCA_6_2 from 68.1.4.243 to 68.1.4.242
+set routing-options fate-sharing group LSANCA_5_1-RSMGCA_6_2 from 68.1.5.220 to 68.1.5.221
+set routing-options fate-sharing group LSANCA_5_1-RSMGCA_6_2 from 68.1.5.221 to 68.1.5.220
+set routing-options fate-sharing group LSANCA_1_2-SNBBCA_1_1 cost 10000
+set routing-options fate-sharing group LSANCA_1_2-SNBBCA_1_1 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group LSANCA_1_2-SNBBCA_1_1 from 68.1.2.157 to 68.1.2.156
+set routing-options fate-sharing group LSANCA_1_2-SNBBCA_1_1 from 68.1.5.220 to 68.1.5.221
+set routing-options fate-sharing group LSANCA_1_2-SNBBCA_1_1 from 68.1.5.221 to 68.1.5.220
+set routing-options fate-sharing group LSANCA_2_2-SNBRCA_1_1 cost 10000
+set routing-options fate-sharing group LSANCA_2_2-SNBRCA_1_1 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group LSANCA_2_2-SNBRCA_1_1 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group LSANCA_2_2-SNBRCA_1_1 from 68.1.1.70 to 68.1.1.71
+set routing-options fate-sharing group LSANCA_2_2-SNBRCA_1_1 from 68.1.5.208 to 68.1.5.209
+set routing-options fate-sharing group LSVRNV_5_1-SLKDUT_1_1 cost 10000
+set routing-options fate-sharing group LSVRNV_5_1-SLKDUT_1_1 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group LSVRNV_5_1-SLKDUT_1_1 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group LSVRNV_5_1-SLKDUT_1_1 from 68.1.1.10 to 68.1.1.11
+set routing-options fate-sharing group LSVRNV_5_1-SLKDUT_1_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 cost 10000
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.0.156 to 68.1.0.157
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.0.157 to 68.1.0.156
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.1.70 to 68.1.1.71
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.2.163 to 68.1.2.162
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.5.208 to 68.1.5.209
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.5.218 to 68.1.5.219
+set routing-options fate-sharing group LSVRNV_3_1-SNBRCA_2_1 from 68.1.5.219 to 68.1.5.218
+set routing-options fate-sharing group NRFLVA_1_2-RCHNVA_2_1 cost 10000
+set routing-options fate-sharing group NRFLVA_1_2-RCHNVA_2_1 from 68.1.0.238 to 68.1.0.239
+set routing-options fate-sharing group NRFLVA_1_2-RCHNVA_2_1 from 68.1.0.239 to 68.1.0.238
+set routing-options fate-sharing group NRFLVA_2_2-VRBHVA_2_1 cost 10000
+set routing-options fate-sharing group NRFLVA_2_2-VRBHVA_2_1 from 68.1.0.17 to 68.1.0.16
+set routing-options fate-sharing group NYCMNY_1_1-PRVERI_2_2 cost 10000
+set routing-options fate-sharing group NYCMNY_1_1-PRVERI_2_2 from 68.1.4.36 to 68.1.4.37
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 cost 10000
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.0.169 to 68.1.0.168
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.1.58 to 68.1.1.59
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.1.59 to 68.1.1.58
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.1.194 to 68.1.1.195
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.1.195 to 68.1.1.194
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.2.90 to 68.1.2.91
+set routing-options fate-sharing group OKCYOK_1_1-TULVOK_2_2 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group PARMOH_2_1-SYRCNY_1_2 cost 10000
+set routing-options fate-sharing group PARMOH_2_1-SYRCNY_1_2 from 68.1.1.106 to 68.1.1.107
+set routing-options fate-sharing group PARMOH_2_1-SYRCNY_1_2 from 68.1.1.107 to 68.1.1.106
+set routing-options fate-sharing group PARMOH_2_1-SYRCNY_1_2 from 68.1.5.168 to 68.1.5.169
+set routing-options fate-sharing group PARMOH_2_1-SYRCNY_1_2 from 68.1.5.169 to 68.1.5.168
+set routing-options fate-sharing group PHNAAZ_2_1-PHNMAZ_3_2 cost 10000
+set routing-options fate-sharing group PHNAAZ_2_1-PHNMAZ_3_2 from 68.1.2.74 to 68.1.2.73
+set routing-options fate-sharing group PRVERI_1_2-SYRCNY_2_1 cost 10000
+set routing-options fate-sharing group PRVERI_1_2-SYRCNY_2_1 from 68.1.1.106 to 68.1.1.107
+set routing-options fate-sharing group PRVERI_1_2-SYRCNY_2_1 from 68.1.1.107 to 68.1.1.106
+set routing-options fate-sharing group PRVERI_1_2-SYRCNY_2_1 from 68.1.5.168 to 68.1.5.169
+set routing-options fate-sharing group PRVERI_1_2-SYRCNY_2_1 from 68.1.5.169 to 68.1.5.168
+set routing-options fate-sharing group RCHNVA_2_2-RLGINC_1_1 cost 10000
+set routing-options fate-sharing group RCHNVA_2_2-RLGINC_1_1 from 68.1.0.29 to 68.1.0.28
+set routing-options fate-sharing group RCHNVA_2_2-RLGINC_1_1 from 68.1.0.30 to 68.1.0.31
+set routing-options fate-sharing group RCHNVA_2_2-RLGINC_1_1 from 68.1.0.92 to 68.1.0.93
+set routing-options fate-sharing group RENPNV_1_1-SNJYCA_2_1 cost 10000
+set routing-options fate-sharing group RENPNV_1_1-SNJYCA_2_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group RLGINC_1_2-VRBHVA_1_1 cost 10000
+set routing-options fate-sharing group RLGINC_1_2-VRBHVA_1_1 from 68.1.0.23 to 68.1.0.22
+set routing-options fate-sharing group RSMGCA_3_1-SNDICA_3_2 cost 10000
+set routing-options fate-sharing group RSMGCA_3_1-SNDICA_3_2 from 68.1.0.211 to 68.1.0.210
+set routing-options fate-sharing group RSMGCA_3_1-SNDICA_3_2 from 68.1.5.220 to 68.1.5.221
+set routing-options fate-sharing group RSMGCA_3_1-SNDICA_3_2 from 68.1.5.221 to 68.1.5.220
+set routing-options fate-sharing group SNBBCA_2_2-SNJYCA_1_1 cost 10000
+set routing-options fate-sharing group SNBBCA_2_2-SNJYCA_1_1 from 68.1.0.110 to 68.1.0.111
+set routing-options fate-sharing group SNBBCA_2_2-SNJYCA_1_1 from 68.1.2.157 to 68.1.2.156
+set routing-options fate-sharing group SNBBCA_2_2-SNJYCA_1_1 from 68.1.5.220 to 68.1.5.221
+set routing-options fate-sharing group SNBBCA_2_2-SNJYCA_1_1 from 68.1.5.221 to 68.1.5.220
+set routing-options fate-sharing group SNBRCA_3_1-SNJYCA_3_1 cost 10000
+set routing-options fate-sharing group SNBRCA_3_1-SNJYCA_3_1 from 68.1.2.159 to 68.1.2.158
+set routing-options fate-sharing group SNBRCA_3_1-SNJYCA_3_1 from 68.1.2.163 to 68.1.2.162
+set routing-options fate-sharing group SNBRCA_3_1-SNJYCA_3_1 from 68.1.5.218 to 68.1.5.219
+set routing-options fate-sharing group SNBRCA_3_1-SNJYCA_3_1 from 68.1.5.219 to 68.1.5.218
+set protocols rsvp apply-groups RSVP-OPTIONS
+set protocols rsvp interface ae1.0
+set protocols rsvp interface ae7.0
+set protocols rsvp interface ae0.0
+set protocols rsvp interface ae8.0
+set protocols mpls apply-groups MPLS-OPTIONS
+set protocols mpls sensor-based-stats
+set protocols mpls interface ae1.0
+set protocols mpls interface ae0.0 srlg NRFL-VRBH-02-SHRT
+set protocols mpls interface ae7.0 srlg FLCH-RCHN-01-ORIG
+set protocols mpls interface ae7.0 srlg NRFL-RCHN-01-LUMS
+set protocols mpls interface ae8.0 srlg ASBN-FLCH-02-SOUT
+set protocols mpls interface ae8.0 srlg FLCH-RCHN-01-ORIG
+set protocols mpls interface ae8.0 srlg NRFL-RCHN-01-LUMS
+set protocols isis reference-bandwidth 500g
+set protocols isis overload timeout 240
+set protocols isis overload advertise-high-metrics
+set protocols isis level 1 disable
+set protocols isis level 2 wide-metrics-only
+set protocols isis interface ae0.0 apply-groups ISIS-L2-OPTIONS
+set protocols isis interface ae0.0 level 2 metric 10
+set protocols isis interface ae1.0 apply-groups ISIS-L2-OPTIONS
+set protocols isis interface ae1.0 level 2 metric 16
+set protocols isis interface ae5.0 level 2 metric 10000
+set protocols isis interface ae7.0 apply-groups ISIS-L2-OPTIONS
+set protocols isis interface ae7.0 level 2 metric 520
+set protocols isis interface ae8.0 apply-groups ISIS-L2-OPTIONS
+set protocols isis interface ae8.0 level 2 metric 531
+set protocols isis interface lo0.0 level 1 disable
+set protocols isis interface lo0.0 level 2 passive
+set protocols oam ethernet link-fault-management apply-groups ETH-OAM-OPTIONS
+set protocols oam ethernet link-fault-management interface ae7
+set protocols oam ethernet link-fault-management interface ae0
+set protocols oam ethernet link-fault-management interface ae8
+set protocols oam ethernet link-fault-management interface ae1
+set protocols lldp management-address 172.17.248.234
+set protocols lldp port-id-subtype interface-name
+set protocols lldp interface all
+set policy-options prefix-list bgp-peers
+set policy-options policy-statement LOAD-BALANCE-ALL-EXPORT term LOAD-BALANCE-PER-PACKET then load-balance per-packet
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class BEST-EFFORT loss-priority high code-points BEST-EFFORT-BE
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class NON-REAL-TIME loss-priority high code-points NON-REAL-TIME-AF11
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class INTERACTIVE loss-priority low code-points INTERACTIVE-AF21
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class REAL-TIME loss-priority low code-points REAL-TIME-AF31
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class VIDEO loss-priority low code-points VIDEO-AF41
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class VOICE loss-priority low code-points VOICE-EF
+set class-of-service classifiers dscp-ipv6 V6-CLASSIFY-DSCP forwarding-class NETWORK-CONTROL loss-priority low code-points NETWORK-CONTROL-NC
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class BEST-EFFORT loss-priority high code-points BEST-EFFORT-BE
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class NON-REAL-TIME loss-priority high code-points NON-REAL-TIME-AF11
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class INTERACTIVE loss-priority low code-points INTERACTIVE-AF21
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class REAL-TIME loss-priority low code-points REAL-TIME-AF31
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class VIDEO loss-priority low code-points VIDEO-AF41
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class VOICE loss-priority low code-points VOICE-EF
+set class-of-service classifiers exp MPLS-CLASSIFY-EXP forwarding-class NETWORK-CONTROL loss-priority low code-points NETWORK-CONTROL-NC1
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class BEST-EFFORT loss-priority high code-points BEST-EFFORT-BE
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class NON-REAL-TIME loss-priority high code-points NON-REAL-TIME-AF11
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class INTERACTIVE loss-priority low code-points INTERACTIVE-AF21
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class REAL-TIME loss-priority low code-points REAL-TIME-AF31
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class VIDEO loss-priority low code-points VIDEO-AF41
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class VOICE loss-priority low code-points VOICE-EF
+set class-of-service classifiers inet-precedence V4-CLASSIFY-IPP forwarding-class NETWORK-CONTROL loss-priority low code-points NETWORK-CONTROL-NC1
+set class-of-service host-outbound-traffic forwarding-class NETWORK-CONTROL
+set class-of-service host-outbound-traffic dscp-code-point 110000
+set class-of-service drop-profiles RED-BEST-EFFORT interpolate fill-level 15
+set class-of-service drop-profiles RED-BEST-EFFORT interpolate fill-level 95
+set class-of-service drop-profiles RED-BEST-EFFORT interpolate drop-probability 1
+set class-of-service drop-profiles RED-BEST-EFFORT interpolate drop-probability 10
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class BEST-EFFORT loss-priority low code-point BEST-EFFORT-BE
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class BEST-EFFORT loss-priority high code-point BEST-EFFORT-BE
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class NON-REAL-TIME loss-priority low code-point NON-REAL-TIME-AF11
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class NON-REAL-TIME loss-priority high code-point NON-REAL-TIME-AF11
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class INTERACTIVE loss-priority low code-point INTERACTIVE-AF21
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class INTERACTIVE loss-priority high code-point INTERACTIVE-AF21
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class REAL-TIME loss-priority low code-point REAL-TIME-AF31
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class REAL-TIME loss-priority high code-point REAL-TIME-AF31
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class VIDEO loss-priority low code-point VIDEO-AF41
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class VIDEO loss-priority high code-point VIDEO-AF41
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class VOICE loss-priority low code-point VOICE-EF
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class VOICE loss-priority high code-point VOICE-EF
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class NETWORK-CONTROL loss-priority low code-point NETWORK-CONTROL-NC
+set class-of-service rewrite-rules dscp-ipv6 V6-WRITE-DSCP forwarding-class NETWORK-CONTROL loss-priority high code-point NETWORK-CONTROL-NC
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class BEST-EFFORT loss-priority low code-point BEST-EFFORT-BE
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class BEST-EFFORT loss-priority high code-point BEST-EFFORT-BE
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class NON-REAL-TIME loss-priority low code-point NON-REAL-TIME-AF11
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class NON-REAL-TIME loss-priority high code-point NON-REAL-TIME-AF11
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class INTERACTIVE loss-priority low code-point INTERACTIVE-AF21
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class INTERACTIVE loss-priority high code-point INTERACTIVE-AF21
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class REAL-TIME loss-priority low code-point REAL-TIME-AF31
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class REAL-TIME loss-priority high code-point REAL-TIME-AF31
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class VIDEO loss-priority low code-point VIDEO-AF41
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class VIDEO loss-priority high code-point VIDEO-AF41
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class VOICE loss-priority low code-point VOICE-EF
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class VOICE loss-priority high code-point VOICE-EF
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class NETWORK-CONTROL loss-priority low code-point NETWORK-CONTROL-NC1
+set class-of-service rewrite-rules exp MPLS-WRITE-EXP forwarding-class NETWORK-CONTROL loss-priority high code-point NETWORK-CONTROL-NC1
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class BEST-EFFORT scheduler BB-BEST-EFFORT-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class NON-REAL-TIME scheduler BB-NON-REAL-TIME-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class INTERACTIVE scheduler BB-INTERACTIVE-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class REAL-TIME scheduler BB-REAL-TIME-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class VIDEO scheduler BB-VIDEO-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class VOICE scheduler BB-VOICE-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY forwarding-class NETWORK-CONTROL scheduler BB-NETWORK-CONTROL-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class BEST-EFFORT scheduler BB-BEST-EFFORT-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class NON-REAL-TIME scheduler BB-NON-REAL-TIME-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class INTERACTIVE scheduler BB-INTERACTIVE-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class REAL-TIME scheduler BB-REAL-TIME-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class VIDEO scheduler BB-VIDEO-SCHEDULER-RNKE
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class VOICE scheduler BB-VOICE-SCHEDULER
+set class-of-service scheduler-maps BB-QOS-POLICY-RNKE forwarding-class NETWORK-CONTROL scheduler BB-NETWORK-CONTROL-SCHEDULER
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER transmit-rate percent 5
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER buffer-size percent 55
+set class-of-service schedulers BB-BEST-EFFORT-SCHEDULER priority low
+set class-of-service schedulers BB-NON-REAL-TIME-SCHEDULER transmit-rate percent 10
+set class-of-service schedulers BB-NON-REAL-TIME-SCHEDULER buffer-size percent 10
+set class-of-service schedulers BB-NON-REAL-TIME-SCHEDULER priority low
+set class-of-service schedulers BB-INTERACTIVE-SCHEDULER transmit-rate percent 10
+set class-of-service schedulers BB-INTERACTIVE-SCHEDULER buffer-size percent 10
+set class-of-service schedulers BB-INTERACTIVE-SCHEDULER priority medium-low
+set class-of-service schedulers BB-REAL-TIME-SCHEDULER transmit-rate percent 10
+set class-of-service schedulers BB-REAL-TIME-SCHEDULER buffer-size percent 10
+set class-of-service schedulers BB-REAL-TIME-SCHEDULER priority medium-low
+set class-of-service schedulers BB-VIDEO-SCHEDULER transmit-rate percent 6
+set class-of-service schedulers BB-VIDEO-SCHEDULER buffer-size percent 3
+set class-of-service schedulers BB-VIDEO-SCHEDULER priority medium-high
+set class-of-service schedulers BB-VOICE-SCHEDULER priority strict-high
+set class-of-service schedulers BB-NETWORK-CONTROL-SCHEDULER transmit-rate percent 1
+set class-of-service schedulers BB-NETWORK-CONTROL-SCHEDULER buffer-size percent 0
+set class-of-service schedulers BB-NETWORK-CONTROL-SCHEDULER priority high
+set class-of-service schedulers BB-VIDEO-SCHEDULER-RNKE transmit-rate percent 28
+set class-of-service schedulers BB-VIDEO-SCHEDULER-RNKE buffer-size percent 1
+set class-of-service schedulers BB-VIDEO-SCHEDULER-RNKE priority medium-high
+set firewall policer ssh-policer if-exceeding bandwidth-limit 1m
+set firewall policer ssh-policer if-exceeding burst-size-limit 15k
+set firewall policer ssh-policer then discard
+set firewall policer snmp-policer if-exceeding bandwidth-limit 2m
+set firewall policer snmp-policer if-exceeding burst-size-limit 30k
+set firewall policer snmp-policer then discard
+set firewall policer small-bw-policer if-exceeding bandwidth-limit 1m
+set firewall policer small-bw-policer if-exceeding burst-size-limit 15k
+set firewall policer small-bw-policer then discard
+set firewall policer tcp-policer if-exceeding bandwidth-limit 500k
+set firewall policer tcp-policer if-exceeding burst-size-limit 15k
+set firewall policer tcp-policer then discard
+set firewall policer police-icmp if-exceeding bandwidth-limit 4m
+set firewall policer police-icmp if-exceeding burst-size-limit 400k
+set firewall policer police-icmp then discard
+set firewall policer V4V6-SSH-POLICER-RE if-exceeding bandwidth-limit 1m
+set firewall policer V4V6-SSH-POLICER-RE if-exceeding burst-size-limit 15k
+set firewall policer V4V6-SSH-POLICER-RE then discard
+set firewall policer V4V6-SNMP-POLICER-RE if-exceeding bandwidth-limit 2m
+set firewall policer V4V6-SNMP-POLICER-RE if-exceeding burst-size-limit 30k
+set firewall policer V4V6-SNMP-POLICER-RE then discard
+set firewall policer V4V6-SMALL_BW-POLICER-RE if-exceeding bandwidth-limit 1m
+set firewall policer V4V6-SMALL_BW-POLICER-RE if-exceeding burst-size-limit 15k
+set firewall policer V4V6-SMALL_BW-POLICER-RE then discard
+set firewall policer V4V6-TCP-POLICER-RE if-exceeding bandwidth-limit 500k
+set firewall policer V4V6-TCP-POLICER-RE if-exceeding burst-size-limit 15k
+set firewall policer V4V6-TCP-POLICER-RE then discard
+set firewall policer V4V6-ICMP-POLICER-RE if-exceeding bandwidth-limit 4m
+set firewall policer V4V6-ICMP-POLICER-RE if-exceeding burst-size-limit 400k
+set firewall policer V4V6-ICMP-POLICER-RE then discard
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT from fragment-offset 0
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT from fragment-flags 0x2000
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT then count DENY-INITIAL-FRAGMENT-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-INITIAL-FRAGMENT then discard
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-FRAGMENTED-PACKETS from fragment-offset-except 0
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-FRAGMENTED-PACKETS then count DENY-FRAGMENTED-PACKETS-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-FRAGMENTED-PACKETS then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP from source-prefix-list V4-NTP-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP from port ntp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP then policer V4V6-SMALL_BW-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-NTP then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP from port ntp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP then count DENY-NTP-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-NTP then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE from source-prefix-list V4-SSH-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE from protocol tcp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE from port 7804
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE then policer V4V6-SSH-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-JUNOS-SPACE then accept
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from source-prefix-list V4-SSH-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from protocol tcp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from port ssh
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH from port 830
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH then policer V4V6-SSH-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SSH then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH from protocol tcp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH from port ssh
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH then count DENY-SSH-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SSH then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP from source-prefix-list V4-SNMP-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP from port snmp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP then policer V4V6-SNMP-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-SNMP then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP from port snmp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP then count DENY-SNMP-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-SNMP then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS from source-prefix-list V4-DNS-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS from port 53
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS then policer V4V6-SMALL_BW-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-DNS then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS from port 53
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS then count DENY-DNS-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-DNS then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from source-prefix-list V4-TACACS-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from protocol tcp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from source-port 4900
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS from source-port 49
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TACACS then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS from protocol tcp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS from source-port tacacs
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS then count DENY-TACACS-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-TACACS then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-VRRP from destination-address 224.0.0.18/32
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-VRRP from protocol vrrp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-VRRP then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-VRRP from protocol vrrp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-VRRP then count DENY-VRRP-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-VRRP then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-RSVP from source-prefix-list V4-RSVP-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-RSVP from protocol rsvp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-RSVP then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-RSVP from protocol rsvp
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-RSVP then count DENY-RSVP-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-RSVP then discard
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from protocol icmp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type echo-request
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type echo-reply
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type unreachable
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES from icmp-type time-exceeded
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES then policer V4V6-ICMP-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-ICMP-TYPES then accept
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES from destination-port 33434-33523
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES then policer V4V6-SMALL_BW-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-TRACEROUTES then accept
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO from protocol udp
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO from port 3503
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO then policer V4V6-ICMP-POLICER-RE
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-LSP-ECHO then accept
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT from source-prefix-list V4-OPENSHIFT-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT from source-prefix-list V4-SSH-LIST-BB
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT from port 50051
+set firewall filter V4-PROTECT_RE-IN-BB term PERMIT-OPENSHIFT then accept
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-EVERYTHING-ELSE then count DENY-EVERYTHING-ELSE-COUNT
+set firewall filter V4-PROTECT_RE-IN-BB term DENY-EVERYTHING-ELSE then discard
+
